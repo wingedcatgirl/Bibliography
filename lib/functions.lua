@@ -1,0 +1,289 @@
+---Debug messages
+---@param message string Message to send
+---@param level? string Log level, DEBUG by default, TRACE won't send unless dev mode is active since DebugPlus doesn't have that filter fsr
+BIBLIO.say = function(message, level)
+    message = message or "???"
+    level = level or "DEBUG"
+    while #level < 5 do
+        level = level.." "
+    end
+    if level == "TRACE" and not (BIBLIO.config.dev_mode and not BIBLIO.config.suppress_trace) then
+        return
+    end
+    sendMessageToConsole(level, "Bibliography", message)
+end
+
+---Checks whether a card is in the collection (as opposed to e.g. the hand or Jokers tray)
+---@param card table Card to check
+---@return boolean
+BIBLIO.in_collection = function (card)
+    if G.your_collection then
+        for k, v in pairs(G.your_collection) do
+            if card.area == v then
+                return true
+            end
+        end
+    end
+    return false
+end
+
+---Converts a map of enhancements into an info-queue tip
+---@param table table A map (list of `key = true`) of the relevant enhancements
+---@param name string The name of the enhancement list
+---@return table
+BIBLIO.enhancement_list = function(table, name)
+  local key = 'biblio_'..name..'_enhancements'
+    local text = {}
+    local text_parsed = {}
+
+    for k,_ in pairs(table) do
+        if G.P_CENTERS[k] then
+            text[#text+1] = localize{type = 'name_text', set = 'Enhanced', key = k}
+        end
+    end
+
+    for _, v in ipairs(text) do
+      text_parsed[#text_parsed + 1] = loc_parse_string(v)
+    end
+
+    G.localization.descriptions.Other[key] = G.localization.descriptions.Other[key] or {}
+    G.localization.descriptions.Other[key].text = text
+    G.localization.descriptions.Other[key].text_parsed = text_parsed
+
+  return {
+    set = 'Other',
+    key = key,
+  }
+end
+
+---Do the tarot flip thing to all of G.hand.highlighted
+---@param card Card
+---@param args table|{rank:string?, suit:string?, enh:string?, edi:string?, random_ranks:table?, random_suits:table?, random_enhs:table?, random_edis:table?, seed:string?, sound:string?} Keys of the appropriate target modifications. `random_` tables are lists of same keys to pick one at random, in which case you need `seed` to seed the seed. Note: To clear an edition, pass the string "base", "none", "false", or "remove" as the edition key.
+BIBLIO.tarotflip = function (card, args)
+    if not args then
+        BIBLIO.say("hey you forgor to say anything when trying to change these cards", "ERROR")
+        return
+    end
+    local rank = args.rank
+    local ranks = args.random_ranks
+    local suit = args.suit
+    local suits = args.random_suits
+    local enh = args.enh
+    local enhs = args.random_enhs
+    local edi = args.edi
+    local edis = args.random_edis
+    local seed = args.seed or "biblio_tarotflip_seedless_probably_shouldn't_happen_tbh"
+    local sound = args.sound
+    if not (rank or ranks or suit or suits or enh or enhs or edi or edis) or (rank and ranks) or (suit and suits) or (enh and enhs) or (edi and edis) or ((ranks or suits or enhs or edis) and not args.seed) then
+        BIBLIO.say("hey you didn't type the right arguments?", "ERROR")
+        tprint(args or {})
+    end
+
+    if card then
+        G.E_MANAGER:add_event(Event({
+        trigger = 'after',
+        delay = 0.4,
+        func = function()
+            play_sound('tarot1')
+            card:juice_up(0.3, 0.5)
+            return true
+        end }))
+    end
+
+    if (rank or ranks or suit or suits or enh or enhs) then
+        for i=1, #G.hand.highlighted do
+            local percent = 1.15 - (i-0.999)/(#G.hand.highlighted-0.998)*0.3
+            G.E_MANAGER:add_event(Event({
+            trigger = 'after',
+            delay = 0.15,
+            func = function()
+                G.hand.highlighted[i]:flip()
+                play_sound('card1', percent)
+                G.hand.highlighted[i]:juice_up(0.3, 0.3)
+                return true
+            end
+            }))
+        end
+        delay(0.2)
+        for i=1, #G.hand.highlighted do
+            G.E_MANAGER:add_event(Event({
+            trigger = 'after',
+            delay = 0.1,
+            func = function()
+                if ranks then rank = pseudorandom_element(ranks, pseudoseed(seed)) end
+                if suits then suit = pseudorandom_element(suits, pseudoseed(seed)) end
+                if enhs then enh = SMODS.poll_enhancement({options = enhs, key = seed, guaranteed = true}) end
+                if rank or suit then
+                    assert(SMODS.change_base(G.hand.highlighted[i], suit, rank))
+                end
+                if enh then
+                    G.hand.highlighted[i]:set_ability(G.P_CENTERS[enh])
+                end
+                return true
+            end
+            }))
+        end
+        for i=1, #G.hand.highlighted do
+            local percent = 0.85 + ( i - 0.999 ) / ( #G.hand.highlighted - 0.998 ) * 0.3
+            G.E_MANAGER:add_event(Event({
+            trigger = 'after',
+            delay = 0.15,
+            func = function()
+                G.hand.highlighted[i]:flip()
+                play_sound(sound or 'tarot2', percent, 0.6)
+                G.hand.highlighted[i]:juice_up(0.3, 0.3)
+                return true
+            end
+            }))
+        end
+    end
+
+    if (edi or edis) then
+        for i=1, #G.hand.highlighted do
+            G.E_MANAGER:add_event(Event({
+            trigger = 'after',
+            delay = 0.1,
+            func = function()
+                if edis then edi = SMODS.poll_edition({options = enhs, key = seed, guaranteed = true}) end
+                if edi then
+                    if edi == "base" or edi == "none" or edi == "false" or edi == "remove" then edi = nil end
+                    G.hand.highlighted[i]:set_edition(edi)
+                    G.hand.highlighted[i]:juice_up(0.3,0.3)
+                end
+                return true
+            end
+            }))
+        end
+    end
+
+    G.E_MANAGER:add_event(Event({
+    trigger = 'after',
+    delay = 0.15,
+    func = function()
+        G.hand:unhighlight_all()
+        return true
+    end
+    }))
+    delay(0.5)
+end
+
+---Checks whether any of the specified rank exist in the player's entire deck
+---@param rank string Key of the rank to find
+---@return boolean
+BIBLIO.find_rank = function(rank)
+    if not G.playing_cards then return true end
+    for k, v in ipairs(G.playing_cards) do
+        if v:get_id() == SMODS.Ranks[rank].id then
+            return true
+        end
+    end
+    return false
+end
+
+---Checks if you own an enhancement
+---@param enh string Key of the enhancement
+---@param quantum? boolean Include quantum enhancements (default false)
+---@param count? boolean Return the number of found enhancements instead of a boolean
+BIBLIO.find_enhancement = function(enh, quantum, count)
+    if not G.playing_cards then return count and 0 or true end
+    local num = 0
+    for k, v in ipairs(G.playing_cards) do
+        if (v.config.center.key == enh) or quantum and SMODS.has_enhancement(v, enh) then
+            num = num + 1
+            if not count then return true end
+        end
+    end
+    return count and num or num > 0
+end
+
+---Counts how many things in a given mod have been discovered
+---@param mod? string ID of the mod to check for; Bibliography by default
+---@param set? string Type of thing to check for; Jokers by default
+---@return integer
+BIBLIO.discover_count = function(set, mod, debug)
+    mod = (mod or "Bibliography")
+    if mod:lower() == "vanilla" then mod = "vanilla" end
+    set = set or "Joker"
+    local found = 0
+
+    if debug then
+        BIBLIO.say("Counting discovered items of set "..set.." from mod with id "..mod)
+    end
+
+    for k, v in pairs(G.P_CENTERS) do
+        if v.discovered then
+            if ((mod == "all") or (mod == "vanilla" and not v.mod) or (v.mod and v.mod.id == mod))
+            and ((v.set == set) or (set == "all")) then
+                if debug then
+                    BIBLIO.say("Discovered center found with key "..k)
+                end
+                found = found + 1
+            end
+        end
+    end
+
+    if set:lower() == "blind" then
+        for k, v in pairs(G.P_BLINDS) do
+            if v.discovered then
+                if ((mod == "all") or (mod == "vanilla" and not v.mod) or (v.mod and v.mod.id == mod)) then
+                    if debug then
+                        BIBLIO.say("Discovered blind found with key "..k)
+                    end
+                    found = found + 1
+                end
+            end
+        end
+    end
+
+    if set:lower() == "tag" then
+        for k, v in pairs(G.P_TAGS) do
+            if v.discovered then
+                if ((mod == "all") or (mod == "vanilla" and not v.mod) or (v.mod and v.mod.id == mod)) then
+                    if debug then
+                        BIBLIO.say("Discovered tag found with key "..k)
+                    end
+                    found = found + 1
+                end
+            end
+        end
+    end
+
+    return found
+end
+
+---Faster than typing out all this crap :v 
+---Remember to return `true` to resolve the event!
+---@param func function The function to queue
+---@param args? table Other arguments
+BIBLIO.event = function(func, args)
+    args = args or {}
+    args.func = args.func or func
+    G.E_MANAGER:add_event(Event(args))
+end
+
+
+--Talisman compatibility compatibility
+to_big = to_big or function(x)
+    return x
+end
+
+to_number = to_number or function(x)
+    return x
+end
+
+
+SMODS.current_mod.reset_game_globals = function(init)
+
+end
+
+SMODS.current_mod.set_debuff = function (card)
+
+end
+
+SMODS.current_mod.calculate = function (self, context)
+    
+end
+
+SMODS.current_mod.process_loc_text = function()
+    
+end
