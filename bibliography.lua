@@ -12,6 +12,9 @@ local files = {
     },
     tarots = {
         "crucible"
+    },
+    rotarots = {
+        "crucible"
     }
 }
 

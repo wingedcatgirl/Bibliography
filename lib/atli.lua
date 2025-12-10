@@ -10,3 +10,10 @@ for _,v in ipairs(super_basic_items) do
         py = 95
     }
 end
+
+SMODS.Atlas {
+    key = 'rotarot_placeholder',
+    path = "rotarot_placeholder.png",
+    px = 107,
+    py = 107,
+}

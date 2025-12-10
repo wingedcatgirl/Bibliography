@@ -88,8 +88,11 @@ return {
                     {
                         "If {C:attention}airborne{} when hand played,",
                         "{C:attention}retrigger{} all scoring cards {C:blue}#1#{} times",
-                        "{C:inactive,s:0.8}Further Crucibles add more retriggers. Progress: #2#/#1#",
                     },
+                    {
+                        "{C:inactive,s:0.8}Further Crucibles add more retriggers",
+                        "{C:inactive,s:0.8}Progress: #2#/#1#",
+                    }
 				},
 			},
 			--HEY FUTURE MINTY, PUT NEW JOKERS ⬆️HERE⬆️ :P 
@@ -111,7 +114,7 @@ return {
                 name = "The Crucible",
                 text = {
                     "Evolve {C:attention}#1#{} eligible",
-                    "card#2# to a new form"
+                    "card#2# to a new level"
                 }
             }
 		},
@@ -137,7 +140,13 @@ return {
             
 		},
 		["Rotarot"] = {
-            
+            c_biblio_rot_crucible = {
+                name = "The Crucible!",
+                text = {
+                    "Create {C:attention}#1#{} card",
+                    "capable of evolution"
+                }
+            }
 		},
         ["Lore"] = { --NOTE TO FUTURE PEOPLE, adding new categories for infoqueues isn't automatic; we had to patch it in, see lore.toml
             ["j_biblio_leaf"] = {

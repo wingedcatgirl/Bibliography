@@ -79,7 +79,10 @@ SMODS.Consumable{
                         end
                     }))
                 elseif type(v.config.center.biblio_crucible_effect) == "function" then
-                    G.P_CENTERS[oldkey]:biblio_crucible_effect(v)
+                    BIBLIO.event(function ()
+                        G.P_CENTERS[oldkey]:biblio_crucible_effect(v)
+                        return true
+                    end)
                 end
             end
         end
