@@ -1,4 +1,4 @@
-local soulpos = {x = 0, y = 1}
+local soulpos = {x = 1, y = 3}
 SMODS.Joker {
     key = "leafX",
     name = "Leaf Saito, Stellar Dragoon",
@@ -13,8 +13,8 @@ SMODS.Joker {
     pronouns = "she_her",
     atlas = 'jokers',
     pos = {
-        x = 6,
-        y = 0
+        x = 1,
+        y = 2
     },
     soul_pos = soulpos,
     rarity = "biblio_evolved",

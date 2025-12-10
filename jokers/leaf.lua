@@ -1,4 +1,4 @@
-local soulpos = {x = 0, y = 1}
+local soulpos = {x = 0, y = 3}
 SMODS.Joker {
     key = "leaf",
     name = "Leaf Saito",
@@ -7,7 +7,7 @@ SMODS.Joker {
     atlas = 'jokers',
     pos = {
         x = 0,
-        y = 0
+        y = 2
     },
     soul_pos = soulpos,
     rarity = 1,
