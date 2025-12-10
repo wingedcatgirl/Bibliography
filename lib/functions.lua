@@ -56,6 +56,22 @@ BIBLIO.enhancement_list = function(table, name)
   }
 end
 
+---... from target areas, excluding self
+---@param card table The object that's looking at highlighted things (it won't see itself)
+---@param areas table List of keys of `CardArea`s in `G`
+---@return table cards List of highlighted cards
+function BIBLIO.get_all_highlighted(card, areas)
+    local cards = {}
+
+    for _,area in ipairs(areas) do
+        for _,v in ipairs(G[area].highlighted or {}) do
+            if v~=card then cards[#cards+1] = v end
+        end
+    end
+
+    return cards
+end
+
 ---Do the tarot flip thing to all of G.hand.highlighted
 ---@param card Card
 ---@param args table|{rank:string?, suit:string?, enh:string?, edi:string?, random_ranks:table?, random_suits:table?, random_enhs:table?, random_edis:table?, seed:string?, sound:string?} Keys of the appropriate target modifications. `random_` tables are lists of same keys to pick one at random, in which case you need `seed` to seed the seed. Note: To clear an edition, pass the string "base", "none", "false", or "remove" as the edition key.

@@ -3,7 +3,7 @@
 	"name": "Bibliography",
 	"display_name": "Bibliography",
 	"author": ["wingedcatgirl"],
-	"description": "Adds media characters as Legendary Jokers, and even rarer levels too.",
+	"description": "Adds various blorbos as Legendary Jokers, and even rarer levels too.",
 	"prefix": "biblio",
 	"main_file": "bibliography.lua",
 	"priority": 0,
