@@ -11,6 +11,7 @@ local files = {
     jokers = {
         "leaf",
         "leafX",
+        "scarlex",
     },
     tarots = {
         "crucible"

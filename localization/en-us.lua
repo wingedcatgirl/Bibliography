@@ -95,6 +95,13 @@ return {
                     }
 				},
 			},
+			["j_biblio_scarlex"] = {
+				["name"] = "Scarlex Aiello",
+				["text"] = {
+					"If a hand would {C:blue}level up{},",
+					"{C:green}#1# in #2#{} chance to gain {C:gold}$#3#{} instead"
+				},
+			},
 			--HEY FUTURE MINTY, PUT NEW JOKERS ⬆️HERE⬆️ :P 
 			["j_biblio_template"] = {
 				["name"] = "Joker Template",
@@ -148,7 +155,7 @@ return {
                 }
             }
 		},
-        ["Lore"] = { --NOTE TO FUTURE PEOPLE, adding new categories for infoqueues isn't automatic; we had to patch it in, see lore.toml
+        ["Lore"] = { --NOTE TO FUTURE PEOPLE TAKING INSPIRATION: adding new categories for infoqueues isn't automatic; we had to patch it in, see lore.toml
             ["j_biblio_leaf"] = {
                 label = "Leaf Saito",
                 name = "Leaf Saito",
@@ -167,6 +174,15 @@ return {
                     "of deep space."
                 }
             },
+			j_biblio_scarlex = {
+				label = "Scarlex Aiello",
+				name = "Scarlex Aiello",
+				text = {
+					"A girl who pursues",
+					"her ideals with",
+					"obstinate determination."
+				}
+			}
         },
 	},
 }

@@ -1,15 +1,18 @@
 SMODS.Joker {
     key = "newjoker",
     name = "New Joker",
+    --biblio_evolution = "j_biblio_KEY",
+    --biblio_evol_effect = function (self, newcard, oldvalues) end,
+    --biblio_crucible_effect = function (self, card) end,
     --pronouns = "",
-    atlas = 'jokerdoodles',
+    atlas = 'jokers',
     pos = {
         x = 0,
         y = 0
     },
     soul_pos = {
-        x = 1,
-        y = 0
+        x = 0,
+        y = 1
     },
     rarity = 1,
     cost = 5,

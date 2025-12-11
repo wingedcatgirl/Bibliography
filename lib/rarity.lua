@@ -76,7 +76,7 @@ SMODS.Gradient{
     cycle = 3
 }
 
-SMODS.Rarity{ --Upgraded Evolved/Rare
+SMODS.Rarity{ --Upgraded Evolved/Rare/Recurring Modded Rarity 3.5 E.G. Epic
     key = "ascended",
     badge_colour = SMODS.Gradients.biblio_ascended,
     default_weight = 0
@@ -127,7 +127,7 @@ SMODS.Gradient{
     cycle = 5
 }
 
-SMODS.Rarity{ --Upgraded Sublime/Nth
+SMODS.Rarity{ --Upgraded Sublime/Nth. If we actually upgrade an Enough Already!!! joker despite the joke not working anymore once we do that, the upgrade will also be Enough Already!!!
     key = "enoughalready",
     badge_colour = SMODS.Gradients.biblio_enoughalready,
     default_weight = 0
