@@ -57,7 +57,7 @@ return {
 			["Bibliography"] = {
 				["name"] = "Bibliography",
 				["text"] = {
-					"Adds blorbos as Legendary Jokers, and even rarer levels too."
+					"Adds various blorbos as Jokers, and invents gratuitous power-creep."
 				},
 			},
 		},

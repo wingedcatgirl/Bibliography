@@ -3,7 +3,7 @@
 	"name": "Bibliography",
 	"display_name": "Bibliography",
 	"author": ["wingedcatgirl"],
-	"description": "Adds various blorbos as Legendary Jokers, and even rarer levels too.",
+	"description": "Adds various blorbos as Jokers, and invents gratuitous power-creep.",
 	"prefix": "biblio",
 	"main_file": "bibliography.lua",
 	"priority": 0,
