@@ -10,7 +10,7 @@ SMODS.Joker {
         y = 2
     },
     soul_pos = soulpos,
-    rarity = 1,
+    rarity = 2,
     cost = 5,
     unlocked = true,
     discovered = false,
