@@ -76,7 +76,6 @@ level_up_hand = function (card, hand, instant, amount)
     local vals = {
         card = card, hand = hand, instant = instant, amount = amount or 1
     }
-    BIBLIO.say("calculating level up")
     SMODS.calculate_context{pre_level_up = vals}
 
     if vals.amount > 0 then
