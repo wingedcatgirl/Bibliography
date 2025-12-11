@@ -26,7 +26,7 @@ SMODS.Joker {
     },
     loc_vars = function(self, info_queue, card)
         local key = self.key
-        if G.localization.descriptions.Lore[key] then
+        if G.localization.descriptions.Lore[key] and BIBLIO.config.lore_popups then
             info_queue[#info_queue + 1] = {
                 set = "Lore",
                 key = key,

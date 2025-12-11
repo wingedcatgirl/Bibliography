@@ -1,8 +1,10 @@
 BIBLIO = {}
+BIBLIO.config = SMODS.current_mod.config
 
 local files = {
     lib = {
         "functions",
+        "configui",
         "rarity",
         "atli",
     },
