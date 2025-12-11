@@ -1,8 +1,12 @@
 SMODS.Joker {
     key = "scarlex",
     name = "Scarlex Aiello",
-    --biblio_evolution = "j_biblio_scarlex_EX",
-    --biblio_evol_effect = function (self, newcard, oldvalues) end,
+    --[[
+    biblio_evolution = "j_biblio_scarlex_EX",
+    biblio_evol_effect = function (self, newcard, oldextra) 
+        newcard.ability.extra.stolen = oldextra.stolen
+    end,
+    --]]
     pronouns = "she_her",
     atlas = 'jokers',
     pos = {
@@ -26,6 +30,9 @@ SMODS.Joker {
             luck = 1,
             odds = 3,
             dollars = 5,
+            stolen = {
+
+            }
         }
     },
     loc_vars = function(self, info_queue, card)
@@ -63,6 +70,7 @@ SMODS.Joker {
                             return true
                         end)
                     end
+                    card.ability.extra.stolen[context.pre_level_up.hand] = (card.ability.extra.stolen[context.pre_level_up.hand] or 0) + 1
                 end
             end
             context.pre_level_up.amount = newamt
