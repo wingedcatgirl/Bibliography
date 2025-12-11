@@ -66,7 +66,9 @@ SMODS.Joker {
                 end
             end
             context.pre_level_up.amount = newamt
-            return nil, true
+            return {
+                message = (not context.pre_level_up.instant) and localize("k_biblio_disbelief") or nil
+            }
         end
     end
 }

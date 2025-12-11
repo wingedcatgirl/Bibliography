@@ -3,6 +3,7 @@ return {
 		["dictionary"] = {
             k_biblio_jump = "Jumped!",
             k_biblio_land = "Landed!",
+			k_biblio_disbelief = "Don't believe you!",
             --Rarities
             k_biblio_illustrious = "Illustrious",
             k_biblio_mythical = "Mythical",
