@@ -24,7 +24,7 @@
 **A**: I plan to keep putting in Jokers until I run out of characters that I can come up with an idea for. ... I'd like at least 70 before then, but I suppose that's up to my creativity. 
 
 **Q**: How many Jokers do you _actually_ have?  
-**A**: 4 at the moment, unless I forgot to update this README file, which will definitely happen at some point.
+**A**: *(comically long pause for audio splicing)* 4 *(comically long pause for audio splicing)* at the moment, unless I forgot to update this README file, which will definitely happen at some point.
 
 **Q**: ... Are you accepting suggestions for characters to Jokerfy?  
 **A**: Sure, if you're accepting that there's no timeline on when I get around to actually implementing a given suggestion.
