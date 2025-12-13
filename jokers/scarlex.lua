@@ -10,7 +10,7 @@ SMODS.Joker {
     pronouns = "she_her",
     atlas = 'jokers',
     pos = {
-        x = 0,
+        x = 2,
         y = 0
     },
     soul_pos = {
@@ -73,22 +73,10 @@ SMODS.Joker {
                     card.ability.extra.stolen[context.pre_level_up.hand] = (card.ability.extra.stolen[context.pre_level_up.hand] or 0) + 1
                 end
             end
-            context.pre_level_up.amount = newamt
             return {
-                message = (not context.pre_level_up.instant) and localize("k_biblio_disbelief") or nil
+                message = (newamt ~= oldamt and not context.pre_level_up.instant) and localize("k_biblio_disbelief") or nil,
+                amount = newamt ~= oldamt and newamt or nil
             }
         end
     end
 }
-
-local oldlvl = level_up_hand
-level_up_hand = function (card, hand, instant, amount)
-    local vals = {
-        card = card, hand = hand, instant = instant, amount = amount or 1
-    }
-    SMODS.calculate_context{pre_level_up = vals}
-
-    if vals.amount > 0 then
-        oldlvl(vals.card, vals.hand, vals.instant, vals.amount)
-    end
-end

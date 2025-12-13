@@ -1,5 +1,3 @@
-
-
 SMODS.Consumable{
     set = 'Tarot',
     key = 'crucible',

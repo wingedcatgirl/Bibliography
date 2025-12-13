@@ -4,6 +4,7 @@ BIBLIO.config = SMODS.current_mod.config
 local files = {
     lib = {
         "functions",
+        "hooks",
         "configui",
         "rarity",
         "atli",
@@ -12,6 +13,7 @@ local files = {
         "leaf",
         "leafX",
         "scarlex",
+        "scarlexEX"
     },
     tarots = {
         "crucible"

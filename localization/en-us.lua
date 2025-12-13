@@ -4,6 +4,7 @@ return {
             k_biblio_jump = "Jumped!",
             k_biblio_land = "Landed!",
 			k_biblio_disbelief = "Don't believe you!",
+			k_biblio_betteridea = "Better idea!",
             --Rarities
             k_biblio_illustrious = "Illustrious",
             k_biblio_mythical = "Mythical",
@@ -101,6 +102,16 @@ return {
 				["text"] = {
 					"If a hand would {C:blue}level up{},",
 					"{C:green}#1# in #2#{} chance to gain {C:gold}$#3#{} instead"
+				},
+			},
+			["j_biblio_scarlex_EX"] = {
+				["name"] = "Scarlex, SOUL Reaper",
+				["text"] = {
+					"If a hand would {C:blue}level up{}, randomly chooses one:",
+					"- redirect it to {C:attention}most played hand{}",
+					"{C:inactive, s:0.8}(Currently #1#)",
+					"- {C:blue}double it{}",
+					"- or level a {C:attention}random{} additional hand"
 				},
 			},
 			--HEY FUTURE MINTY, PUT NEW JOKERS ⬆️HERE⬆️ :P 
