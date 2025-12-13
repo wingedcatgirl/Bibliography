@@ -7,7 +7,7 @@
 4. Watch number get biggerer
 
 > [!NOTE]
-> This mod is in **pre-release beta**, you will need to download from source.
+> This mod is in **pre-release alpha**, you will need to download from source.  
 > Accordingly, we will not be providing support for super basic "how do I install a mod"-level questions at this time. Please read the documents for Lovely and SMODS.
 
 ### FAQ (Feasibly Askable Questions) ~~(nobody's asked me anything about this ._.)~~
