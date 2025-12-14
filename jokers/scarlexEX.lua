@@ -54,6 +54,18 @@ SMODS.Joker {
     end,
     calculate = function(self, card, context)
         if context.pre_level_up and not card.ability.extra.norecurse then
+            --[[ yk what i just can't be bothered making it emit exactly one message after a black hole
+            if context.pre_level_up.card.config.center.key == "c_black_hole" and not card.ability.extra.one then
+                card.ability.extra.one = true
+                BIBLIO.event(function ()
+                    SMODS.calculate_effect({message = "Need a hand?" }, card)
+                    return true
+                end)
+            end
+            if context.pre_level_up.card.config.center.key ~= "c_black_hole" then
+                card.ability.extra.one = false
+            end
+            ]]
             --BIBLIO.say("intervening in level up yay")
             --G.GAME.immutable_level = (G.GAME.immutable_level or 0) + 1
             local effect = pseudorandom_element({"double", "redirect", "additional"}, "biblio_scar_EX_effect")
