@@ -15,7 +15,7 @@
 **A**: Mainly! I'll also put in canon characters if I feel like it.
 
 **Q**: What power level is this mod planned to be?  
-**A**: There will be potential for computer-breaking numbers, probably. Eventually. Once I implement a reasonable-ish way to acquire the Jokers involved.
+**A**: There will be potential for computer-breaking numbers, probably. Eventually. Once I implement the Jokers involved, and also a reasonable-ish way to acquire them.
 
 **Q**: Is this trying to just be [a certain prior, defunct project] again?  
 **A**: ... Not *just*, no... ~~this one's got MY ocs in it!~~ Egotism aside, as much as Bibliography is both inspired by and modeled on [that older project], it's inherently a different mod and will be its own experience. Just for starters, we're going to have different design principles. I'll probably use less xChips than they did, for example.
