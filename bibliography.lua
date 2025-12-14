@@ -13,7 +13,8 @@ local files = {
         "leaf",
         "leafX",
         "scarlex",
-        "scarlexEX"
+        "scarlexEX",
+        "vivi"
     },
     tarots = {
         "crucible"

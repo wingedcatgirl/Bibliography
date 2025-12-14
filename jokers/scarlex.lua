@@ -1,8 +1,8 @@
 SMODS.Joker {
     key = "scarlex",
     name = "Scarlex Aiello",
-    --[[
     biblio_evolution = "j_biblio_scarlex_EX",
+    --[[ --Haven't yet come up with something to use these for...
     biblio_evol_effect = function (self, newcard, oldextra) 
         newcard.ability.extra.stolen = oldextra.stolen
     end,

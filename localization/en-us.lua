@@ -5,6 +5,8 @@ return {
             k_biblio_land = "Landed!",
 			k_biblio_disbelief = "Don't believe you!",
 			k_biblio_betteridea = "Better idea!",
+			k_biblio_healed = "Healed!",
+			k_biblio_revived = "Revived!",
             --Rarities
             k_biblio_illustrious = "Illustrious",
             k_biblio_mythical = "Mythical",
@@ -112,6 +114,25 @@ return {
 					"{C:inactive, s:0.8}(Currently #1#)",
 					"- {C:blue}double it{}",
 					"- or level a {C:attention}random{} additional hand"
+				},
+			},
+			["j_biblio_vivi"] = {
+				["name"] = "Vivi Elakha",
+				["text"] = {
+					{
+						"Gains 1 MP per scored card",
+						"{C:inactive}(Currently #1#/#2#){}"
+					},
+					{
+						"On second played hand each round,",
+						"{C:chips}Cure{}: Restores #4# hand#5#",
+						"{C:inactive}(Costs #3# MP){}"
+					},
+					{
+						"If Blind not defeated by final hand,",
+						"{C:mult}Raise{}: Restores all hands",
+						"{C:inactive}(Costs #6# MP){}"
+					}
 				},
 			},
 			--HEY FUTURE MINTY, PUT NEW JOKERS ⬆️HERE⬆️ :P 
