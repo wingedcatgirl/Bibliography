@@ -1,11 +1,8 @@
 SMODS.Joker {
-    key = "vivi",
-    name = "Vivi Elakha",
-    biblio_evolution = "j_biblio_vivi_EX",
-    biblio_evol_effect = function (self, newcard, oldextra)
-        newcard.ability.extra.mp = oldextra.ability.mp
-        newcard.ability.extra.mpcap = oldextra.ability.mpcap
-    end,
+    key = "vivi_EX",
+    name = "Vivi Elakha, the Fae-Touched",
+    --biblio_evolution = "j_biblio_viviX",
+    --biblio_evol_effect = function (self, newcard, oldextra) end,
     --biblio_crucible_effect = function (self, card) end,
     pronouns = "she_her",
     atlas = 'jokers',
@@ -17,8 +14,8 @@ SMODS.Joker {
         x = 0,
         y = 1
     },
-    rarity = 2,
-    cost = 8,
+    rarity = "biblio_evolved",
+    cost = 13,
     unlocked = true,
     discovered = false,
     eternal_compat = true,
@@ -29,10 +26,14 @@ SMODS.Joker {
         extra = {
             mp = 0,
             mpcap = 100,
-            curecost = 9,
-            cureval = 1,
-            raisecost = 54,
-            active = true
+            curecost = 6,
+            cureval = 2,
+            handcount = 0,
+            curefreq = 3,
+            raisecost = 40,
+            active = true,
+            lbcost = 108,
+            glyph = 1,
         }
     },
     loc_vars = function(self, info_queue, card)
@@ -52,7 +53,11 @@ SMODS.Joker {
                 card.ability.extra.cureval,
                 card.ability.extra.cureval == 1 and "" or "s",
                 card.ability.extra.raisecost,
-                card.ability.extra.active and localize("k_biblio_active_desc") or localize("k_biblio_inactive_desc")
+                card.ability.extra.active and localize("k_biblio_active_desc") or localize("k_biblio_inactive_desc"),
+                card.ability.extra.glyph,
+                card.ability.extra.lbcost,
+                card.ability.extra.handcount,
+                card.ability.extra.curefreq
             }
         }
     end,
@@ -66,9 +71,10 @@ SMODS.Joker {
             card.ability.extra.mp = card.ability.extra.mp + 1
         end
 
-        if context.final_scoring_step and G.GAME.current_round.hands_played == 1 and (G.GAME.blind.chips > G.GAME.chips) and card.ability.extra.mp >= card.ability.extra.curecost then
+        if context.final_scoring_step and (card.ability.extra.handcount >= card.ability.extra.curefreq)  and (G.GAME.blind.chips > G.GAME.chips) and card.ability.extra.mp >= card.ability.extra.curecost then
             card.ability.extra.mp = card.ability.extra.mp - card.ability.extra.curecost
             card.ability.extra.mpcap = card.ability.extra.mpcap + 1
+            card.ability.extra.handcount = 0
             return {
                 message = localize("k_biblio_healed"),
                 func = function ()
@@ -85,12 +91,27 @@ SMODS.Joker {
                 message = localize("k_biblio_revived"),
                 func = function ()
                     ease_hands_played(G.GAME.round_resets.hands)
-                    --SMODS.destroy_cards(card) --Should she self-destruct, or...?
                 end
             }
         end
 
-        if (not card.ability.extra.active) and context.ante_end then
+        if context.game_over then
+            card.ability.extra.mp = card.ability.extra.mp - card.ability.extra.lbcost
+            local overcast = card.ability.extra.mp < 0
+            return {
+                saved = "k_biblio_revived",
+                message = localize("k_biblio_lb"),
+                sound = "biblio_xivlb",
+                func = function ()
+                    ease_ante(-card.ability.extra.glyph)
+                    if overcast then
+                        SMODS.destroy_cards(card)
+                    end
+                end
+            }
+        end
+
+        if (not card.ability.extra.active) and context.end_of_round and context.cardarea == G.jokers then
             card.ability.extra.active = true
             return {
                 message = localize("k_reset_ex")

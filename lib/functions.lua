@@ -277,6 +277,19 @@ BIBLIO.event = function(func, args)
     G.E_MANAGER:add_event(Event(args))
 end
 
+BIBLIO.safe_copy_table = function(tbl, depth)
+    local newtbl = {}
+    depth = depth or 30
+    for k,v in pairs(tbl) do
+        if type(v) ~= "table" or (type(v.is) == "function" and v:is(Card)) or depth <= 0 then
+            newtbl[k] = v
+        else
+            newtbl[k] = BIBLIO.safe_copy_table(v, depth-1)
+        end
+    end
+    return newtbl
+end
+
 
 --Talisman compatibility compatibility
 to_big = to_big or function(x)
@@ -289,7 +302,9 @@ end
 
 
 SMODS.current_mod.reset_game_globals = function(init)
-
+    if init then
+        G.GAME.biblio_willful = 6
+    end
 end
 
 SMODS.current_mod.set_debuff = function (card)
@@ -297,7 +312,30 @@ SMODS.current_mod.set_debuff = function (card)
 end
 
 SMODS.current_mod.calculate = function (self, context)
-    
+    local areas = {
+        "jokers"
+    }
+
+    if context.game_over and G.GAME.biblio_willful > 0 then
+        local saved
+        for _,area in ipairs(areas) do
+            for __,item in ipairs(G[area].cards or {}) do
+                if item.ability.extra.can_willful then
+                    saved = localize{type = "name_text", set = item.set, key = item.key}
+                    SMODS.calculate_context{biblio_willful = true, willful_card = item}
+                    break
+                end
+            end
+            if saved then break end
+        end
+
+        if saved then
+            G.GAME.biblio_willful = G.GAME.biblio_willful - 1
+            return {
+                saved = localize{type = "variable", key = "v_biblio_savedby", vars = {saved}}
+            }
+        end
+    end
 end
 
 SMODS.current_mod.process_loc_text = function()

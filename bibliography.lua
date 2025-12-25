@@ -3,18 +3,22 @@ BIBLIO.config = SMODS.current_mod.config
 
 local files = {
     lib = {
-        "functions",
         "hooks",
+        "functions",
         "configui",
         "rarity",
         "atli",
+        "sound",
     },
     jokers = {
         "leaf",
         "leafX",
         "scarlex",
         "scarlexEX",
-        "vivi"
+        "vivi",
+        "viviEX",
+        "zenos",
+        "zenosEX"
     },
     tarots = {
         "crucible"
@@ -23,15 +27,6 @@ local files = {
         "crucible"
     }
 }
-
-local oldhex = HEX
----make hex work even if you accidentally leave in the #
----@param str string
----@return table
-HEX = function (str)
-    str = str:gsub("#", "")
-    return oldhex(str)
-end
 
 for folder, list in pairs(files) do
     for _, name in ipairs(list) do

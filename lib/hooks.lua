@@ -1,5 +1,13 @@
-local oldlvl = level_up_hand
+local oldhex = HEX
+---make hex work even if you accidentally leave in the #
+---@param str string
+---@return table
+HEX = function (str)
+    str = str:gsub("#", "")
+    return oldhex(str)
+end
 
+local oldlvl = level_up_hand
 local addlkeys = {
     "add", "subtract", "multiply", "amount", "redirect", "cancel_level", "additional"
 }
@@ -7,29 +15,6 @@ for i,v in ipairs(addlkeys) do
     SMODS.other_calculation_keys[#SMODS.other_calculation_keys+1] = v
     SMODS.silent_calculation[v] = true
 end
-
-local calcieref = SMODS.calculate_individual_effect
-SMODS.calculate_individual_effect = function(effect, scored_card, key, amount, from_edition)
-    if addlkeys[key] then
-        return {[key] = amount}
-    end
-    return calcieref(effect, scored_card, key, amount, from_edition)
-end
-
---[[
-level_up_hand = function (card, hand, instant, amount)
-    local vals = {
-        card = card, hand = hand, instant = instant, amount = amount or 1
-    }
-    local newvals = copy_table(vals)
-    SMODS.calculate_context{pre_level_up = vals}
-
-    if vals.amount > 0 then
-        oldlvl(vals.card, vals.hand, vals.instant, vals.amount)
-    end
-end
-]]
---[[]]
 level_up_hand = function (card, hand, instant, amount)
     if (G.GAME.immutable_level or 0) > 0 then return oldlvl(card, hand, instant, amount) end
     G.GAME.immutable_level = (G.GAME.immutable_level or 0) + 1

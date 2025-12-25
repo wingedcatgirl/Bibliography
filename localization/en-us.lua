@@ -3,10 +3,38 @@ return {
 		["dictionary"] = {
             k_biblio_jump = "Jumped!",
             k_biblio_land = "Landed!",
+			k_biblio_lb = "Limit Break!",
 			k_biblio_disbelief = "Don't believe you!",
 			k_biblio_betteridea = "Better idea!",
 			k_biblio_healed = "Healed!",
 			k_biblio_revived = "Revived!",
+			k_biblio_banished = "Banished!",
+			k_biblio_active_desc = "Active",
+			k_biblio_inactive_desc = "Inactive",
+			--Zenos taunts
+			k_biblio_zenos_1 = "Rend!",
+			k_biblio_zenos_2 = "Kill...",
+			k_biblio_zenos_3 = "Let this moment last forever...",
+			k_biblio_zenos_4 = "Ahahahahahaha!",
+			k_biblio_zenos_5 = "This is the end...",
+			k_biblio_zenos_6 = "Show me your all!",
+			k_biblio_zenos_7 = "Yes, yes! Just so!",
+			k_biblio_zenos_8 = "Have you the strength?",
+			k_biblio_zenos_9 = "The power... to transcend...",
+			k_biblio_zenos_10 = "Give me something to remember!",
+			k_biblio_zenos_11 = "Don't stop now...",
+			k_biblio_zenos_ex_1 = "Mine for the taking!",
+			k_biblio_zenos_ex_2 = "A test of your reflexes!",
+			k_biblio_zenos_ex_3 = "Show me your vaunted fortitude!",
+			k_biblio_zenos_ex_4 = "Soon you will know...",
+			k_biblio_zenos_ex_5 = "Ah, my soul, how it burns...",
+			k_biblio_zenos_ex_6 = "I know you feel it too...",
+			k_biblio_zenos_ex_7 = "Come! Let all creation be consumed!",
+			k_biblio_zenos_ex_8 = "I have you!",
+			k_biblio_zenos_ex_9 = "Burn, burn!",
+			k_biblio_zenos_ex_10 = "Now, fall!",
+			k_biblio_zenos_ex_11 = "This is my moment! Our moment!",
+			k_biblio_zenos_willful = "Rise once more! It mustn't end yet!",
             --Rarities
             k_biblio_illustrious = "Illustrious",
             k_biblio_mythical = "Mythical",
@@ -18,7 +46,7 @@ return {
             k_biblio_enoughalready = "Enough already!!!"
 		},
 		["v_dictionary"] = {
-            
+            v_biblio_savedby = "Saved by #1#"
 		},
 		["v_text"] = {
             
@@ -124,14 +152,62 @@ return {
 						"{C:inactive}(Currently #1#/#2#){}"
 					},
 					{
-						"On second played hand each round,",
+						"After second played hand each round,",
 						"{C:chips}Cure{}: Restores #4# hand#5#",
 						"{C:inactive}(Costs #3# MP){}"
 					},
 					{
+						"{C:attention}Once per Ante{C:inactive} (#7#)",
 						"If Blind not defeated by final hand,",
 						"{C:mult}Raise{}: Restores all hands",
 						"{C:inactive}(Costs #6# MP){}"
+					}
+				},
+			},
+			["j_biblio_vivi_EX"] = {
+				["name"] = "Vivi Elakha, the Fae-Touched",
+				["text"] = {
+					{
+						"Gains 1 MP per scored card",
+						"{C:inactive}(Currently #1#/#2#){}",
+						--"{C:inactive}(Further Crucibles grant #12# Max MP)"
+					},
+					{
+						"After every {C:attention}#11#{C:inactive}(#10#){} played hands,",
+						"{C:chips}Cura{}: Restores #4# hand#5#",
+						"{C:inactive}(Costs #3# MP){}"
+					},
+					{
+						"{C:attention}Once per round{C:inactive} (#7#)",
+						"If Blind not defeated by final hand,",
+						"{C:mult}Raise{}: Restores all hands",
+						"{C:inactive}(Costs #6# MP){}"
+					},
+					{
+						"If all else fails, {C:gold}Pulse of Life{}:",
+						"Prevents death and reduces Ante by #8#",
+						"{C:inactive}(Costs #9# MP or self-destructs)"
+					}
+				},
+			},
+			["j_biblio_zenos"] = {
+				["name"] = "Zenos yae Galvus",
+				["text"] = {
+					"{X:attention,C:white}X#2#{} Boss Blind size,",
+					"{C:attention}+#1#{} Joker Slot#3#"
+				},
+			},
+			["j_biblio_zenos_EX"] = {
+				["name"] = "Zenos viator Galvus",
+				["text"] = {
+					{
+						"{X:attention,C:white}X#2#{} Boss Blind size",
+					},
+					{
+						"At end of Ante,",
+						"{C:attention}+#3#{} Joker Slot#4#",
+						"{C:inactive}(currently #1#)",
+						"and {C:attention}#6##5#{} Ante"
 					}
 				},
 			},
@@ -187,6 +263,17 @@ return {
                     "capable of evolution"
                 }
             }
+		},
+		Other = {
+			biblio_willful = {
+				name = "Willful",
+				label = "Willful",
+				text = {
+					"Burning for battle",
+					"{C:red}Prevents death",
+					"{C:inactive}({C:attention}#1#{C:inactive} global charges)"
+				}
+			}
 		},
         ["Lore"] = { --NOTE TO FUTURE PEOPLE TAKING INSPIRATION: adding new categories for infoqueues isn't automatic; we had to patch it in, see lore.toml
             ["j_biblio_leaf"] = {
