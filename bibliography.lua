@@ -9,6 +9,7 @@ local files = {
         "rarity",
         "atli",
         "sound",
+        "vanillatweaks",
     },
     jokers = {
         "leaf",
