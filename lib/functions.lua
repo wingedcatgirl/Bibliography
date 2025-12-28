@@ -320,7 +320,7 @@ SMODS.current_mod.calculate = function (self, context)
         local saved
         for _,area in ipairs(areas) do
             for __,item in ipairs(G[area].cards or {}) do
-                if item.ability.extra.can_willful then
+                if (type(item.ability.extra) == "table" and item.ability.extra or {}).can_willful then
                     saved = localize{type = "name_text", set = item.set, key = item.key}
                     SMODS.calculate_context{biblio_willful = true, willful_card = item}
                     break
