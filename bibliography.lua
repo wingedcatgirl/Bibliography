@@ -20,7 +20,8 @@ local files = {
         "viviEX",
         "zenos",
         "zenosEX",
-        "peri"
+        "peri",
+        "periEX",
     },
     tarots = {
         "crucible"

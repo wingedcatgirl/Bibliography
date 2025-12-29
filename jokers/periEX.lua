@@ -1,9 +1,7 @@
 SMODS.Joker {
-    key = "peri",
-    name = "Peri Nagato",
-    biblio_evolution = "j_biblio_peri_EX",
+    key = "peri_EX",
+    name = "Peri, Abstract Heaven",
     --biblio_evol_effect = function (self, newcard, oldextra) end,
-    --biblio_crucible_effect = function (self, card) end,
     pronouns = "she_her",
     atlas = 'jokers',
     pos = {
@@ -14,8 +12,8 @@ SMODS.Joker {
         x = 0,
         y = 1
     },
-    rarity = 3,
-    cost = 8,
+    rarity = "biblio_ascended",
+    cost = 13,
     unlocked = true,
     discovered = false,
     eternal_compat = true,
@@ -66,16 +64,43 @@ SMODS.Joker {
     calculate = function(self, card, context)
         if context.setting_blind or context.forcetrigger then
             for i=1,card.ability.extra.number do
-                local cardbag = {}
-                for _,v in ipairs(G.consumeables.cards) do
-                    if not v.edition then
-                        cardbag[#cardbag+1] = v
+                SMODS.add_card{
+                    key = "c_wheel_of_fortune",
+                    area = G.consumeables,
+                    edition = "e_negative"
+                }
+            end
+        end
+
+        if context.end_of_round and context.main_eval then
+            local areas = {
+                "jokers",
+                "consumeables",
+                "hand",
+            }
+            local triggered
+
+            for _,area in ipairs(areas) do
+                local consume = {}
+                for __,vv in ipairs(G[area].cards) do
+                    if (vv.edition or {}).negative and not SMODS.is_eternal(vv, card) then
+                        consume[#consume+1] = vv
                     end
                 end
-                if #cardbag > 0 then
-                    local target = pseudorandom_element(cardbag, "biblio_peri")
-                    target:set_edition("e_negative")
+                local num = #consume
+                if num > 0 then
+                    print(tostring(num))
+                    G[area]:change_size(num)
+                    SMODS.destroy_cards(consume)
+                    triggered = true
                 end
+            end
+
+            if triggered then
+                return {
+                    sound = "biblio_cronch",
+                    message = localize("k_biblio_consumed")
+                }
             end
         end
     end

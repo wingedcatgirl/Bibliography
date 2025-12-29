@@ -9,6 +9,7 @@ return {
 			k_biblio_healed = "Healed!",
 			k_biblio_revived = "Revived!",
 			k_biblio_banished = "Banished!",
+			k_biblio_consumed = "C O N S U M E D",
 			k_biblio_active_desc = "Active",
 			k_biblio_inactive_desc = "Inactive",
 			--Zenos taunts
@@ -215,8 +216,8 @@ return {
 				["name"] = "Peri Nagato",
 				["text"] = {
 					{
-						"Turns {C:attention}1{} held",
-						"consumeable {C:dark_edition}Negative{}",
+						"Turns {C:attention}#1#{} held",
+						"consumeable#2# {C:dark_edition}Negative{}",
 						"when blind is selected"
 					},
 					{
@@ -228,6 +229,31 @@ return {
 						"can apply Negative",
 						"edition to Jokers"
 					},
+				},
+			},
+			["j_biblio_peri_EX"] = {
+				["name"] = "Peri, Abstract Heaven",
+				["text"] = {
+					{
+						"Creates {C:attention}#1#{} {C:dark_edition}Negative{}",
+						"{C:attention}Wheel of Fortune#2#{}",
+						"when blind is selected"
+					},
+					{
+						"Negative {C:attention}Wheels of Fortune",
+						"can apply Negative",
+						"edition to Jokers"
+					},
+					{
+						"The {C:attention}Wheel of Fortune{}",
+						"retriggers on failure,",
+						"and can appear multiple times"
+					},
+					{
+						"{C:mult}Consumes{} Negative cards at",
+						"end of round to grant +1",
+						"permanent area slot"
+					}
 				},
 			},
 			--HEY FUTURE MINTY, PUT NEW JOKERS ⬆️HERE⬆️ :P 
@@ -331,6 +357,12 @@ return {
 				name = "Peri Nagato",
 				text = {
 					'"Let\'s go gambling~"'
+				}
+			},
+			j_biblio_peri_EX = {
+				name = "Peri, Abstract Heaven",
+				text = {
+					'"Hav{C:dark_edition}e{} you {C:chips}m{}et my new f{C:mult}r{}iend{C:biblio_enoughalready}?{}"'
 				}
 			}
         },
