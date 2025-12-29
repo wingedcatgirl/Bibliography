@@ -12,7 +12,7 @@ SMODS.Consumable({
         num = 1,
     },
     cost = 6,
-    atlas = "rotarots",
+    atlas = "rotarot_placeholder",
     unlocked = true,
     discovered = false,
     display_size = { w = 107, h = 107 },
@@ -39,6 +39,6 @@ SMODS.Consumable({
         G.GAME.banned_keys = oldban
     end,
     loc_vars = function(self, info_queue, card)
-        return { vars = {card.ability.val} }
+        return { vars = {card.ability.num} }
     end
 })

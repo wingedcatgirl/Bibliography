@@ -8,7 +8,7 @@ local files = {
         "configui",
         "rarity",
         "atli",
-        "sound",
+        "sounds",
         "vanillatweaks",
     },
     jokers = {
@@ -19,7 +19,8 @@ local files = {
         "vivi",
         "viviEX",
         "zenos",
-        "zenosEX"
+        "zenosEX",
+        "peri"
     },
     tarots = {
         "crucible"

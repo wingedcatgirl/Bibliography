@@ -211,6 +211,21 @@ return {
 					}
 				},
 			},
+			["j_biblio_peri"] = {
+				["name"] = "Peri Nagato",
+				["text"] = {
+					{
+						"Turns {C:attention}1{} held",
+						"consumeable {C:dark_edition}Negative{}",
+						"when blind is selected"
+					},
+					{
+						"Negative {C:attention}Wheels of Fortune",
+						"can apply Negative",
+						"edition to Jokers"
+					}
+				},
+			},
 			--HEY FUTURE MINTY, PUT NEW JOKERS ⬆️HERE⬆️ :P 
 			["j_biblio_template"] = {
 				["name"] = "Joker Template",
@@ -232,7 +247,15 @@ return {
                     "Evolve {C:attention}#1#{} eligible",
                     "card#2# to a new level"
                 }
-            }
+            },
+            c_wheel_of_fortune={
+                name="The Wheel of Fortune",
+                text={
+                    "{C:green}#1# in #2#{} chance to add",
+                    "a random edition",
+                    "to a random {C:attention}Joker",
+                },
+            },
 		},
 		["Spectral"] = {
             

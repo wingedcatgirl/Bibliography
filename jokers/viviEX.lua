@@ -71,6 +71,10 @@ SMODS.Joker {
             card.ability.extra.mp = card.ability.extra.mp + 1
         end
 
+        if context.final_scoring_step then
+            card.ability.extra.handcount = card.ability.extra.handcount + 1
+        end
+
         if context.final_scoring_step and (card.ability.extra.handcount >= card.ability.extra.curefreq)  and (G.GAME.blind.chips > G.GAME.chips) and card.ability.extra.mp >= card.ability.extra.curecost then
             card.ability.extra.mp = card.ability.extra.mp - card.ability.extra.curecost
             card.ability.extra.mpcap = card.ability.extra.mpcap + 1

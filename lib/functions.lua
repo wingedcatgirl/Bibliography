@@ -56,6 +56,43 @@ BIBLIO.enhancement_list = function(table, name)
   }
 end
 
+---Check whether the Wheel of Fortune can add the Negative edition.
+---@param card? Card Specific WoF card object doing the check
+---@return boolean|nil
+function BIBLIO.wof_can_negative(card)
+    if next(SMODS.find_card("j_biblio_peri_EX")) then return true end
+    if next(SMODS.find_card("j_biblio_peri")) and card.edition and card.edition.negative then return true end
+end
+
+---Get the editions the Wheel can apply
+---@param card? Card Specific WoF card object doing the check
+---@return table ret Bag of eligible editions
+BIBLIO.get_wof_editions = function (card)
+    local ret = {}
+    if not G.GAME.biblio_wof_editions then return { 'e_polychrome', 'e_holo', 'e_foil', BIBLIO.wof_can_negative() and "e_negative" or nil } end
+    G.GAME.biblio_wof_editions["e_negative"] = BIBLIO.wof_can_negative(card)
+    for k,v in pairs(G.GAME.biblio_wof_editions) do
+        if v == true then ret[#ret+1] = k end
+    end
+    return ret
+end
+
+---Add or remove editions from the Wheel's list
+---@param key string Key of the edition
+---@param remove boolean|nil If true, removes edition from the list
+BIBLIO.set_wof_editions = function (key, remove)
+    if not G.GAME then return end
+    G.GAME.biblio_wof_editions = G.GAME.biblio_wof_editions or {}
+    if not G.P_CENTERS[key] then
+        BIBLIO.say("No such edition as "..key.."!", "ERROR")
+    end
+    if not remove then
+        G.GAME.biblio_wof_editions[key] = true
+    else
+        G.GAME.biblio_wof_editions[key] = nil
+    end
+end
+
 ---... from target areas, excluding self
 ---@param card table The object that's looking at highlighted things (it won't see itself)
 ---@param areas table List of keys of `CardArea`s in `G`
@@ -304,6 +341,11 @@ end
 SMODS.current_mod.reset_game_globals = function(init)
     if init then
         G.GAME.biblio_willful = 6
+        G.GAME.biblio_wof_editions = {
+            e_polychrome = true,
+            e_holo = true,
+            e_foil = true,
+        }
     end
 end
 

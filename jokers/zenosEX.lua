@@ -47,9 +47,7 @@ SMODS.Joker {
                 set = "Other",
                 key = "biblio_willful",
                 specific_vars = {
-                    vars = {
-                        G.GAME.biblio_willful or 6
-                    }
+                    G.GAME.biblio_willful or 6
                 }
             }
         end
