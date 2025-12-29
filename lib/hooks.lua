@@ -82,4 +82,12 @@ level_up_hand = function (card, hand, instant, amount)
     SMODS.calculate_context{post_level_up = newvals, modified = vals.amount ~= newvals.amount}
     G.GAME.immutable_level = G.GAME.immutable_level - 1
 end
---]]
+
+local showman = SMODS.showman
+SMODS.showman = function (key)
+    if key == "c_wheel_of_fortune" and (next(SMODS.find_card("j_biblio_peri")) or next(SMODS.find_card("j_biblio_peri_EX"))) then
+        return true
+    end
+
+    return showman(key)
+end

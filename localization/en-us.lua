@@ -220,10 +220,14 @@ return {
 						"when blind is selected"
 					},
 					{
+						"The {C:attention}Wheel of Fortune{}",
+						"can appear multiple times"
+					},
+					{
 						"Negative {C:attention}Wheels of Fortune",
 						"can apply Negative",
 						"edition to Jokers"
-					}
+					},
 				},
 			},
 			--HEY FUTURE MINTY, PUT NEW JOKERS ⬆️HERE⬆️ :P 
@@ -300,7 +304,6 @@ return {
 		},
         ["Lore"] = { --NOTE TO FUTURE PEOPLE TAKING INSPIRATION: adding new categories for infoqueues isn't automatic; we had to patch it in, see lore.toml
             ["j_biblio_leaf"] = {
-                label = "Leaf Saito",
                 name = "Leaf Saito",
                 text = {
                     "A girl who found an interdimensional",
@@ -309,7 +312,6 @@ return {
                 }
             },
             ["j_biblio_leafX"] = {
-                label = "Leaf, Stellar Dragoon",
                 name = "Leaf, Stellar Dragoon",
                 text = {
                     "The girl who wields",
@@ -318,12 +320,17 @@ return {
                 }
             },
 			j_biblio_scarlex = {
-				label = "Scarlex Aiello",
 				name = "Scarlex Aiello",
 				text = {
 					"A girl who pursues",
 					"her ideals with",
 					"obstinate determination."
+				}
+			},
+			j_biblio_peri = {
+				name = "Peri Nagato",
+				text = {
+					'"Let\'s go gambling~"'
 				}
 			}
         },
