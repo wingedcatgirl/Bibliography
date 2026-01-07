@@ -256,6 +256,24 @@ return {
 					}
 				},
 			},
+			["j_biblio_hallie"] = {
+				["name"] = "Hallie Mathews",
+				["text"] = {
+					{
+						"On discard, {C:green}#1# in #2#{} chance",
+						"to level up discarded poker hand",
+						"{C:inactive}(Base denominator = remaining discards)",
+					},
+					{
+						"If chance is {C:green}100%{}, also",
+						"{C:attention}destroy{} discarded cards"
+					},
+					{
+						"Can activate once per round",
+						"{C:inactive}(Currently: #3#)"
+					}
+				},
+			},
 			--HEY FUTURE MINTY, PUT NEW JOKERS ⬆️HERE⬆️ :P 
 			["j_biblio_template"] = {
 				["name"] = "Joker Template",
