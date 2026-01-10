@@ -22,7 +22,8 @@ local files = {
         "zenosEX",
         "peri",
         "periEX",
-        "hallie"
+        "hallie",
+        "hallieEX",
     },
     tarots = {
         "crucible"
