@@ -274,6 +274,21 @@ return {
 					}
 				},
 			},
+			["j_biblio_hallie_EX"] = {
+				["name"] = "Hallie Mathews",
+				["text"] = {
+					{
+						"On second discard of round,",
+						"{C:attention}destroy{} and level up",
+						"discarded poker hand",
+						"{C:inactive}(Currently: #2#){}"
+					},
+					{
+						"Gains destroyed cards' chips as Mult",
+						"{C:inactive}(Currently: {C:mult}+#1#{C:inactive})"
+					},
+				},
+			},
 			--HEY FUTURE MINTY, PUT NEW JOKERS ⬆️HERE⬆️ :P 
 			["j_biblio_template"] = {
 				["name"] = "Joker Template",
