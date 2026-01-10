@@ -11,7 +11,7 @@ SMODS.Joker {
         y = 0
     },
     soul_pos = {
-        x = 0,
+        x = 3,
         y = 1
     },
     rarity = "biblio_evolved",

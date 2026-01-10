@@ -14,7 +14,7 @@ SMODS.Joker {
         y = 0
     },
     soul_pos = {
-        x = 0,
+        x = 16,
         y = 1
     },
     rarity = 2,

@@ -7,11 +7,11 @@ SMODS.Joker {
     pronouns = "she_her",
     atlas = 'jokers',
     pos = {
-        x = 0,
+        x = 7,
         y = 0
     },
     soul_pos = {
-        x = 0,
+        x = 8,
         y = 1
     },
     rarity = 3,
