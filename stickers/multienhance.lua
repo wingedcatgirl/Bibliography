@@ -1,6 +1,7 @@
 SMODS.Sticker{
     key = "multienhance",
     badge_colour = HEX("CA7CA7"),
+    pos = {x=100, y=100}, --Makes the sticker invisible
     --hide_badge = true, --Hiding the badge would skip the loc_vars step...
     --no_collection = true,
     default_compat = false,
