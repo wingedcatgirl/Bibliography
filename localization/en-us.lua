@@ -13,6 +13,9 @@ return {
 			k_biblio_consumed = "C O N S U M E D",
 			k_biblio_active_desc = "Active",
 			k_biblio_inactive_desc = "Inactive",
+			k_biblio_gone = "Gone!",
+			k_biblio_failed_maybelie = "Didn't work...?",
+			k_biblio_dotdotdot = "...", --Used as both placeholder for messages TBA and actual message for particularly taciturn cahracters
 
 			--Zenos taunts
 			k_biblio_zenos_1 = "Rend!",
@@ -308,6 +311,23 @@ return {
 						"When a card with a base enhancement scores",
 						"a random card in deck gains that enhancement",
 					},
+				},
+			},
+			["j_biblio_daren"] = {
+				["name"] = "Daren Mathews",
+				["text"] = {
+					"Go up to {C:red}-$#1#{} in debt",
+					"If in debt at end of round",
+					"lose {C:gold}$1{} and increase",
+					"debt limit by {C:red}$#2#{}"
+				},
+			},
+			["j_biblio_emilia"] = {
+				["name"] = "Emilia Mathews",
+				["text"] = {
+					"Ignore discard limits",
+					"Expires after",
+					"{C:attention}#1#{} extra discards"
 				},
 			},
 			--HEY FUTURE MINTY, PUT NEW JOKERS ⬆️HERE⬆️ :P 

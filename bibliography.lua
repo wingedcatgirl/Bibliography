@@ -16,19 +16,26 @@ local files = {
         "vanillatweaks",
     },
     jokers = {
+        --my chars
         "leaf",
         "leafX",
         "scarlex",
         "scarlexEX",
         "vivi",
         "viviEX",
-        "zenos",
-        "zenosEX",
-        "peri",
-        "periEX",
+        "emilia",
+        "daren",
         "hallie",
         "hallieEX",
-        "yuu"
+
+        --others' chars
+        "peri",
+        "periEX",
+        "yuu",
+
+        --canon chars
+        "zenos",
+        "zenosEX",
     },
     stickers = {
         "multienhance"
