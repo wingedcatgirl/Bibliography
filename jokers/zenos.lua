@@ -19,6 +19,9 @@ SMODS.Joker {
         y = 1
     },
     rarity = 3,
+    set_badges = function (self, card, badges)
+        badges[#badges+1] = BIBLIO.credit_badge{type = "Character", credit = "Final Fantasy XIV"}
+    end,
     cost = 9,
     unlocked = true,
     discovered = false,

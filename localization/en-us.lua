@@ -6,12 +6,14 @@ return {
 			k_biblio_lb = "Limit Break!",
 			k_biblio_disbelief = "Don't believe you!",
 			k_biblio_betteridea = "Better idea!",
+			k_biblio_enhanced = "Enhanced!",
 			k_biblio_healed = "Healed!",
 			k_biblio_revived = "Revived!",
 			k_biblio_banished = "Banished!",
 			k_biblio_consumed = "C O N S U M E D",
 			k_biblio_active_desc = "Active",
 			k_biblio_inactive_desc = "Inactive",
+
 			--Zenos taunts
 			k_biblio_zenos_1 = "Rend!",
 			k_biblio_zenos_2 = "Kill...",
@@ -36,6 +38,7 @@ return {
 			k_biblio_zenos_ex_10 = "Now, fall!",
 			k_biblio_zenos_ex_11 = "This is my moment! Our moment!",
 			k_biblio_zenos_willful = "Rise once more! It mustn't end yet!",
+
             --Rarities
             k_biblio_illustrious = "Illustrious",
             k_biblio_mythical = "Mythical",
@@ -44,22 +47,27 @@ return {
             k_biblio_ascended = "Ascended",
             k_biblio_exalted = "Exalted",
             k_biblio_sublime = "Sublime",
-            k_biblio_enoughalready = "Enough already!!!"
+            k_biblio_enoughalready = "Enough already!!!",
+
+			--Config options
+			option_biblio_lorepop = "Show lore popups",
+			option_biblio_nocred = "Disable credit badges",
 		},
 		["v_dictionary"] = {
-            v_biblio_savedby = "Saved by #1#"
+            v_biblio_savedby = "Saved by #1#",
+			v_biblio_credit = "#1#: #2#"
 		},
 		["v_text"] = {
-            
+
 		},
 		["suits_plural"] = {
-            
+
 		},
 		["suits_singular"] = {
-            
+
 		},
 		["ranks"] = {
-            
+
 		},
 		["labels"] = {
             k_biblio_illustrious = "Illustrious",
@@ -69,19 +77,20 @@ return {
             k_biblio_ascended = "Ascended",
             k_biblio_exalted = "Exalted",
             k_biblio_sublime = "Sublime",
-            k_biblio_enoughalready = "Enough already!!!"
+            k_biblio_enoughalready = "Enough already!!!",
+			biblio_multienhance = "Multi-enhanced",
 		},
 		["challenge_names"] = {
-            
+
 		},
 		["poker_hands"] = {
-            
+
 		},
 		["poker_hand_descriptions"] = {
-            
+
 		},
 		["quips"] = {
-			
+
 		},
 	},
 	["descriptions"] = {
@@ -275,7 +284,7 @@ return {
 				},
 			},
 			["j_biblio_hallie_EX"] = {
-				["name"] = "Hallie Mathews",
+				["name"] = "Hallie, Heart of Ember",
 				["text"] = {
 					{
 						"On second discard of round,",
@@ -289,6 +298,18 @@ return {
 					},
 				},
 			},
+			["j_biblio_yuu"] = {
+				["name"] = "Yuu Akimoto",
+				["text"] = {
+					{
+						"Cards can have additional enhancements",
+					},
+					{
+						"When a card with a base enhancement scores",
+						"a random card in deck gains that enhancement",
+					},
+				},
+			},
 			--HEY FUTURE MINTY, PUT NEW JOKERS ⬆️HERE⬆️ :P 
 			["j_biblio_template"] = {
 				["name"] = "Joker Template",
@@ -298,10 +319,10 @@ return {
 			},
 		},
 		["Back"] = {
-            
+
         },
 		["Blind"] = {
-            
+
 		},
 		["Tarot"] = {
             c_biblio_crucible = {
@@ -321,25 +342,25 @@ return {
             },
 		},
 		["Spectral"] = {
-            
+
 		},
 		["Planet"] = {
-            
+
 		},
 		["Tag"] = {
-            
+
 		},
 		["Sleeve"] = {
-            
+
 		},
 		["Enhanced"] = {
-            
+
 		},
 		["Voucher"] = {
-            
+
 		},
 		["Stake"] = {
-            
+
 		},
 		["Rotarot"] = {
             c_biblio_rot_crucible = {
@@ -358,6 +379,13 @@ return {
 					"Burning for battle",
 					"{C:red}Prevents death",
 					"{C:inactive}({C:attention}#1#{C:inactive} global charges)"
+				}
+			},
+			biblio_multienhance = {
+				name = "Multi-enhanced",
+				text = {
+					"Possesses multiple",
+					"enhancements"
 				}
 			}
 		},

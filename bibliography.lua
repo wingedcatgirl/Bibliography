@@ -1,6 +1,10 @@
 BIBLIO = {}
 BIBLIO.config = SMODS.current_mod.config
 
+SMODS.current_mod.optional_features = {
+	quantum_enhancements = true
+}
+
 local files = {
     lib = {
         "hooks",
@@ -24,6 +28,10 @@ local files = {
         "periEX",
         "hallie",
         "hallieEX",
+        "yuu"
+    },
+    stickers = {
+        "multienhance"
     },
     tarots = {
         "crucible"

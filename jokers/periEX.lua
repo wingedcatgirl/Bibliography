@@ -13,6 +13,9 @@ SMODS.Joker {
         y = 1
     },
     rarity = "biblio_ascended",
+    set_badges = function (self, card, badges)
+        badges[#badges+1] = BIBLIO.credit_badge{type = "OC", credit = "MP"}
+    end,
     cost = 13,
     unlocked = true,
     discovered = false,

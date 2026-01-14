@@ -327,6 +327,79 @@ BIBLIO.safe_copy_table = function(tbl, depth)
     return newtbl
 end
 
+---Create a credit badge (unless credits are disabled)
+---@param args BibCreditBadge
+---@return table|nil
+BIBLIO.credit_badge = function (args)
+    if BIBLIO.config.no_credit_badges then return nil end
+
+    local string, bcol, tcol, scale
+    string = localize{type = "variable", key = "v_biblio_credit", vars = {args.type or "?", args.credit or "??"}}
+    bcol = args.bcol or HEX("CA7CA7")
+    tcol = args.tcol or HEX("FFFFFF")
+    scale = args.scale or 0.7
+
+    --copied a bunch of this from creditlib
+    local size = 0.9
+    local font = G.LANG.font
+    local max_text_width = 2 - 2 * 0.05 - 4 * 0.03 * size - 2 * 0.03
+    local calced_text_width = 0
+    -- Math reproduced from DynaText:update_text
+    for _, c in utf8.chars(string) do
+        local tx = font.FONT:getWidth(c) * (0.33 * size) * G.TILESCALE * font.FONTSCALE
+            + 2.7 * 1 * G.TILESCALE * font.FONTSCALE
+        calced_text_width = calced_text_width + tx / (G.TILESIZE * G.TILESCALE)
+    end
+    local marquee = calced_text_width > max_text_width
+    local scale_fac = calced_text_width > max_text_width and max_text_width / calced_text_width or 1
+
+    local min_scale_fac = scale_fac
+
+    local badge = {
+                n = G.UIT.R,
+                config = { align = "cm" },
+                nodes = {
+                    {
+                        n = G.UIT.R,
+                        config = {
+                            align = "cm",
+                            colour = bcol,
+                            r = 0.1,
+                            minw = 2,
+                            w = 2,
+                            minh = 0.36,
+                            emboss = 0.05,
+                            padding = 0.03 * 0.9,
+                        },
+                        nodes = {
+                            { n = G.UIT.B, config = { h = 0.1, w = 0.03 } },
+                            {
+                                n = G.UIT.O,
+                                config = {
+                                    object = DynaText({
+                                        string = string,
+                                        colours = { tcol },
+                                        silent = true,
+                                        float = true,
+                                        shadow = true,
+                                        marquee = marquee,
+                                        maxw = max_text_width,
+                                        offset_y = -0.03,
+                                        spacing = 1,
+                                        scale = 0.33 * 0.9,
+                                    }), maxw = max_text_width, align = "cr"
+                                },
+                            },
+                            { n = G.UIT.B, config = { h = 0.1, w = 0.03 } },
+                        },
+                    },
+                },
+            }
+
+
+    return badge
+end
+
 
 --Talisman compatibility compatibility
 to_big = to_big or function(x)
@@ -357,6 +430,25 @@ SMODS.current_mod.calculate = function (self, context)
     local areas = {
         "jokers"
     }
+
+    if context.check_enhancement and (context.other_card and context.other_card.ability and context.other_card.ability.biblio_multienhance) then
+        local flags = {}
+        SMODS.calculate_context({biblio_enable_multienhance = true}, flags)
+        local allow = false
+        local suppress = false
+        for i,v in ipairs(flags or {}) do
+            for kk,vv in pairs(v or {}) do
+                allow = allow or (vv or {}).enable
+                suppress = suppress or (vv or {}).suppress
+            end
+        end
+        if allow and not suppress then
+            --BIBLIO.multienhance = true
+            return copy_table(context.other_card.ability.biblio_multienhance)
+        else
+            --BIBLIO.multienhance = false
+        end
+    end
 
     if context.game_over and G.GAME.biblio_willful > 0 then
         local saved
