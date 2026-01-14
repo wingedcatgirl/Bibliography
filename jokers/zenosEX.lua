@@ -65,7 +65,7 @@ SMODS.Joker {
         }
     end,
     in_pool = function (self, args)
-        if next(SMODS.find_card("j_biblio_zenos")) then return false end
+        if next(SMODS.find_card("j_biblio_zenos")) and not SMODS.showman(self.key) then return false end
         
         return (G.GAME.zenos_banished or 0) > 0
     end,

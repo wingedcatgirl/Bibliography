@@ -53,7 +53,7 @@ SMODS.Joker {
         }
     end,
     in_pool = function (self, args)
-        if (G.GAME.zenos_banished or 0) > 0 then return false end
+        if (G.GAME.zenos_banished or 0) > 0 and not SMODS.showman(self.key) then return false end
         --insert any additional conditions
         return true
     end,

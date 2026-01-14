@@ -47,11 +47,6 @@ SMODS.Joker {
             }
         }
     end,
-    in_pool = function (self, args)
-        if self.biblio_evolution and next(SMODS.find_card(self.biblio_evolution)) then return false end
-        --insert any additional conditions
-        return true
-    end,
     calculate = function(self, card, context)
         if context.pre_level_up and not card.ability.extra.norecurse then
             --[[ yk what i just can't be bothered making it emit exactly one message after a black hole

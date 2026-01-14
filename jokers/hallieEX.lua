@@ -43,11 +43,6 @@ SMODS.Joker {
             }
         }
     end,
-    in_pool = function (self, args)
-        if self.biblio_evolution and next(SMODS.find_card(self.biblio_evolution)) then return false end
-        --insert any additional conditions
-        return true
-    end,
     calculate = function(self, card, context)
         if card.ability.extra.active and context.pre_discard and not context.hook then
             if G.GAME.current_round.discards_used then

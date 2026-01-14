@@ -59,11 +59,6 @@ SMODS.Joker {
             }
         }
     end,
-    in_pool = function (self, args)
-        if self.biblio_evolution and next(SMODS.find_card(self.biblio_evolution)) then return false end
-        --insert any additional conditions
-        return true
-    end,
     calculate = function(self, card, context)
         if context.setting_blind or context.forcetrigger then
             for i=1,card.ability.extra.number do

@@ -61,11 +61,6 @@ SMODS.Joker {
             }
         }
     end,
-    in_pool = function (self, args)
-        if self.biblio_evolution and next(SMODS.find_card(self.biblio_evolution)) then return false end
-        --insert any additional conditions
-        return true
-    end,
     calculate = function(self, card, context)
         if context.individual and context.cardarea == G.play and not context.end_of_round and card.ability.extra.mp < card.ability.extra.mpcap then
             card.ability.extra.mp = card.ability.extra.mp + 1

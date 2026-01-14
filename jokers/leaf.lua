@@ -52,7 +52,7 @@ SMODS.Joker {
         end, {blockable = false, blocking = false})
     end,
     in_pool = function (self, args)
-        if next(SMODS.find_card(self.biblio_evolution)) then return false end
+        if next(SMODS.find_card(self.biblio_evolution)) and not SMODS.showman(self.key) then return false end
         
         return true
     end,
