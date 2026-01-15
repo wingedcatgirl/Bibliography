@@ -49,7 +49,16 @@ SMODS.Consumable{
 
         for _,v in ipairs(cards) do
             local oldkey = v.config.center.key
-            local evol = v.config.center.biblio_evolution
+            local evol
+            if type(v.config.center.biblio_evolution) == "function" then
+                evol = v.config.center:biblio_evolution(v, card)
+            elseif type(v.config.center.biblio_evolution) == "table" then
+                evol = pseudorandom_element(v.config.center.biblio_evolution, "biblio_select_"..card.config.center.key)
+            elseif type(v.config.center.biblio_evolution) == "string" then
+                evol = v.config.center.biblio_evolution
+            elseif type(v.config.center.biblio_evolution) ~= "nil" then
+                error("Bibliography: Invalid configuration of evolution data on "..card.config.center.key)
+            end
             local values = type(v.ability.extra) == "table" and copy_table(v.ability.extra) or {}
             G.E_MANAGER:add_event(Event({
                 trigger = 'after',

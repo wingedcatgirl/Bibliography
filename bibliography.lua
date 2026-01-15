@@ -31,6 +31,7 @@ local files = {
         --others' chars
         "peri",
         "periEX",
+        "eiko",
         "yuu",
 
         --canon chars

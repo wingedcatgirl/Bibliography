@@ -14,6 +14,7 @@ return {
 			k_biblio_active_desc = "Active",
 			k_biblio_inactive_desc = "Inactive",
 			k_biblio_gone = "Gone!",
+			k_biblio_baka = "Baka!",
 			k_biblio_failed_maybelie = "Didn't work...?",
 			k_biblio_dotdotdot = "...", --Used as both placeholder for messages TBA and actual message for particularly taciturn cahracters
 
@@ -343,6 +344,15 @@ return {
 					"Ignore discard limits",
 					"Expires after",
 					"{C:attention}#1#{} extra discards"
+				},
+			},
+			["j_biblio_eiko"] = {
+				["name"] = "Eiko",
+				["text"] = {
+					"Gains {X:mult,C:white}X#2#{} Mult for each",
+					"consecutive hand played with",
+					"{C:attention}High Card{} as most played hand",
+					"{C:inactive}(Currently {X:mult,C:white}X#1#{C:inactive})"
 				},
 			},
 			--HEY FUTURE MINTY, PUT NEW JOKERS ⬆️HERE⬆️ :P 
