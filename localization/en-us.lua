@@ -124,7 +124,10 @@ return {
 				},
 			},
 			["j_biblio_leafX"] = {
-				["name"] = "Leaf, Stellar Dragoon",
+				["name"] = {
+					"Leaf",
+					"{s:0.7}Stellar Dragoon"
+				},
 				["text"] = {
 					{
                         "If {C:attention}grounded{} when hand played,",
@@ -431,10 +434,7 @@ return {
                 }
             },
             ["j_biblio_leafX"] = {
-                name = {
-					"Leaf",
-					"{s:0.7}Stellar Dragoon"
-				},
+                name = "Leaf, Stellar Dragoon",
                 text = {
                     "The girl who wields",
                     "the pitch-dark power",
