@@ -434,7 +434,7 @@ return {
                 }
             },
             ["j_biblio_leafX"] = {
-                name = "Leaf, Stellar Dragoon",
+                name = "Stellar Dragoon",
                 text = {
                     "The girl who wields",
                     "the pitch-dark power",
@@ -449,6 +449,14 @@ return {
 					"obstinate determination."
 				}
 			},
+			j_biblio_scarlex_EX = {
+				name = "SOUL Reaper",
+				text = {
+					"The girl who will",
+					"destroy anything to",
+					"save her friends"
+				}
+			},
 			j_biblio_peri = {
 				name = "Peri Nagato",
 				text = {
@@ -456,9 +464,28 @@ return {
 				}
 			},
 			j_biblio_peri_EX = {
-				name = "Peri, Abstract Heaven",
+				name = "Abstract Heaven",
 				text = {
 					'"Hav{C:dark_edition}e{} you {C:chips}m{}et my new f{C:mult}r{}iend{C:biblio_enoughalready}?{}"'
+				}
+			},
+			j_biblio_vivi = {
+				name = "Vivi Elakha",
+				text = {
+					"A wandering adventurer",
+					"skilled in conjury",
+					"and crafting."
+				}
+			},
+			j_biblio_vivi_EX = {
+				name = "the Fae-Touched",
+				text = {
+					"Savior of all existence,",
+					"favorite of the fae King,",
+					"champion of the Arcadion,",
+					"...and stealer of pants, if",
+					"the more outlandish tales",
+					"can be believed."
 				}
 			}
         },
