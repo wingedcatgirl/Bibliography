@@ -447,6 +447,7 @@ SMODS.current_mod.calculate = function (self, context)
             return copy_table(context.other_card.ability.biblio_multienhance)
         else
             --BIBLIO.multienhance = false
+            return nil
         end
     end
 

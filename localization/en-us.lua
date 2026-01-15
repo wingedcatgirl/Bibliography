@@ -148,7 +148,10 @@ return {
 				},
 			},
 			["j_biblio_scarlex_EX"] = {
-				["name"] = "Scarlex, SOUL Reaper",
+				["name"] = {
+					"Scarlex Aiello",
+					"{s:0.7}SOUL Reaper"
+				},
 				["text"] = {
 					"If a hand would {C:blue}level up{}, randomly chooses one:",
 					"- redirect it to {C:attention}most played hand{}",
@@ -178,7 +181,10 @@ return {
 				},
 			},
 			["j_biblio_vivi_EX"] = {
-				["name"] = "Vivi Elakha, the Fae-Touched",
+				["name"] = {
+					"Vivi Elakha",
+					"{s:0.7}the Fae-Touched"
+				},
 				["text"] = {
 					{
 						"Gains 1 MP per scored card",
@@ -244,7 +250,10 @@ return {
 				},
 			},
 			["j_biblio_peri_EX"] = {
-				["name"] = "Peri, Abstract Heaven",
+				["name"] = {
+					"Peri Nagato",
+					"{s:0.7}Abstract Heaven"
+				},
 				["text"] = {
 					{
 						"Creates {C:attention}#1#{} {C:dark_edition}Negative{}",
@@ -287,7 +296,10 @@ return {
 				},
 			},
 			["j_biblio_hallie_EX"] = {
-				["name"] = "Hallie, Heart of Ember",
+				["name"] = {
+					"Hallie Mathews",
+					"{s:0.7}Heart of Ember"
+				},
 				["text"] = {
 					{
 						"On second discard of round,",
@@ -419,7 +431,10 @@ return {
                 }
             },
             ["j_biblio_leafX"] = {
-                name = "Leaf, Stellar Dragoon",
+                name = {
+					"Leaf",
+					"{s:0.7}Stellar Dragoon"
+				},
                 text = {
                     "The girl who wields",
                     "the pitch-dark power",
