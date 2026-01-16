@@ -13,6 +13,7 @@ local files = {
         "rarity",
         "atli",
         "sounds",
+        "bluehair",
         "vanillatweaks",
     },
     jokers = {
@@ -32,6 +33,7 @@ local files = {
         "peri",
         "periEX",
         "eiko",
+        "neo",
         "yuu",
 
         --canon chars

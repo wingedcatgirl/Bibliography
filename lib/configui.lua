@@ -17,6 +17,11 @@ SMODS.current_mod.config_tab = function()
             ref_table = BIBLIO.config,
             ref_value = 'no_credit_badges',
         }),
+        create_toggle({
+            label = localize("option_biblio_copysafe"),
+            ref_table = BIBLIO.config,
+            ref_value = 'no_unlicensed_tunes',
+        }),
         }}
     }}
 end

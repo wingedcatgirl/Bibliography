@@ -15,6 +15,7 @@ return {
 			k_biblio_inactive_desc = "Inactive",
 			k_biblio_gone = "Gone!",
 			k_biblio_baka = "Baka!",
+			k_biblio_fellforit = "Fell for it!",
 			k_biblio_failed_maybelie = "Didn't work...?",
 			k_biblio_dotdotdot = "...", --Used as both placeholder for messages TBA and actual message for particularly taciturn cahracters
 
@@ -56,6 +57,7 @@ return {
 			--Config options
 			option_biblio_lorepop = "Show lore popups",
 			option_biblio_nocred = "Disable credit badges",
+			option_biblio_copysafe = "Silence unlicensed music\n(STREAMERS CLICK THIS, PROBABLY)",
 		},
 		["v_dictionary"] = {
             v_biblio_savedby = "Saved by #1#",
@@ -353,6 +355,13 @@ return {
 					"consecutive hand played with",
 					"{C:attention}High Card{} as most played hand",
 					"{C:inactive}(Currently {X:mult,C:white}X#1#{C:inactive})"
+				},
+			},
+			["j_biblio_neo"] = {
+				["name"] = "Aws. Neo Riptide",
+				["text"] = {
+					"Blinds {C:attention}always{}",
+					"count as triggered"
 				},
 			},
 			--HEY FUTURE MINTY, PUT NEW JOKERS ⬆️HERE⬆️ :P 
