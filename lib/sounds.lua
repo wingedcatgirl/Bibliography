@@ -25,6 +25,7 @@ SMODS.Sound{ --Source: Chaotix
             return (G.STATE == G.STATES.SMODS_BOOSTER_OPENED) and (SMODS.OPENED_BOOSTER.ability.music == "biblio_chaotix_take_off" or SMODS.OPENED_BOOSTER.ability.mod.shortname == "Bibliography")
         end)
 
-        return succ and boostmusic or false
+        return succ and boostmusic and 5.5 --Lower than Morefluff's superboss music, I say as though anyone will play both mods simultaneously (it's me I'm going to do that)
+            or false
     end
 }
