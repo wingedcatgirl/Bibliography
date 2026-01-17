@@ -10,6 +10,7 @@ local files = {
         "hooks",
         "functions",
         "configui",
+        --"tabs",
         "rarity",
         "atli",
         "sounds",
