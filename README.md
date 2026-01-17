@@ -2,9 +2,10 @@
 
 ### Instructions
 1. Install [Lovely](https://github.com/ethangreen-dev/lovely-injector) and [Steamodded](https://github.com/Steamodded/smods)
-2. Install Bibliography
-3. Look at all the funny characters
-4. Watch number get biggerer
+2. (Optional but **highly recommended**:) Install [Amulet](https://github.com/frostice482/amulet)
+3. Install Bibliography
+4. Look at all the funny characters
+5. Watch number get biggerer
 
 > [!NOTE]
 > This mod is in **pre-release alpha**, you will need to download from source.  
@@ -24,7 +25,7 @@
 **A**: I plan to keep putting in Jokers until I run out of characters that I can come up with an idea for. ... I'd like at least 70 before then, but I suppose that's up to my creativity. 
 
 **Q**: How many Jokers do you _actually_ have?  
-**A**: *(comically long pause for audio splicing)* 10 *(comically long pause for audio splicing)* at the moment, unless I forgot to update this README file, which will definitely happen at some point.
+**A**: *(comically long pause for audio splicing)* 17 *(comically long pause for audio splicing)* at the moment, unless I forgot to update this README file, which will definitely happen at some point.
 
 **Q**: ... Are you accepting suggestions for characters to Jokerfy?  
 **A**: Sure, if you're accepting that there's no timeline on when I get around to actually implementing a given suggestion.
