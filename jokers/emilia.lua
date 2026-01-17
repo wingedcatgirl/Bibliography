@@ -68,7 +68,7 @@ SMODS.Joker {
                         check = true
                     end
                 end
-                if check then return nil end
+                if not check then return nil end
 
                 card.ability.extra.discards = card.ability.extra.discards - 1
                 SMODS.change_discard_limit(-1)
@@ -77,6 +77,7 @@ SMODS.Joker {
                     card.destroyed = true
                     BIBLIO.event(function ()
                         SMODS.destroy_cards(card, nil, true)
+                        check_for_unlock{type = "joker_expired", key = self.key}
                         return true
                     end)
                     G.GAME.biblio_emilia_expired = (G.GAME.biblio_emilia_expired or 0) + 1
@@ -85,7 +86,8 @@ SMODS.Joker {
                     }
                 else
                     return {
-                        message = "!"
+                        message = "!",
+                        delay = 0.2,
                     }
                 end
             end

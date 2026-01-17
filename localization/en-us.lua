@@ -66,6 +66,12 @@ return {
 		["v_text"] = {
 
 		},
+		achievement_names = {
+			ach_biblio_cannibalism = "Can't escape the cannibal memes"
+		},
+		achievement_descriptions = {
+			ach_biblio_cannibalism = "Emilia expired like a bowl of Ramen"
+		},
 		["suits_plural"] = {
 
 		},
@@ -372,6 +378,13 @@ return {
 					"if all played cards have",
 					"Fibonacci values",
 					"{C:inactive}(Ace, 2, 3, 5, 8){}"
+				},
+			},
+			["j_biblio_amanda"] = {
+				["name"] = "Amanda Murphy",
+				["text"] = {
+					"{C:green}Triples{} chance of",
+					"{C:attention}#1#s{} breaking"
 				},
 			},
 			--HEY FUTURE MINTY, PUT NEW JOKERS ⬆️HERE⬆️ :P 

@@ -16,6 +16,7 @@ local files = {
         "sounds",
         "bluehair",
         "vanillatweaks",
+        "achievements",
     },
     jokers = {
         --my chars
@@ -31,6 +32,8 @@ local files = {
         "hallieEX",
 
         --others' chars
+        "amanda",
+        --"amy",
         "peri",
         "periEX",
         "eiko",
