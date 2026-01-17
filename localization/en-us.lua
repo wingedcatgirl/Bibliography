@@ -364,6 +364,16 @@ return {
 					"count as triggered"
 				},
 			},
+			["j_biblio_ryan"] = {
+				["name"] = "Ryan Akimoto",
+				["text"] = {
+					"{C:attention}Once per round {C:inactive}(currently: #1#)",
+					"retrigger all scored cards",
+					"if all played cards have",
+					"Fibonacci values",
+					"{C:inactive}(Ace, 2, 3, 5, 8){}"
+				},
+			},
 			--HEY FUTURE MINTY, PUT NEW JOKERS ⬆️HERE⬆️ :P 
 			["j_biblio_template"] = {
 				["name"] = "Joker Template",

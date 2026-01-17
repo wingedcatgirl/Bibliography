@@ -34,6 +34,7 @@ local files = {
         "periEX",
         "eiko",
         "neo",
+        "ryan",
         "yuu",
 
         --canon chars
