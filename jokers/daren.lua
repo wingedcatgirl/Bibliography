@@ -4,17 +4,22 @@ SMODS.Joker {
     --biblio_evolution = "j_biblio_KEY",
     --biblio_evol_effect = function (self, newcard, oldextra) end,
     --biblio_crucible_effect = function (self, card) end,
-    --pronouns = "",
+    pronouns = "he_him",
     atlas = 'jokers',
     pos = {
-        x = 0,
-        y = 0
+        x = 8,
+        y = 2
     },
+    --[[
     soul_pos = {
         x = 0,
         y = 1
     },
+    --]]
     rarity = 1,
+    set_badges = function (self, card, badges)
+        badges[#badges+1] = BIBLIO.credit_badge{type = "OC", credit = "Minty"}
+    end,
     cost = 1,
     unlocked = true,
     discovered = false,

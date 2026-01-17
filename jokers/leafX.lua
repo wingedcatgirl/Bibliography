@@ -18,6 +18,9 @@ SMODS.Joker {
     },
     soul_pos = soulpos,
     rarity = "biblio_evolved",
+    set_badges = function (self, card, badges)
+        badges[#badges+1] = BIBLIO.credit_badge{type = "OC", credit = "Minty"}
+    end,
     cost = 13,
     unlocked = true,
     discovered = false,

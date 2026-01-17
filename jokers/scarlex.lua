@@ -10,14 +10,19 @@ SMODS.Joker {
     pronouns = "she_her",
     atlas = 'jokers',
     pos = {
-        x = 4,
-        y = 0
+        x = 2,
+        y = 2
     },
+    --[[
     soul_pos ={
         x = 2,
         y = 1
     },
+    --]]
     rarity = 1,
+    set_badges = function (self, card, badges)
+        badges[#badges+1] = BIBLIO.credit_badge{type = "OC", credit = "Minty"}
+    end,
     cost = 7,
     unlocked = true,
     discovered = false,

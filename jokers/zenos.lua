@@ -8,16 +8,18 @@ SMODS.Joker {
         SMODS.calculate_effect({message = localize("k_biblio_banished") }, card)
         SMODS.destroy_cards(card)
     end,
-    --pronouns = "",
+    pronouns = "he_him",
     atlas = 'jokers',
     pos = {
-        x = 6,
-        y = 0
+        x = 20,
+        y = 2
     },
+    --[[
     soul_pos = {
         x = 9,
         y = 1
     },
+    --]]
     rarity = 3,
     set_badges = function (self, card, badges)
         badges[#badges+1] = BIBLIO.credit_badge{type = "Character", credit = "Final Fantasy XIV"}

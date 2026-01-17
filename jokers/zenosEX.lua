@@ -4,16 +4,18 @@ SMODS.Joker {
     --biblio_evolution = "j_biblio_KEY",
     --biblio_evol_effect = function (self, newcard, oldextra) end,
     --biblio_crucible_effect = function (self, card) end,
-    --pronouns = "",
+    pronouns = "he_him",
     atlas = 'jokers',
     pos = {
-        x = 2,
-        y = 0
+        x = 21,
+        y = 2
     },
+    --[[
     soul_pos = {
         x = 2,
         y = 1
     },
+    --]]
     rarity = 3,
     set_card_type_badge = function (self, card, badges)
         badges[1] = create_badge(localize("k_biblio_ascended", "labels"), SMODS.Gradients.biblio_ascended, nil, 1.2)

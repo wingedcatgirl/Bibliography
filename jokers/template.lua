@@ -15,6 +15,9 @@ SMODS.Joker {
         y = 1
     },
     rarity = 1,
+    set_badges = function (self, card, badges)
+        badges[#badges+1] = BIBLIO.credit_badge{type = "OC", credit = "someone...", bcol = HEX("CA7CA7"), tcol = G.C.WHITE}
+    end,
     cost = 5,
     unlocked = true,
     discovered = false,
