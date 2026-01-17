@@ -98,7 +98,7 @@ SMODS.Joker {
         if (not card.ability.extra.active) and context.ante_end then
             card.ability.extra.active = true
             return {
-                message = localize("k_reset_ex")
+                message = localize("k_reset")
             }
         end
     end

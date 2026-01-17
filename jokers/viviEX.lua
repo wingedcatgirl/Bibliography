@@ -118,7 +118,7 @@ SMODS.Joker {
         if (not card.ability.extra.active) and context.end_of_round and context.cardarea == G.jokers then
             card.ability.extra.active = true
             return {
-                message = localize("k_reset_ex")
+                message = localize("k_reset")
             }
         end
     end
