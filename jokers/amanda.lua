@@ -54,7 +54,10 @@ SMODS.Joker {
         return true
     end,
     set_ability = function (self, card, initial, delay_sprites)
-        card:set_edition('e_polychrome', nil, BIBLIO.in_collection(card))
+        BIBLIO.event(function ()
+            card:set_edition('e_polychrome', nil, BIBLIO.in_collection(card))
+            return true
+        end)
     end,
     calculate = function(self, card, context)
         if context.mod_probability and context.identifier == "glass" then

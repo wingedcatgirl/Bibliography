@@ -387,6 +387,12 @@ return {
 					"{C:attention}#1#s{} breaking"
 				},
 			},
+			["j_biblio_amy"] = {
+				["name"] = "Amy",
+				["text"] = {
+					"{C:inactive}(Does nothing...?)",
+				},
+			},
 			--HEY FUTURE MINTY, PUT NEW JOKERS ⬆️HERE⬆️ :P 
 			["j_biblio_template"] = {
 				["name"] = "Joker Template",
