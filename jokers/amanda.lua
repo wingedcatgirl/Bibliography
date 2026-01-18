@@ -23,7 +23,7 @@ SMODS.Joker {
     discovered = false,
     eternal_compat = true,
     perishable_compat = true,
-    blueprint_compat = true,
+    blueprint_compat = false,
     demicoloncompat = false,
     config = {
         extra = {
@@ -52,6 +52,9 @@ SMODS.Joker {
         if self.biblio_evolution and next(SMODS.find_card(self.biblio_evolution)) and not SMODS.showman(self.key) then return false end
         --insert any additional conditions
         return true
+    end,
+    set_ability = function (self, card, initial, delay_sprites)
+        card:set_edition('e_polychrome', nil, BIBLIO.in_collection(card))
     end,
     calculate = function(self, card, context)
         if context.mod_probability and context.identifier == "glass" then

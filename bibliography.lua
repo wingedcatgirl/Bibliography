@@ -33,7 +33,7 @@ local files = {
 
         --others' chars
         "amanda",
-        --"amy",
+        "amy",
         "peri",
         "periEX",
         "eiko",
