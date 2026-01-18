@@ -1,3 +1,12 @@
+local alphaplaceholder_base = {
+    x = math.random(0, 8),
+    y = 0
+}
+local alphaplaceholder_soul = {
+    x = math.random(0, 21),
+    y = 1
+}
+
 SMODS.Joker {
     key = "newjoker",
     name = "New Joker",
@@ -6,14 +15,8 @@ SMODS.Joker {
     --biblio_crucible_effect = function (self, card) end,
     --pronouns = "",
     atlas = 'jokers',
-    pos = {
-        x = 0,
-        y = 0
-    },
-    soul_pos = {
-        x = 0,
-        y = 1
-    },
+    pos = alphaplaceholder_base,
+    soul_pos = alphaplaceholder_soul,
     rarity = 1,
     set_badges = function (self, card, badges)
         badges[#badges+1] = BIBLIO.credit_badge{type = "OC", credit = "someone...", bcol = HEX("CA7CA7"), tcol = G.C.WHITE}

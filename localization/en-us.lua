@@ -535,6 +535,15 @@ return {
 					"the more outlandish tales",
 					"can be believed."
 				}
+			},
+			j_biblio_amanda = {
+				name = "Amanda Murphy",
+				text = {
+					"A supernaturally unlucky",
+					"girl who would probably",
+					"be very upset that she",
+					"has no image yet."
+				}
 			}
         },
 	},

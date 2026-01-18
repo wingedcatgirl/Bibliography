@@ -8,11 +8,11 @@
 5. Watch number get biggerer
 
 > [!NOTE]
-> This mod is in **pre-release alpha**, you will need to download from source.  
-> Accordingly, we will not be providing support for super basic "how do I install a mod"-level questions at this time. Please read the documents for Lovely and SMODS.
+> This mod is in **early development**.  
+> A lot of the art is still placeholders. No idea how long this will last because I am extremely inconsistent at anything.
 
 ### FAQ (Feasibly Askable Questions) ~~(nobody's asked me anything about this ._.)~~
-**Q**: So the main gimmick is just Jokers That Am OCs?  
+**Q**: So the main gimmick is just Jokers What Am OCs?  
 **A**: Mainly! I'll also put in canon characters if I feel like it.
 
 **Q**: What power level is this mod planned to be?  
@@ -22,10 +22,10 @@
 **A**: ... Not *just*, no... ~~this one's got MY ocs in it!~~ Egotism aside, as much as Bibliography is both inspired by and modeled on [that older project], it's inherently a different mod and will be its own experience. Just for starters, we're going to have different design principles. I'll probably use less xChips than they did, for example.
 
 **Q**: How many Jokers do you plan to add?  
-**A**: I plan to keep putting in Jokers until I run out of characters that I can come up with an idea for. ... I'd like at least 70 before then, but I suppose that's up to my creativity. 
+**A**: I plan to keep putting in Jokers until I run out of characters that I can come up with an in-game effect for. ... I'd like at least 70 before then, but I suppose that's up to my creativity. 
 
 **Q**: How many Jokers do you _actually_ have?  
-**A**: *(comically long pause for audio splicing)* 17 *(comically long pause for audio splicing)* at the moment, unless I forgot to update this README file, which will definitely happen at some point.
+**A**: *(comically long pause for audio splicing)* 20 *(comically long pause for audio splicing)* at the moment, unless I forgot to update this README file, which will definitely happen several times throughout the mod's lifespan.
 
 **Q**: ... Are you accepting suggestions for characters to Jokerfy?  
-**A**: Sure, if you're accepting that there's no timeline on when I get around to actually implementing a given suggestion.
+**A**: Sure, if you're accepting that there's no timeline on when I get around to actually implementing a given suggestion. I should probably set up a form or something, but... eh.

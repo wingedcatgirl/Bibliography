@@ -7,13 +7,15 @@ SMODS.Joker {
     --pronouns = "",
     atlas = 'jokers',
     pos = {
-        x = 0,
-        y = 0
+        x = 4,
+        y = 4
     },
+    --[[
     soul_pos = {
         x = 0,
         y = 1
     },
+    --]]
     rarity = 1,
     set_badges = function (self, card, badges)
         badges[#badges+1] = BIBLIO.credit_badge{type = "OC", credit = "Kira", bcol = HEX("F51F95") }
