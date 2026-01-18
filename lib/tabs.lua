@@ -38,6 +38,7 @@ SMODS.current_mod.extra_tabs = function()
       entry("Minty, of course :p"),
       entry("Kira"),
       entry("MP"),
+      entry("Ozbourne"),
       }
     }
     end
