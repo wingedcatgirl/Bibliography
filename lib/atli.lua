@@ -18,7 +18,7 @@ SMODS.Atlas {
     py = 107,
 }
 
-SMODS.Atlas({ --technically copyrighted (it's the google 📚️ emoji) but who cares
+SMODS.Atlas({ --technically copyrighted (it's the google 📚️ emoji) but who cares in this context
     key = 'modicon',
     path = 'icon.png',
     px = 34,
