@@ -43,10 +43,16 @@ SMODS.Joker {
                 key = key,
             }
         end
+        if next(SMODS.find_mod("MintysSillyMod")) then
+            key = key.."_alt"
+            info_queue[#info_queue+1] = G.P_CENTERS.m_minty_pistol
+        end
+
         return {
             key = key,
             vars = {
-                localize{type = "name_text", set = "Enhanced", key = "m_glass"}
+                localize{type = "name_text", set = "Enhanced", key = "m_glass"},
+                next(SMODS.find_mod("MintysSillyMod")) and localize{type = "name_text", set = "Enhanced", key = "m_minty_pistol"} or nil
             }
         }
     end,
@@ -62,7 +68,7 @@ SMODS.Joker {
         end)
     end,
     calculate = function(self, card, context)
-        if context.mod_probability and context.identifier == "glass" then
+        if context.mod_probability and (context.identifier == "glass" or context.identifier == "minty_pistolshot") then
             return {
                 numerator = context.numerator * 3
             }

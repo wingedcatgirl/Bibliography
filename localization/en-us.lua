@@ -387,6 +387,14 @@ return {
 					"{C:attention}#1#s{} breaking"
 				},
 			},
+			["j_biblio_amanda_alt"] = {
+				["name"] = "Amanda Murphy",
+				["text"] = {
+					"{C:green}Triples{} chance of",
+					"{C:attention}#1#s{} breaking",
+					"and {C:attention}#2#s{} going off"
+				},
+			},
 			["j_biblio_amy"] = {
 				["name"] = "Amy",
 				["text"] = {
