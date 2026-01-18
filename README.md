@@ -9,7 +9,7 @@
 
 > [!NOTE]
 > This mod is in **early development**.  
-> A lot of the art is still placeholders. No idea how long this will last because I am extremely inconsistent at anything.
+> A lot of the art is still placeholders. No idea how long this will last because I am extremely inconsistent at everything, but especially art.
 
 ### FAQ (Feasibly Askable Questions) ~~(nobody's asked me anything about this ._.)~~
 **Q**: So the main gimmick is just Jokers What Am OCs?  
