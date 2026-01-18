@@ -102,7 +102,7 @@ SMODS.Joker {
                     additional = {
                         hand = hand,
                         amount = context.pre_level_up.amount or 1,
-                        message = localize("k_again_ex"),
+                        message = localize("k_biblio_another_ex"),
                     },
                 }
             end

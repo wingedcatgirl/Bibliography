@@ -6,6 +6,7 @@ return {
 			k_biblio_lb = "Limit Break!",
 			k_biblio_disbelief = "Don't believe you!",
 			k_biblio_betteridea = "Better idea!",
+			k_biblio_another_ex = "Another!",
 			k_biblio_enhanced = "Enhanced!",
 			k_biblio_healed = "Healed!",
 			k_biblio_revived = "Revived!",
