@@ -8,13 +8,6 @@ HEX = function (str)
 end
 
 local oldlvl = level_up_hand
-local addlkeys = {
-    "add", "subtract", "multiply", "amount", "redirect", "cancel_level", "additional"
-}
-for i,v in ipairs(addlkeys) do
-    SMODS.other_calculation_keys[#SMODS.other_calculation_keys+1] = v
-    SMODS.silent_calculation[v] = true
-end
 level_up_hand = function (card, hand, instant, amount)
     if (G.GAME.immutable_level or 0) > 0 then return oldlvl(card, hand, instant, amount) end
     G.GAME.immutable_level = (G.GAME.immutable_level or 0) + 1
