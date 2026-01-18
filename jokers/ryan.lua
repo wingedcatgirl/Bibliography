@@ -4,7 +4,7 @@ SMODS.Joker {
     --biblio_evolution = "j_biblio_KEY",
     --biblio_evol_effect = function (self, newcard, oldextra) end,
     --biblio_crucible_effect = function (self, card) end,
-    --pronouns = "",
+    pronouns = "he_him",
     atlas = 'jokers',
     pos = {
         x = 4,
