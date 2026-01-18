@@ -17,3 +17,10 @@ SMODS.Atlas {
     px = 107,
     py = 107,
 }
+
+SMODS.Atlas({ --technically copyrighted (it's the google 📚️ emoji) but who cares
+    key = 'modicon',
+    path = 'icon.png',
+    px = 34,
+    py = 34
+})
