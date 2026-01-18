@@ -73,13 +73,13 @@ SMODS.Joker {
                 --BIBLIO.say("doublin ur hand")
                 return {
                     multiply = 2,
-                    message = localize("k_upgrade_ex"),
+                    message = localize("k_biblio_keepgoing_ex"),
                 }
             elseif effect == "redirect" then
                 --BIBLIO.say("redirecting ur hand")
                 local _handname, _played, _order = 'High Card', -1, 100
                 for k, v in pairs(G.GAME.hands) do
-                    if SMODS.is_poker_hand_visible(k) and (v.played > _played or (v.played == _played and _order > v.order)) then 
+                    if SMODS.is_poker_hand_visible(k) and v.played > 0 and (v.played > _played or (v.played == _played and _order > v.order)) then
                         _played = v.played
                         _handname = k
                         _order = v.order
