@@ -549,10 +549,19 @@ return {
 			j_biblio_amanda = {
 				name = "Amanda Murphy",
 				text = {
-					"A supernaturally unlucky",
-					"girl who would probably",
-					"be very upset that she",
-					"has no image yet."
+					"A girl with supernaturally",
+					"terrible luck. Just",
+					"absolutely godawful.",
+					"She refuses to handle",
+					"firearms anymore."
+				}
+			},
+			j_biblio_amy = {
+				name = "Amy",
+				text = {
+					"She would probably",
+					"be very upset that",
+					"she has no image."
 				}
 			}
         },
