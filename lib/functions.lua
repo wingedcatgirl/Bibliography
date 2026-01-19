@@ -14,7 +14,7 @@ BIBLIO.say = function(message, level)
 end
 
 ---Checks whether a card is in the collection (as opposed to e.g. the hand or Jokers tray)
----@param card table Card to check
+---@param card Card|table Card to check
 ---@return boolean
 BIBLIO.in_collection = function (card)
     if G.your_collection then
@@ -57,7 +57,7 @@ BIBLIO.enhancement_list = function(table, name)
 end
 
 ---Check whether the Wheel of Fortune can add the Negative edition.
----@param card? Card Specific WoF card object doing the check
+---@param card? Card|table Specific WoF card object doing the check
 ---@return boolean|nil
 function BIBLIO.wof_can_negative(card)
     if next(SMODS.find_card("j_biblio_peri_EX")) then return true end
@@ -65,7 +65,7 @@ function BIBLIO.wof_can_negative(card)
 end
 
 ---Get the editions the Wheel can apply
----@param card? Card Specific WoF card object doing the check
+---@param card? Card|table Specific WoF card object doing the check
 ---@return table ret Bag of eligible editions
 BIBLIO.get_wof_editions = function (card)
     local ret = {}
@@ -94,7 +94,7 @@ BIBLIO.set_wof_editions = function (key, remove)
 end
 
 ---... from target areas, excluding self
----@param card table The object that's looking at highlighted things (it won't see itself)
+---@param card Card|table The object that's looking at highlighted things (it won't see itself)
 ---@param areas table List of keys of `CardArea`s in `G`
 ---@return table cards List of highlighted cards
 function BIBLIO.get_all_highlighted(card, areas)
@@ -109,7 +109,12 @@ function BIBLIO.get_all_highlighted(card, areas)
     return cards
 end
 
+---Can we use the Crucible on this card?
+---@param card Card|table
+---@return boolean
 function BIBLIO.can_crucible(card)
+    --if #SMODS.find_card("c_biblio_crucible") == 1 and card == #SMODS.find_card("c_biblio_crucible")[1] then return false end --Can't use a Crucible on itself... if we ever make an evolved Crucible at all, anyway.
+
     local _,res = pcall(function ()
         return card.config.center.biblio_evolution or (type(card.config.center.biblio_crucible_effect) == "function")
     end)
@@ -118,7 +123,7 @@ function BIBLIO.can_crucible(card)
 end
 
 ---Do the tarot flip thing to all of G.hand.highlighted
----@param card Card
+---@param card Card|table
 ---@param args table|{rank:string?, suit:string?, enh:string?, edi:string?, random_ranks:table?, random_suits:table?, random_enhs:table?, random_edis:table?, seed:string?, sound:string?} Keys of the appropriate target modifications. `random_` tables are lists of same keys to pick one at random, in which case you need `seed` to seed the seed. Note: To clear an edition, pass the string "base", "none", "false", or "remove" as the edition key.
 BIBLIO.tarotflip = function (card, args)
     if not args then

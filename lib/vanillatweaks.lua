@@ -80,7 +80,12 @@ SMODS.Consumable:take_ownership("wheel_of_fortune", {
         end
 
         for i=1,(1+#SMODS.find_card("j_biblio_peri_EX")) do
-            if try() then break end
+            if try() then break else
+                local peri = SMODS.find_card("j_biblio_peri_EX")[i]
+                BIBLIO.event(function ()
+                    peri:juice_up()
+                    return true
+                end) end
             delay(0.6)
         end
     end
