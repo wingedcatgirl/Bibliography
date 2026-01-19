@@ -31,7 +31,7 @@ SMODS.Consumable({
         local capacity = G.jokers.config.card_limit - #G.jokers.cards
         for _=1, math.min(capacity, card.ability.num) do
             SMODS.add_card({
-                set = "Jokers",
+                set = "Joker",
                 key_append = "biblio_rot_crucible",
             })
         end
