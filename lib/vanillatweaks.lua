@@ -1,5 +1,10 @@
 SMODS.Joker:take_ownership("gros_michel", {
-    biblio_can_crucible = true
+    biblio_can_crucible = true,
+    biblio_crucible_effect = function (self, card)
+        SMODS.destroy_cards(card, true, true, true)
+        SMODS.calculate_effect({message = localize("k_extinct_ex")}, card)
+        G.GAME.pool_flags.gros_michel_extinct = true
+    end
 }, true)
 
 SMODS.Joker:take_ownership("cavendish", {
