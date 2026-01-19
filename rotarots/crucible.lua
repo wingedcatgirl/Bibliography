@@ -23,7 +23,7 @@ SMODS.Consumable({
         local oldban = copy_table(G.GAME.banned_keys or {})
 
         for k,v in pairs(G.P_CENTERS) do
-            if not (v.biblio_evolution or v.biblio_crucible_effect or v.biblio_can_crucible) then
+            if not (v.biblio_evolution or v.biblio_crucible_effect) then
                 G.GAME.banned_keys[k] = true
             end
         end

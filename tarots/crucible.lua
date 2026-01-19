@@ -32,12 +32,87 @@ SMODS.Consumable{
         }
     end,
 
+    add_to_deck = function (self, card, from_debuff)
+        local found = false
+        local juice_em = #SMODS.find_card(self.key) == 0
+        for i,v in ipairs(G.jokers.cards) do
+            if BIBLIO.can_crucible(v) then
+                found = true
+                if juice_em then
+                    juice_card_until(v,function ()
+                        return #SMODS.find_card(self.key) > 0
+                    end)
+                end
+            end
+        end
+        for i,v in ipairs(G.consumeables.cards) do
+            if BIBLIO.can_crucible(v) then
+                found = true
+                if juice_em then
+                    juice_card_until(v,function ()
+                        return #SMODS.find_card(self.key) > 0
+                    end)
+                end
+            end
+        end
+        if found then
+            juice_card_until(card, function ()
+                if card.REMOVED then return false end
+                for i,v in ipairs(G.jokers.cards) do
+                    if BIBLIO.can_crucible(v) then
+                        return true
+                    end
+                end
+            end)
+        end
+    end,
+    load = function (self, card, card_table, other_card)
+        BIBLIO.event(function ()
+            if #SMODS.find_card(self.key, true) == 0 then return false end
+            local found = false
+            local juice_em = (card == SMODS.find_card(self.key)[1])
+            for i,v in ipairs(G.jokers.cards) do
+                if BIBLIO.can_crucible(v) then
+                    found = true
+                    if juice_em then
+                        juice_card_until(v,function ()
+                            return #SMODS.find_card(self.key) > 0
+                        end)
+                    end
+                end
+            end
+            for i,v in ipairs(G.consumeables.cards) do
+                if BIBLIO.can_crucible(v) then
+                    found = true
+                    if juice_em then
+                        juice_card_until(v,function ()
+                            return #SMODS.find_card(self.key) > 0
+                        end)
+                    end
+                end
+            end
+            if found then
+                card.juiceing = true
+                juice_card_until(card, function ()
+                    if card.REMOVED then return false end
+                    for i,v in ipairs(G.jokers.cards) do
+                        if BIBLIO.can_crucible(v) then
+                            return true
+                        end
+                    end
+                    card.juiceing = false
+                end)
+            end
+            return true
+        end, {blocking = false, blockable = false})
+    end,
+
     can_use = function (self,card)
         local cards = BIBLIO.get_all_highlighted(card, {"jokers", "consumeables"})
         if #cards > card.ability.max_highlighted then return false end
 
         for _,v in ipairs(cards) do
-            if not (v.config and v.config.center and (v.config.center.biblio_evolution or type(v.config.center.biblio_crucible_effect) == "function")) then
+            if not BIBLIO.can_crucible(v) then
                 return false
             end
         end
@@ -102,6 +177,29 @@ SMODS.Consumable{
                 return true
             end
         }))
+    end,
+    calculate = function (self, card, context)
+        if context.card_added then
+            if card == SMODS.find_card(self.key)[1] then
+                if BIBLIO.can_crucible(context.card) then
+                    juice_card_until(context.card, function ()
+                        return #SMODS.find_card(self.key) > 0
+                    end)
+                end
+            end
+            if not card.juiceing then
+                card.juiceing = true
+                juice_card_until(card, function ()
+                    if card.REMOVED then return false end
+                    for i,v in ipairs(G.jokers.cards) do
+                        if BIBLIO.can_crucible(v) then
+                            return true
+                        end
+                    end
+                    card.juiceing = false
+                end)
+            end
+        end
     end,
 
     in_pool = function (self, args)

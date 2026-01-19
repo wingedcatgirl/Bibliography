@@ -109,6 +109,14 @@ function BIBLIO.get_all_highlighted(card, areas)
     return cards
 end
 
+function BIBLIO.can_crucible(card)
+    local _,res = pcall(function ()
+        return card.config.center.biblio_evolution or (type(card.config.center.biblio_crucible_effect) == "function")
+    end)
+
+    return not not (_ and res)
+end
+
 ---Do the tarot flip thing to all of G.hand.highlighted
 ---@param card Card
 ---@param args table|{rank:string?, suit:string?, enh:string?, edi:string?, random_ranks:table?, random_suits:table?, random_enhs:table?, random_edis:table?, seed:string?, sound:string?} Keys of the appropriate target modifications. `random_` tables are lists of same keys to pick one at random, in which case you need `seed` to seed the seed. Note: To clear an edition, pass the string "base", "none", "false", or "remove" as the edition key.
