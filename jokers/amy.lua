@@ -66,6 +66,8 @@ SMODS.Joker {
         else
             area = G.play
         end
+        local prev_state = G.STATE
+        
         local blank = create_card("Voucher", area, nil, nil, nil, nil, "v_blank")
         blank:start_materialize()
         area:emplace(blank)
@@ -74,6 +76,8 @@ SMODS.Joker {
         local current_round_voucher = G.GAME.current_round.voucher
         blank:redeem()
         G.GAME.current_round.voucher = current_round_voucher
+        
+        G.STATE = prev_state
         G.E_MANAGER:add_event(Event({
             trigger = "after",
             delay = 0,

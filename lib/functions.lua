@@ -484,6 +484,18 @@ SMODS.current_mod.calculate = function (self, context)
             }
         end
     end
+
+    if context.create_shop_card and G.biblio_debug_flag then
+        BIBLIO.say("thing lel")
+        return {
+            shop_create_flags = {
+                set = "Joker",
+                key = "j_biblio_amy"
+            }
+        }
+    end
+
+
 end
 
 SMODS.current_mod.process_loc_text = function()
