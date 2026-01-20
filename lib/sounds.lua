@@ -18,11 +18,29 @@ SMODS.Sound{ --Source: Chaotix
     pitch = 1, --You have to specify this for a music or it will slow down arbitrarily!!!!
     path = "chaotix take off.ogg",
     sync = false,
+    volume = 0.2,
     select_music_track = function (self)
         if BIBLIO.config.no_unlicensed_tunes then return false end
 
         local succ,boostmusic = pcall(function ()
-            return (G.STATE == G.STATES.SMODS_BOOSTER_OPENED) and (SMODS.OPENED_BOOSTER.ability.music == "biblio_chaotix_take_off" or SMODS.OPENED_BOOSTER.ability.mod.shortname == "Bibliography")
+            return (G.STATE == G.STATES.SMODS_BOOSTER_OPENED) and (SMODS.OPENED_BOOSTER.ability.music == self.key)
+        end)
+
+        return succ and boostmusic and 1 or false
+    end
+}
+
+SMODS.Sound{ --Source: Chaotix
+    key = "music_ch_ntmy",
+    pitch = 1,
+    path = "chaotix nice to meet you.ogg",
+    sync = false,
+    volume = 0.2,
+    select_music_track = function (self)
+        if BIBLIO.config.no_unlicensed_tunes then return false end
+
+        local succ,boostmusic = pcall(function ()
+            return (G.STATE == G.STATES.SMODS_BOOSTER_OPENED) and (SMODS.OPENED_BOOSTER.ability.music == self.key or SMODS.OPENED_BOOSTER.ability.mod.shortname == "Bibliography")
         end)
 
         return succ and boostmusic and 5.5 --Lower than Morefluff's superboss music, I say as though anyone will play both mods simultaneously (it's me I'm going to do that)
