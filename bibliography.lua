@@ -18,6 +18,9 @@ local files = {
         "vanillatweaks",
         "achievements",
     },
+    boosters = {
+        "catcher"
+    },
     jokers = {
         --my chars
         "leaf",

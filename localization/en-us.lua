@@ -56,6 +56,9 @@ return {
             k_biblio_sublime = "Sublime",
             k_biblio_enoughalready = "Enough already!!!",
 
+			--Boosters
+			biblio_catcher = "Clown Catcher",
+
 			--Config options
 			option_biblio_lorepop = "Show lore popups",
 			option_biblio_nocred = "Disable credit badges",
@@ -479,6 +482,15 @@ return {
 				text = {
 					"Possesses multiple",
 					"enhancements"
+				}
+			},
+			p_biblio_catcher_1 = {
+				name = "Clown Catcher",
+				text = {
+					"Try your luck",
+					"and/or skill! Grab",
+					"{C:attention}#1#{} Bibliography Joker#3#",
+					"from a selection of {C:attention}#2#{}!"
 				}
 			}
 		},

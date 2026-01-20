@@ -413,6 +413,29 @@ BIBLIO.credit_badge = function (args)
     return badge
 end
 
+---Check if this booster pack wants to play a sound for the card we took
+---@param card Card|table
+function BIBLIO.booster_sound(card)
+    if not (G.STATE == G.STATES.SMODS_BOOSTER_OPENED) and (SMODS.OPENED_BOOSTER and SMODS.OPENED_BOOSTER.ability and SMODS.OPENED_BOOSTER.ability.play_sound_on_take) then return end
+
+    local args = type(SMODS.OPENED_BOOSTER.ability.play_sound_on_take) == "function" and SMODS.OPENED_BOOSTER.ability.play_sound_on_take(card) or SMODS.OPENED_BOOSTER.ability.play_sound_on_take
+    if args then
+        local sound, pitch, vol
+        if type(args) == "string" then
+            sound = args
+        elseif type(args) == "table" then
+            sound = args.sound
+            pitch = args.pitch
+            vol = args.vol or 0.6
+        end
+        if sound and SMODS.Sounds[sound] then
+            play_sound(sound, pitch, vol)
+        else
+            BIBLIO.say("hey "..sound.." isn't a sound that exists. you did a typo probably.", "ERROR")
+        end
+    end
+end
+
 
 --Talisman compatibility compatibility
 to_big = to_big or function(x)

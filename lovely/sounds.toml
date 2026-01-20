@@ -1,0 +1,25 @@
+[manifest]
+version = "1.2"
+dump_lua = true
+priority = 0
+
+# Allow localizing items from Lore set
+[[patches]]
+[patches.pattern]
+target = "functions/button_callbacks.lua"
+pattern = """
+if card.ability.set == 'Booster' then
+    G.CONTROLLER.locks.use = false
+    G.TAROT_INTERRUPT = nil
+else
+"""
+position = "before"
+payload = """
+
+if card.ability.set ~= "Booster" and (G.STATE == G.STATES.SMODS_BOOSTER_OPENED) and (SMODS.OPENED_BOOSTER and SMODS.OPENED_BOOSTER.ability and SMODS.OPENED_BOOSTER.ability.play_sound_on_take) then
+    BIBLIO.booster_sound(card)
+end
+
+"""
+overwrite = true
+match_indent = true
