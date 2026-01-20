@@ -85,6 +85,9 @@ SMODS.Joker {
                 for __,vv in ipairs(G[area].cards) do
                     if (vv.edition or {}).negative and not SMODS.is_eternal(vv, card) then
                         consume[#consume+1] = vv
+                        if vv == card then
+                            check_for_unlock{type = "self_destruct", key = card.config.center_key}
+                        end
                     end
                 end
                 local num = #consume

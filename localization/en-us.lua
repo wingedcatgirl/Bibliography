@@ -72,10 +72,12 @@ return {
 
 		},
 		achievement_names = {
-			ach_biblio_cannibalism = "Can't escape the cannibal memes"
+			ach_biblio_cannibalism = "Can't escape the cannibal memes",
+			ach_biblio_sparkling_elation = "Sparkling Elation"
 		},
 		achievement_descriptions = {
-			ach_biblio_cannibalism = "Emilia expired like a bowl of Ramen"
+			ach_biblio_cannibalism = "Emilia expired like a bowl of Ramen",
+			ach_biblio_sparkling_elation = "Peri became Negative and consumed herself"
 		},
 		["suits_plural"] = {
 

@@ -13,3 +13,17 @@ SMODS.Achievement{
         end
     end
 }
+
+SMODS.Achievement{
+    key = "sparkling_elation",
+    bypass_all_unlocked = true,
+    hidden_text = true,
+    reset_on_startup = dev,
+    unlock_condition = function (self, args)
+        if args and args.type == "self_destruct" then
+            if args.key == "j_biblio_peri_EX" then
+                return true
+            end
+        end
+    end
+}
