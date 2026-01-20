@@ -3,7 +3,7 @@ version = "1.2"
 dump_lua = true
 priority = 0
 
-# Allow localizing items from Lore set
+# Play sounds.
 [[patches]]
 [patches.pattern]
 target = "functions/button_callbacks.lua"
