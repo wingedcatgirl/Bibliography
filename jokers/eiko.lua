@@ -59,6 +59,11 @@ SMODS.Joker {
         --insert any additional conditions
         return true
     end,
+    add_to_deck = function (self, card, from_debuff)
+        if next(SMODS.find_card("j_biblio_cirno")) or next(SMODS.find_card("j_biblio_cirno_EX")) then
+            check_for_unlock{type = "joker_set", set = "ach_biblio_baka"}
+        end
+    end,
     calculate = function(self, card, context)
         if context.forcetrigger then
             SMODS.scale_card(card, {

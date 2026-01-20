@@ -73,11 +73,13 @@ return {
 		},
 		achievement_names = {
 			ach_biblio_cannibalism = "Can't escape the cannibal memes",
-			ach_biblio_sparkling_elation = "Sparkling Elation"
+			ach_biblio_sparkling_elation = "Sparkling Elation",
+			ach_biblio_baka = "Baka!"
 		},
 		achievement_descriptions = {
 			ach_biblio_cannibalism = "Emilia expired like a bowl of Ramen",
-			ach_biblio_sparkling_elation = "Peri became Negative and consumed herself"
+			ach_biblio_sparkling_elation = "Peri became Negative and consumed herself",
+			ach_biblio_baka = "Eiko met Cirno. Namecalling ensued."
 		},
 		["suits_plural"] = {
 
@@ -406,6 +408,14 @@ return {
 				["name"] = "Amy",
 				["text"] = {
 					"{C:inactive}(Does nothing...?)",
+				},
+			},
+			["j_biblio_cirno"] = {
+				["name"] = "Cirno",
+				["text"] = {
+					"{C:green}1 in #1#{} chance to",
+					"retrigger played {C:attention}9s{}",
+					"#2# times"
 				},
 			},
 			--HEY FUTURE MINTY, PUT NEW JOKERS ⬆️HERE⬆️ :P 

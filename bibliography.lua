@@ -45,6 +45,7 @@ local files = {
         "yuu",
 
         --canon chars
+        "cirno",
         "zenos",
         "zenosEX",
     },
