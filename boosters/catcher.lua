@@ -37,6 +37,7 @@ SMODS.Booster{
                     G.GAME.real_banned_keys = nil
                     return true
                 end
+                if #G.pack_cards.cards < 2 then return end
                 frames = frames + 1
                 if frames > (150/#G.pack_cards.cards) then
                     local card1 = pseudorandom(pseudoseed("biblio_catcher_shuffle"), 1, #G.pack_cards.cards)
