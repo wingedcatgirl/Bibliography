@@ -347,22 +347,46 @@ BIBLIO.credit_badge = function (args)
     if BIBLIO.config.no_credit_badges then return nil end
 
     local string, bcol, tcol, scale
+
+    local calced_text_width = 0
+    local size = 0.9
+    local font = G.LANG.font
+
+    -- Math reproduced from DynaText:update_text
     string = localize{type = "variable", key = "v_biblio_credit", vars = {args.type or "?", args.credit or "??"}}
+    if string then
+        for _, c in utf8.chars(string) do
+            local tx = font.FONT:getWidth(c) * (0.33 * size) * G.TILESCALE * font.FONTSCALE
+                + 2.7 * 1 * G.TILESCALE * font.FONTSCALE
+            calced_text_width = calced_text_width + tx / (G.TILESIZE * G.TILESCALE)
+        end
+    end
+
+    if type(args.credits) == "table" then
+        local ct = {}
+        calced_text_width = 0
+
+        for i,v in ipairs(args.credits) do
+            local item = localize{type = "variable", key = "v_biblio_credit", vars = {v.type or "?", v.credit or "??"}}
+            local item_text_width = 0
+            for _, c in utf8.chars(string) do
+                local tx = font.FONT:getWidth(c) * (0.33 * size) * G.TILESCALE * font.FONTSCALE
+                    + 2.7 * 1 * G.TILESCALE * font.FONTSCALE
+                item_text_width = item_text_width + tx / (G.TILESIZE * G.TILESCALE)
+            end
+            calced_text_width = math.max(calced_text_width, item_text_width)
+            ct[i] = {
+                string = item,
+            }
+        end
+        string = ct
+    end
     bcol = args.bcol or HEX("CA7CA7")
     tcol = args.tcol or HEX("FFFFFF")
     scale = args.scale or 0.7
 
     --copied a bunch of this from creditlib
-    local size = 0.9
-    local font = G.LANG.font
     local max_text_width = 2 - 2 * 0.05 - 4 * 0.03 * size - 2 * 0.03
-    local calced_text_width = 0
-    -- Math reproduced from DynaText:update_text
-    for _, c in utf8.chars(string) do
-        local tx = font.FONT:getWidth(c) * (0.33 * size) * G.TILESCALE * font.FONTSCALE
-            + 2.7 * 1 * G.TILESCALE * font.FONTSCALE
-        calced_text_width = calced_text_width + tx / (G.TILESIZE * G.TILESCALE)
-    end
     local marquee = calced_text_width > max_text_width
     local scale_fac = calced_text_width > max_text_width and max_text_width / calced_text_width or 1
 

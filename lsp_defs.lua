@@ -10,9 +10,14 @@
 ---@return ColorRGBA
 function HEX(hex) end
 
----@class BibCreditBadge
+---@class BibCredit
 ---@field type string What the credit is for
 ---@field credit string Who's being credited
+
+---@class BibCreditBadge
+---@field type? string What the credit is for
+---@field credit? string Who's being credited
+---@field credits? BibCredit[] List of credits for a multi-credit badge
 ---@field bcol? ColorRGBA Background color as formatted by `HEX()`; default #ca7ca7
 ---@field tcol? ColorRGBA Text color; default #fff
 ---@field scale? number Scale (default 0.7 to standard badges' 1)

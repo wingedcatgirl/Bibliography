@@ -13,15 +13,16 @@ SMODS.Joker {
         x = 2,
         y = 2
     },
-    --[[
     soul_pos ={
         x = 2,
-        y = 1
+        y = 3
     },
-    --]]
     rarity = 1,
     set_badges = function (self, card, badges)
-        badges[#badges+1] = BIBLIO.credit_badge{type = "OC", credit = "Minty"}
+        badges[#badges+1] = BIBLIO.credit_badge{credits = {
+            {type = "OC", credit = "Minty"},
+            {type = "Art", credit = "GeorgeTheRat"}
+        }}
     end,
     cost = 7,
     unlocked = true,
