@@ -12,7 +12,7 @@ SMODS.Joker:take_ownership("cavendish", {
     end
 }, true)
 
-SMODS.Consumable:take_ownership("wheel_of_fortune", {
+SMODS.Consumable:take_ownership("wheel_of_fortune", { --This is not robust, we should think of a more robust way to do this.
     name = "Wheel of Fortune (Bibliography'd)",
     update = function (self, card, dt)
         if G.STAGE == G.STAGES.RUN then
@@ -79,13 +79,14 @@ SMODS.Consumable:take_ownership("wheel_of_fortune", {
             end
         end
 
-        for i=1,(1+#SMODS.find_card("j_biblio_peri_EX")) do
-            if try() then break else
-                local peri = SMODS.find_card("j_biblio_peri_EX")[i]
-                BIBLIO.event(function ()
-                    peri:juice_up()
-                    return true
-                end) end
+        local count = 0
+        local peris = SMODS.find_card("j_biblio_peri_EX")
+        while not try() and count < #peris do
+            count = count + 1
+            BIBLIO.event(function ()
+                peris[count]:juice_up()
+                return true
+            end)
             delay(0.6)
         end
     end
