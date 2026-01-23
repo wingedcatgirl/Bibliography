@@ -28,4 +28,4 @@
 **A**: *(comically long pause for audio splicing)* 20 *(comically long pause for audio splicing)* at the moment, unless I forgot to update this README file, which will definitely happen several times throughout the mod's lifespan.
 
 **Q**: ... Are you accepting suggestions for characters to Jokerfy?  
-**A**: Sure, if you're accepting that there's no timeline on when I get around to actually implementing a given suggestion. I should probably set up a form or something, but... eh.
+**A**: Sure, if you're accepting that there's no timeline on when I get around to actually implementing a given suggestion. I should probably set up a form or something for this... later.
