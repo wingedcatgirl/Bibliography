@@ -15,9 +15,9 @@ SMODS.Booster{
     loc_vars = function (self, info_queue, card)
         return {
             vars = {
-                card.ability.choose,
-                card.ability.extra,
-                card.ability.choose ~= 1 and "s" or ""
+                card.ability.choose + (G.GAME.modifiers.booster_choice_mod or 0),
+                card.ability.extra + (G.GAME.modifiers.booster_size_mod or 0),
+                (card.ability.choose + (G.GAME.modifiers.booster_choice_mod or 0)) ~= 1 and "s" or ""
             }
         }
     end,
