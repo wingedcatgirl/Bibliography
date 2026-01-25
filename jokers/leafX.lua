@@ -66,15 +66,17 @@ SMODS.Joker {
     end,
     calculate = function(self, card, context)
         local jokerref = card.config.center
-        if context.final_scoring_step and not card.ability.extra.midair then
-            BIBLIO.event(function ()
-                jokerref.soul_pos = nil
-                card:set_sprites(jokerref)
-                card.ability.extra.midair = true
-                return true
-            end)
+
+        if card.ability.extra.midair and context.initial_scoring_step then
             return {
-                message = localize("k_biblio_jump")
+                message = localize("k_biblio_land"),
+                func = function ()
+                    BIBLIO.event(function ()
+                        jokerref.soul_pos = soulpos
+                        card:set_sprites(jokerref)
+                        return true
+                    end)
+                end,
             }
         end
 
@@ -88,19 +90,28 @@ SMODS.Joker {
                 } or nil
             }
         end
-
-        if context.final_scoring_step and card.ability.extra.midair then
+        
+        if context.final_scoring_step then
+            if not card.ability.extra.midair then
+                BIBLIO.event(function ()
+                    jokerref.soul_pos = nil
+                    card:set_sprites(jokerref)
+                    card.ability.extra.midair = true
+                    return true
+                end)
+                return {
+                    message = localize("k_biblio_jump")
+                }
+            else
             return {
-                message = localize("k_biblio_land"),
                 func = function ()
                     BIBLIO.event(function ()
-                        jokerref.soul_pos = soulpos
-                        card:set_sprites(jokerref)
                         card.ability.extra.midair = false
                         return true
                     end)
                 end,
             }
+            end
         end
     end
 }
