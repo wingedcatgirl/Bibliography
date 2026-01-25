@@ -427,7 +427,13 @@ return {
 			},
 		},
 		["Back"] = {
-
+			b_biblio_party = {
+				name = "Catcher Party",
+				text = {
+					"All Boosters are Catchers",
+					"{C:attention}+2{} Booster size"
+				}
+			}
         },
 		["Blind"] = {
 
@@ -440,6 +446,14 @@ return {
                     "card#2# to a new level"
                 }
             },
+			c_biblio_calmer = {
+				name = "Catcher Calmer",
+				text = {
+					"The next {C:attention}#1#{} Catcher",
+					"pack#2# will act like",
+					"normal Booster packs"
+				}
+			},
             c_wheel_of_fortune={
                 name="The Wheel of Fortune",
                 text={

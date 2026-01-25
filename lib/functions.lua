@@ -467,6 +467,7 @@ function BIBLIO.catcher_mode()
         seconds = SMODS.OPENED_BOOSTER.ability.time
     end
     G.GAME.biblio_catcher_mode = true
+    SMODS.calculate_context{biblio_catcher_started = true}
     BIBLIO.event(function ()
         if not (G.pack_cards and G.pack_cards.cards) or G.GAME.pack_choices <= 0 then
             if G.GAME.real_banned_keys then
@@ -594,6 +595,14 @@ SMODS.current_mod.calculate = function (self, context)
             --BIBLIO.multienhance = false
             return nil
         end
+    end
+
+    if context.open_booster and G.GAME.biblio_all_catchers then
+        BIBLIO.event(function ()
+            BIBLIO.catcher_mode()
+            return true
+        end)
+        return nil, true
     end
 
     if context.game_over and G.GAME.biblio_willful > 0 then

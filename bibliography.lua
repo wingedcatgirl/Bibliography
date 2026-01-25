@@ -18,6 +18,9 @@ local files = {
         "vanillatweaks",
         "achievements",
     },
+    backs = {
+        "party"
+    },
     boosters = {
         "catcher"
     },
@@ -53,7 +56,8 @@ local files = {
         "multienhance"
     },
     tarots = {
-        "crucible"
+        "crucible",
+        "calmer"
     },
     rotarots = {
         "crucible"
