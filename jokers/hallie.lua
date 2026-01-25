@@ -1,7 +1,7 @@
 SMODS.Joker {
     key = "hallie",
     name = "Hallie Mathews",
-    --biblio_evolution = "j_biblio_hallie_EX",
+    biblio_evolution = "j_biblio_hallie_EX",
     --biblio_evol_effect = function (self, newcard, oldextra) end,
     --biblio_crucible_effect = function (self, card) end,
     pronouns = "any_all",
