@@ -45,13 +45,6 @@ SMODS.Consumable({
             }
             rarity = vrarities[rarity] or rarity
             local pool = SMODS.get_clean_pool("Joker", rarity, nil, "biblio_rot_crucible")
-            local tries = 0
-            while (#pool == 1 and pool[1] == "j_joker") and tries < 100 do
-                BIBLIO.say("Rarity "..rarity.." has no jokers, rerolling...")
-                rarity = SMODS.poll_rarity("Joker", "biblio_rot_crucible_rarity".._..tries)
-                pool = SMODS.get_clean_pool("Joker", rarity, nil, "biblio_rot_crucible")
-                tries = tries + 1
-            end
             local joker = pseudorandom_element(pool, "biblio_rot_crucible_joker")
             SMODS.add_card({
                 set = "Joker",
