@@ -87,50 +87,14 @@ end
 
 local click = Card.click
 function Card:click()
-    local function acquire(acquired_card) --Acquired, haha, from Bunco
-        acquired_card.area:remove_card(acquired_card)
-        acquired_card:add_to_deck()
-        if acquired_card.children.price then acquired_card.children.price:remove() end
-        acquired_card.children.price = nil
-        if acquired_card.children.buy_button then acquired_card.children.buy_button:remove() end
-        acquired_card.children.buy_button = nil
-        remove_nils(acquired_card.children)
-        if acquired_card.ability.set == 'Default' or acquired_card.ability.set == 'Enhanced' then
-            inc_career_stat('c_playing_cards_bought', 1)
-            G.playing_card = (G.playing_card and G.playing_card + 1) or 1
-            G.deck:emplace(acquired_card)
-            acquired_card.playing_card = G.playing_card
-            playing_card_joker_effects({acquired_card})
-            table.insert(G.playing_cards, acquired_card)
-        else
-            if acquired_card.ability.consumeable then
-                G.consumeables:emplace(acquired_card)
-            else
-                G.jokers:emplace(acquired_card)
+    if G.pack_cards and self.area == G.pack_cards and (G.GAME.biblio_catcher_mode and not G.GAME.biblio_catcher_calmed) then
+        if G.FUNCS.check_for_buy_space(self) then
+            BIBLIO.acquire(self)
+            G.GAME.pack_choices = G.GAME.pack_choices - 1
+            BIBLIO.booster_sound(card)
+            if G.GAME.pack_choices <= 0 then
+                G.FUNCS.end_consumeable(nil, 0.2)
             end
-            BIBLIO.event(function ()
-                acquired_card:calculate_joker({buying_card = true, card = acquired_card}) return true
-            end)
-        end
-        --Tallies for unlocks
-        G.GAME.round_scores.cards_purchased.amt = G.GAME.round_scores.cards_purchased.amt + 1
-        if acquired_card.ability.consumeable then
-            if acquired_card.config.center.set == 'Planet' then
-                inc_career_stat('c_planets_bought', 1)
-            elseif acquired_card.config.center.set == 'Tarot' then
-                inc_career_stat('c_tarots_bought', 1)
-            end
-        elseif acquired_card.ability.set == 'Joker' then
-            G.GAME.current_round.jokers_purchased = G.GAME.current_round.jokers_purchased + 1
-        end
-    end
-
-    if G.pack_cards and self.area == G.pack_cards and (G.STATE == G.STATES.SMODS_BOOSTER_OPENED) and (SMODS.OPENED_BOOSTER and SMODS.OPENED_BOOSTER.ability and SMODS.OPENED_BOOSTER.ability.insta_grab) then
-        acquire(self)
-        G.GAME.pack_choices = G.GAME.pack_choices - 1
-        BIBLIO.booster_sound(card)
-        if G.GAME.pack_choices <= 0 then
-            G.FUNCS.end_consumeable(nil, 0.2)
         end
         return
     else

@@ -30,23 +30,7 @@ SMODS.Booster{
                     G.GAME.banned_keys[k] = true
                 end
             end
-            local frames = 0
-            BIBLIO.event(function ()
-                if not (G.pack_cards and G.pack_cards.cards) then
-                    G.GAME.banned_keys = G.GAME.real_banned_keys or {}
-                    G.GAME.real_banned_keys = nil
-                    return true
-                end
-                if #G.pack_cards.cards < 2 then return end
-                frames = frames + 1
-                if frames > (150/#G.pack_cards.cards) then
-                    local card1 = pseudorandom(pseudoseed("biblio_catcher_shuffle"), 1, #G.pack_cards.cards)
-                    local card2 = pseudorandom(pseudoseed("biblio_catcher_shuffle"), 1, #G.pack_cards.cards-1)
-                    if card2 >= card1 then card2 = card2 + 1 end
-                    G.pack_cards.cards[card1], G.pack_cards.cards[card2] = G.pack_cards.cards[card2], G.pack_cards.cards[card1]
-                    frames = 0
-                end
-            end, {blockable = false, blocking = false, delay = 0.2})
+            BIBLIO.catcher_mode()
         end
 
         return {

@@ -460,6 +460,91 @@ function BIBLIO.booster_sound(card)
     end
 end
 
+---Activates catcher mode for the current booster pack. Also handles reverting the banned keys table in case you forgot (try to avoid forgetting though)
+function BIBLIO.catcher_mode()
+    local frames, frames2, seconds = 0, 0, 15
+    if (SMODS.OPENED_BOOSTER and SMODS.OPENED_BOOSTER.ability and type(SMODS.OPENED_BOOSTER.ability.time) == "number") then
+        seconds = SMODS.OPENED_BOOSTER.ability.time
+    end
+    G.GAME.biblio_catcher_mode = true
+    BIBLIO.event(function ()
+        if not (G.pack_cards and G.pack_cards.cards) or G.GAME.pack_choices <= 0 then
+            if G.GAME.real_banned_keys then
+                G.GAME.banned_keys = G.GAME.real_banned_keys or {}
+                G.GAME.real_banned_keys = nil
+            end
+            G.GAME.biblio_catcher_mode = nil
+            G.GAME.biblio_catcher_calmed = nil
+            return true
+        end
+        if G.GAME.biblio_catcher_calmed then return false end
+        frames2 = frames2 + 1
+        if frames2 > 60 and seconds > 0 then
+            seconds = seconds-1
+            frames2 = 0
+            attention_text({
+                scale = 1.2, text = tostring(seconds), hold = 2, align = 'cm', offset = {x = (math.random()-0.75)*3,y = (math.random()-(2/3))*3},major = G.play
+            })
+        end
+        if seconds <= 0 and G.GAME.pack_choices > 0 then
+            local target = pseudorandom_element(G.pack_cards.cards, "biblio_catcher_timesup")
+            if G.FUNCS.check_for_buy_space(target) then
+                target:click()
+            else
+                G.GAME.pack_choices = G.GAME.pack_choices - 1
+            end
+        end
+        if #G.pack_cards.cards < 2 then return end
+        frames = frames + 1
+        if frames > (150/#G.pack_cards.cards) then
+            local card1 = pseudorandom(pseudoseed("biblio_catcher_shuffle"), 1, #G.pack_cards.cards)
+            local card2 = pseudorandom(pseudoseed("biblio_catcher_shuffle"), 1, #G.pack_cards.cards-1)
+            if card2 >= card1 then card2 = card2 + 1 end
+            G.pack_cards.cards[card1], G.pack_cards.cards[card2] = G.pack_cards.cards[card2], G.pack_cards.cards[card1]
+            frames = 0
+        end
+    end, {blockable = false, blocking = false, delay = 0.2})
+end
+
+---Acquire a card, ignoring limits
+---@param acquired_card Card|table
+function BIBLIO.acquire(acquired_card) --Acquired, haha, from Bunco
+    acquired_card.area:remove_card(acquired_card)
+    acquired_card:add_to_deck()
+    if acquired_card.children.price then acquired_card.children.price:remove() end
+    acquired_card.children.price = nil
+    if acquired_card.children.buy_button then acquired_card.children.buy_button:remove() end
+    acquired_card.children.buy_button = nil
+    remove_nils(acquired_card.children)
+    if acquired_card.ability.set == 'Default' or acquired_card.ability.set == 'Enhanced' then
+        inc_career_stat('c_playing_cards_bought', 1)
+        G.playing_card = (G.playing_card and G.playing_card + 1) or 1
+        G.deck:emplace(acquired_card)
+        acquired_card.playing_card = G.playing_card
+        playing_card_joker_effects({acquired_card})
+        table.insert(G.playing_cards, acquired_card)
+    else
+        if acquired_card.ability.consumeable then
+            G.consumeables:emplace(acquired_card)
+        else
+            G.jokers:emplace(acquired_card)
+        end
+        BIBLIO.event(function ()
+            acquired_card:calculate_joker({buying_card = true, card = acquired_card}) return true
+        end)
+    end
+    --Tallies for unlocks
+    G.GAME.round_scores.cards_purchased.amt = G.GAME.round_scores.cards_purchased.amt + 1
+    if acquired_card.ability.consumeable then
+        if acquired_card.config.center.set == 'Planet' then
+            inc_career_stat('c_planets_bought', 1)
+        elseif acquired_card.config.center.set == 'Tarot' then
+            inc_career_stat('c_tarots_bought', 1)
+        end
+    elseif acquired_card.ability.set == 'Joker' then
+        G.GAME.current_round.jokers_purchased = G.GAME.current_round.jokers_purchased + 1
+    end
+end
 
 --Talisman compatibility compatibility
 to_big = to_big or function(x)
