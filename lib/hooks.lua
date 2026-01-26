@@ -87,6 +87,7 @@ end
 
 local click = Card.click
 function Card:click()
+    if G.GAME.biblio_catcher_timeup then return nil end
     if G.pack_cards and self.area == G.pack_cards and (G.GAME.biblio_catcher_mode and not G.GAME.biblio_catcher_calmed) then
         if G.FUNCS.check_for_buy_space(self) then
             BIBLIO.acquire(self)

@@ -476,6 +476,10 @@ function BIBLIO.catcher_mode()
             end
             G.GAME.biblio_catcher_mode = nil
             G.GAME.biblio_catcher_calmed = nil
+            G.GAME.biblio_catcher_timeup = nil
+            if (G.pack_cards and G.pack_cards.cards) then
+                G.FUNCS.end_consumeable(nil, 0.2)
+            end
             return true
         end
         if G.GAME.biblio_catcher_calmed then return false end
@@ -488,12 +492,17 @@ function BIBLIO.catcher_mode()
             })
         end
         if seconds <= 0 and G.GAME.pack_choices > 0 then
-            local target = pseudorandom_element(G.pack_cards.cards, "biblio_catcher_timesup")
-            if G.FUNCS.check_for_buy_space(target) then
-                target:click()
-            else
-                G.GAME.pack_choices = G.GAME.pack_choices - 1
+            G.GAME.biblio_catcher_timeup = true
+            if frames2 > 17 then
+                frames2 = 0
+                local target = pseudorandom_element(G.pack_cards.cards, "biblio_catcher_timesup")
+                if G.FUNCS.check_for_buy_space(target) then
+                    target:click()
+                else
+                    G.GAME.pack_choices = G.GAME.pack_choices - 1
+                end
             end
+            return false
         end
         if #G.pack_cards.cards < 2 then return end
         frames = frames + 1
