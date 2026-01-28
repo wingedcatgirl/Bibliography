@@ -355,6 +355,29 @@ return {
 					"debt limit by {C:red}$#2#{}"
 				},
 			},
+			["j_biblio_daren_EX"] = {
+				["name"] = {
+					"Daren Mathews",
+					"{s:0.7}Sorrow's Silence"
+				},
+				["text"] = {
+					{
+						"Go up to {C:red}-$#1#{} in debt",
+						"If in debt at end of round",
+						"lose {C:gold}$1{} and increase",
+						"debt limit by {C:red}$#2#{}"
+					},
+					{
+						"{C:mult}+#3#{} Mult per dollar of debt",
+						"{C:inactive}(Currently {C:mult}+#4#{C:inactive})"
+					},
+					{
+						"Upon accumulating {C:mult}-$#5#{} of debt,",
+						"{C:attention}-1{} Ante and set money to {C:gold}$0{}",
+						"{C:red}self-destructs{}"
+					}
+				},
+			},
 			["j_biblio_emilia"] = {
 				["name"] = "Emilia Mathews",
 				["text"] = {

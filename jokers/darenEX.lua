@@ -1,26 +1,27 @@
+local alphaplaceholder_base = {
+    x = math.random(0, 8),
+    y = 0
+}
+local alphaplaceholder_soul = {
+    x = math.random(0, 21),
+    y = 1
+}
+
 SMODS.Joker {
-    key = "daren",
-    name = "Daren Mathews",
-    biblio_evolution = "j_biblio_daren_EX",
+    key = "daren_EX",
+    name = "Daren Mathews, Sorrow's Silence",
+    --biblio_evolution = "j_biblio_KEY",
     --biblio_evol_effect = function (self, newcard, oldextra) end,
     --biblio_crucible_effect = function (self, card) end,
-    pronouns = "he_him",
+    --pronouns = "",
     atlas = 'jokers',
-    pos = {
-        x = 8,
-        y = 2
-    },
-    --[[
-    soul_pos = {
-        x = 0,
-        y = 1
-    },
-    --]]
-    rarity = 1,
+    pos = alphaplaceholder_base,
+    soul_pos = alphaplaceholder_soul,
+    rarity = "biblio_evolved",
     set_badges = function (self, card, badges)
-        badges[#badges+1] = BIBLIO.credit_badge{type = "OC", credit = "Minty"}
+        badges[#badges+1] = BIBLIO.credit_badge{type = "OC", credit = "someone...", bcol = HEX("CA7CA7"), tcol = G.C.WHITE}
     end,
-    cost = 1,
+    cost = 11,
     unlocked = true,
     discovered = false,
     eternal_compat = true,
@@ -31,10 +32,13 @@ SMODS.Joker {
         extra = {
             debt_limit = 10,
             debt_mod = 5,
+            multrate = 1,
+            target = -100
         }
     },
     loc_vars = function(self, info_queue, card)
         local key = self.key
+        local mult = card.ability.extra.multrate * (math.min(G.GAME.dollars or 0,0))
         if G.localization.descriptions.Lore[key] and BIBLIO.config.lore_popups then
             info_queue[#info_queue + 1] = {
                 set = "Lore",
@@ -45,14 +49,15 @@ SMODS.Joker {
             key = key,
             vars = {
                 card.ability.extra.debt_limit,
-                card.ability.extra.debt_mod
+                card.ability.extra.debt_mod,
+                card.ability.extra.multrate,
+                mult,
+                -card.ability.extra.target
             }
         }
     end,
     in_pool = function (self, args)
-        if self.biblio_evolution and next(SMODS.find_card(self.biblio_evolution)) and not SMODS.showman(self.key) then return false end
-        --insert any additional conditions
-        return (G.GAME.biblio_emilia_expired or 0) > 0
+        return false
     end,
     add_to_deck = function (self, card, from_debuff)
         G.GAME.bankrupt_at = (G.GAME.bankrupt_at or 0) - card.ability.extra.debt_limit
@@ -61,6 +66,25 @@ SMODS.Joker {
         G.GAME.bankrupt_at = (G.GAME.bankrupt_at or 0) + card.ability.extra.debt_limit
     end,
     calculate = function(self, card, context)
+        if context.money_altered then
+            if G.GAME.dollars + (G.GAME.dollar_buffer or 0) + context.amount <= card.ability.extra.target then
+                return {
+                    func = function ()
+                        BIBLIO.event(function ()
+                            if G.GAME.dollars + (G.GAME.dollar_buffer or 0) > card.ability.extra.target then return true end --Daren's ability has an “intervening ‘if’ clause.” That means (1) the ability won’t trigger at all unless you are going to be at least $100 in debt after money changes, and (2) the ability will do nothing unless you are still at least $100 in debt at the time the ability resolves.
+                            --... haha, funny TCG reference. And never mind that it'd better suit his kid.
+
+                            ease_ante(-1)
+                            ease_dollars(-G.GAME.dollars, true)
+                            SMODS.calculate_effect({message = localize("k_biblio_gone")}, card)
+                            SMODS.destroy_cards(card, true, false, true)
+                            return true
+                        end)
+                    end
+                }
+            end
+        end
+
         if context.end_of_round and context.main_eval then
             if G.GAME.dollars + (G.GAME.dollar_buffer or 0) < 0 then
                 return {
