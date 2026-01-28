@@ -8,6 +8,7 @@ SMODS.Consumable{
         y = 3
     },
     set_card_type_badge = function(self, card, badges)
+        if not self.discovered then return end
         badges[1] = create_badge("Tarot?", get_type_colour(self or card.config, card), nil, 1.2)
     end,
 

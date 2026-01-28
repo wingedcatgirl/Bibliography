@@ -8,6 +8,7 @@ SMODS.Joker:take_ownership("gros_michel", {
 
 SMODS.Joker:take_ownership("cavendish", {
     set_card_type_badge = function (self, card, badges)
+        if not self.discovered then return end
         badges[1] = create_badge(localize("k_biblio_evolved", "labels"), SMODS.Gradients.biblio_evolved, nil, 1.2)
     end
 }, true)

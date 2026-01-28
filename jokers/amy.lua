@@ -18,6 +18,7 @@ SMODS.Joker {
     --]]
     rarity = 1,
     set_badges = function (self, card, badges)
+        if not self.discovered then return end
         badges[#badges+1] = BIBLIO.credit_badge{type = "OC", credit = "Ozbourne", bcol = HEX("FF0000"), tcol = G.C.WHITE}
     end,
     cost = 5,
