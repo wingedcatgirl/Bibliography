@@ -635,7 +635,7 @@ return {
 			},
 			j_biblio_hallie_EX = {
 				name = "Heart of Ember",
-				text {
+				text = {
 					"Cooling swiftly, bleeding light",
 					"Smold'ring softly, biding time",
 					"Marching forward, left behind"
