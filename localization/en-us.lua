@@ -624,6 +624,23 @@ return {
 					"be very upset that",
 					"she has no image."
 				}
+			},
+			j_biblio_daren = {
+				name = "Daren Mathews",
+				text = {
+					"What happens when",
+					"you have an impossible",
+					"goal and zero sense"
+				}
+			},
+			j_biblio_daren_EX = {
+				name = "Sorrow's Silence",
+				text = {
+					"Desperate to reclaim",
+					"his lost family",
+					"he freely discards",
+					"what he has now"
+				}
 			}
         },
 	},
