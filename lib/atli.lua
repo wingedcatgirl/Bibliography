@@ -11,6 +11,13 @@ for _,v in ipairs(super_basic_items) do
     }
 end
 
+SMODS.Atlas{
+    key = "tags",
+    path = "tags.png",
+    px = 34,
+    py = 34
+}
+
 SMODS.Atlas {
     key = 'rotarot_placeholder',
     path = "rotarot_placeholder.png",
