@@ -19,10 +19,15 @@ local files = {
         "achievements",
     },
     backs = {
-        "party"
+        "party",
+        "library",
     },
     boosters = {
-        "catcher"
+        "catcher",
+        "starter"
+    },
+    tags = {
+        "starter"
     },
     jokers = {
         --my chars

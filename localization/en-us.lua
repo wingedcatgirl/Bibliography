@@ -456,6 +456,13 @@ return {
 					"All Boosters are Catchers",
 					"{C:attention}+2{} Booster size"
 				}
+			},
+			b_biblio_library = {
+				name = "Library Deck",
+				text = {
+					"Start with a free",
+					"{C:attention,T:p_biblio_starter}Starter Pack{}"
+				}
 			}
         },
 		["Blind"] = {
@@ -493,7 +500,13 @@ return {
 
 		},
 		["Tag"] = {
-
+			tag_biblio_starter = {
+				name = "Starter Tag",
+				text = {
+                    "Gives a free",
+                    "{C:attention}Starter Pack",
+				}
+			}
 		},
 		["Sleeve"] = {
 
@@ -540,6 +553,14 @@ return {
 					"and/or skill! Grab",
 					"{C:attention}#1#{} Bibliography Joker#3#",
 					"from a selection of {C:attention}#2#{}!"
+				}
+			},
+			p_biblio_starter = {
+				name = "Starter Pack",
+				text = {
+                    "Choose {C:attention}#1#{} of up to",
+                    "{C:attention}#2#{C:joker} Joker{} cards",
+					"from {C:attention}Bibliography"
 				}
 			}
 		},
