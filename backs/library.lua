@@ -6,9 +6,5 @@ SMODS.Back{
             add_tag(starter)
             return true
         end)
-        BIBLIO.event(function ()
-            --starter:apply_to_run{type = "start_run"}
-            return true
-        end)
     end
 }
