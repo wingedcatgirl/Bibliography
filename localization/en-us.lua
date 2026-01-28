@@ -657,6 +657,21 @@ return {
 					"he freely discards",
 					"what he has now"
 				}
+			},
+			j_biblio_emilia = {
+				name = "Emilia Mathews",
+				text = {
+					"A life cut tragically",
+					"short by nothing else",
+					"but happenstance"
+				}
+			},
+			j_biblio_emilia_EX = {
+				name = "Kindred Severed Neverwhere",
+				text = {
+					"Forgotten footfalls,",
+					"engraved in ash"
+				}
 			}
         },
 	},
