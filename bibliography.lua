@@ -24,7 +24,7 @@ local files = {
     },
     boosters = {
         "catcher",
-        "starter"
+        "starterpack"
     },
     tags = {
         "starter"

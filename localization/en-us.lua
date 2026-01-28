@@ -58,6 +58,7 @@ return {
 
 			--Boosters
 			biblio_catcher = "Clown Catcher",
+			biblio_starter = "Starter Pack",
 
 			--Config options
 			option_biblio_lorepop = "Show lore popups",

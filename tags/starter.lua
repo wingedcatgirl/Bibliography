@@ -12,7 +12,8 @@ SMODS.Tag{
         info_queue[#info_queue+1] = G.P_CENTERS.p_biblio_starter
     end,
     apply = function (self, tag, context)
-        if not (context and (context.type == "start_run")) then return end
+        --if context then BIBLIO.say(context.type); return end
+        if not (context and (context.type == "new_blind_choice")) then return end
         local lock = tag.ID
 
         G.CONTROLLER.locks[lock] = true
