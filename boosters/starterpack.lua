@@ -6,7 +6,7 @@ SMODS.Booster{
     atlas = "boosters",
     pos = {x = 0, y = 2},
     config = {
-        extra = 9,
+        extra = 7, --Increase to 9 once we have more Jokers
         choose = 1,
         music = "biblio_music_ch_take_off",
     },
