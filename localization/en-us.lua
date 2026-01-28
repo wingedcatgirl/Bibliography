@@ -625,6 +625,22 @@ return {
 					"she has no image."
 				}
 			},
+			j_biblio_hallie = {
+				name = "Hallie Mathews",
+				text = {
+					"Anxious wreck of a",
+					"kitten, and not for no",
+					"reason. Burns things~"
+				}
+			},
+			j_biblio_hallie_EX = {
+				name = "Heart of Ember",
+				text {
+					"Cooling swiftly, bleeding light",
+					"Smold'ring softly, biding time",
+					"Marching forward, left behind"
+				}
+			},
 			j_biblio_daren = {
 				name = "Daren Mathews",
 				text = {
