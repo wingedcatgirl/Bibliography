@@ -18,7 +18,7 @@ SMODS.Joker {
     --]]
     rarity = 3,
     set_card_type_badge = function (self, card, badges)
-        if not self.discovered then return end
+        if not (self.discovered or card.bypass_discovery_ui) then return end
         badges[1] = create_badge(localize("k_biblio_ascended", "labels"), SMODS.Gradients.biblio_ascended, nil, 1.2)
         badges[#badges+1] = BIBLIO.credit_badge{type = "Character", credit = "Final Fantasy XIV"}
     end,

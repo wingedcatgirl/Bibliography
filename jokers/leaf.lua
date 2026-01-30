@@ -12,7 +12,7 @@ SMODS.Joker {
     soul_pos = soulpos,
     rarity = 2,
     set_badges = function (self, card, badges)
-        if not self.discovered then return end
+        if not (self.discovered or card.bypass_discovery_ui) then return end
         badges[#badges+1] = BIBLIO.credit_badge{type = "OC", credit = "Minty"}
     end,
     cost = 5,
