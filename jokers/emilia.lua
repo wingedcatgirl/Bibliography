@@ -10,16 +10,17 @@ SMODS.Joker {
         x = 6,
         y = 2
     },
-    --[[
     soul_pos = {
-        x = 0,
-        y = 1
+        x = 6,
+        y = 3
     },
-    --]]
     rarity = 1,
     set_badges = function (self, card, badges)
         if not (self.discovered or card.bypass_discovery_ui) then return end
-        badges[#badges+1] = BIBLIO.credit_badge{type = "OC", credit = "Minty"}
+        badges[#badges+1] = BIBLIO.credit_badge{credits = {
+            {type = "OC", credit = "Minty"},
+            {type = "Art", credit = "GeorgeTheRat"}
+        }}
     end,
     cost = 5,
     unlocked = true,

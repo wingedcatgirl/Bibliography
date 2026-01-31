@@ -80,3 +80,33 @@ for folder, list in pairs(files) do
         end
     end
 end
+
+SMODS.current_mod.menu_cards = function ()
+    local card
+    local key = "j_biblio_emilia"
+    return {
+        {
+            key = key
+        },
+        func = function ()
+            for i,v in ipairs(G.title_top.cards) do
+                if v.config.center.key == key then
+                    card = v
+                    break
+                end
+            end
+            local frames = 0
+            BIBLIO.event(function ()
+                if not card then
+                    BIBLIO.say("No title card?")
+                    return true
+                end
+                frames = frames + 1
+                if frames >= 120 then
+                    card_eval_status_text(card, 'extra', nil, nil, nil, {message = "I'm dead! :D"})
+                    return true
+                end
+            end, {blocking = false, blockable = false})
+        end
+    }
+end
