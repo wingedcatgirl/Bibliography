@@ -45,7 +45,7 @@ SMODS.Joker {
     discovered = false,
     eternal_compat = true,
     perishable_compat = true,
-    blueprint_compat = true,
+    blueprint_compat = false,
     demicoloncompat = false,
     config = {
         extra = {
@@ -134,10 +134,10 @@ SMODS.Joker {
                         message = localize("k_biblio_gone")
                     }
                 else
-                    return {
+                    return not card.ability.extra.upgrading and {
                         message = "!",
                         delay = 0.2,
-                    }
+                    } or nil, true
                 end
             end
         end

@@ -68,7 +68,7 @@ SMODS.Joker {
     calculate = function(self, card, context)
         local jokerref = card.config.center
 
-        if card.ability.extra.midair and context.initial_scoring_step then
+        if card.ability.extra.midair and context.initial_scoring_step and not context.blueprint then
             return {
                 message = localize("k_biblio_land"),
                 func = function ()
@@ -92,7 +92,7 @@ SMODS.Joker {
             }
         end
         
-        if context.final_scoring_step then
+        if context.final_scoring_step and not context.blueprint then
             if not card.ability.extra.midair then
                 BIBLIO.event(function ()
                     jokerref.soul_pos = nil

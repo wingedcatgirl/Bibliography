@@ -27,7 +27,7 @@ SMODS.Joker {
     discovered = false,
     eternal_compat = true,
     perishable_compat = true,
-    blueprint_compat = true,
+    blueprint_compat = false,
     demicoloncompat = false,
     config = {
         extra = {

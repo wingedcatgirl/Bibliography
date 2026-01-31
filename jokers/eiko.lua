@@ -83,7 +83,7 @@ SMODS.Joker {
             }
         end
 
-        if context.before then
+        if context.before and not context.blueprint then
             local baka
             for k,v in pairs(G.GAME.hands) do
                 if k ~= "High Card" and v.played > G.GAME.hands["High Card"].played then baka = true break end
