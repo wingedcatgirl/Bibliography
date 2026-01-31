@@ -82,6 +82,10 @@ for folder, list in pairs(files) do
 end
 
 SMODS.current_mod.menu_cards = function ()
+    local words = {
+        j_biblio_emilia = "I'm dead! :D" --This is a placeholder until we think of a better thing for her to say :V
+    }
+
     local card
     local key = "j_biblio_emilia"
     return {
@@ -103,7 +107,7 @@ SMODS.current_mod.menu_cards = function ()
                 end
                 frames = frames + 1
                 if frames >= 120 then
-                    card_eval_status_text(card, 'extra', nil, nil, nil, {message = "I'm dead! :D"})
+                    card_eval_status_text(card, 'extra', nil, nil, nil, {message = words[key]})
                     return true
                 end
             end, {blocking = false, blockable = false})
