@@ -387,6 +387,27 @@ return {
 					"{C:attention}#1#{} extra discards"
 				},
 			},
+			["j_biblio_emilia_EX"] = {
+				["name"] = {
+					"Emilia Mathews",
+					"{s:0.7}Kindred Severed Neverwhere"
+				},
+				["text"] = {
+					{
+						"Ignore discard limits",
+						"Expires after",
+						"{C:attention}#1#{} extra discards"
+					},
+					{
+						"If {C:mult}full discarding{},",
+						"discarded cards gain",
+						"{C:mult}+#2#{} Mult, {X:mult,C:white}X#3#{} Mult, or {C:gold}$#4#{}"
+					},
+					{
+						"{C:inactive,s:0.8}Further Crucibles restore #5# discards"
+					}
+				},
+			},
 			["j_biblio_eiko"] = {
 				["name"] = "Eiko",
 				["text"] = {

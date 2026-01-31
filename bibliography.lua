@@ -38,6 +38,7 @@ local files = {
         "vivi",
         "viviEX",
         "emilia",
+        "emiliaEX",
         "daren",
         "darenEX",
         "hallie",

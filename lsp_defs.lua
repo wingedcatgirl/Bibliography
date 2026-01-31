@@ -31,5 +31,6 @@ function HEX(hex) end
 
 ---@class SMODS.Center
 ---@field biblio_evolution? (string | string[] | fun(self:SMODS.Joker|table, card:Card|table, crucible:Card|table):string) Key of center to evolve into, or table of such keys to be selected randomly, or function which returns such a key
----@field biblio_evol_effect? fun(self:SMODS.Joker|table, newcard:Card|table, oldextra:table):nil Effect to be applied after evolution
+---@field biblio_evol_effect? fun(self:SMODS.Joker|table, newcard:Card|table, oldextra:table):nil Effect to be applied after evolution, by base card to new card
+---@field biblio_crucible_check? fun(self:SMODS.Joker|table, card:Card|table):boolean Must return `true` for this card to be Crucible-eligible
 ---@field biblio_crucible_effect? fun(self:SMODS.Joker|table, card:Card|table):nil Alternative effect of a Crucible, instead of changing center

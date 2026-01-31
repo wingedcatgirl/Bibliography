@@ -119,6 +119,11 @@ function BIBLIO.can_crucible(card)
         return card.config.center.biblio_evolution or (type(card.config.center.biblio_crucible_effect) == "function")
     end)
 
+    local key = card.config.center.key
+    if type(G.P_CENTERS[key].biblio_crucible_check) == "function" then
+        res = res and G.P_CENTERS[key]:biblio_crucible_check(card)
+    end
+
     return not not (_ and res)
 end
 
