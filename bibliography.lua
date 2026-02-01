@@ -83,17 +83,20 @@ for folder, list in pairs(files) do
 end
 
 SMODS.current_mod.menu_cards = function ()
-    local words = {
-        j_biblio_emilia = "I'm dead! :D", --This is a placeholder until we think of a better thing for her to say :V
-        j_biblio_scarlex = "I know what you're doing...", --... fine, they're ALL placeholders :p :p :p
+    local cards = {
+        "j_biblio_emilia",
+        "j_biblio_scarlex",
     }
 
     local card
-    local _,key = pseudorandom_element(words, os.time())
+    local key = pseudorandom_element(cards, os.time())
     if not G.P_CENTERS[key] then
         BIBLIO.say("Key "..tostring(key).." doesn't exist?")
         return nil
     end
+
+    local msg = localize("chatter_"..key)
+    if msg == "ERROR" then msg = localize("chatter_biblio_default") end
     return {
         {
             key = key
@@ -115,11 +118,11 @@ SMODS.current_mod.menu_cards = function ()
                     return true
                 end
                 frames = frames + 1
-                if frames >= 120 then
-                    card_eval_status_text(card, 'extra', nil, nil, nil, {message = words[key]})
+                if frames >= 150 then
+                    card_eval_status_text(card, 'extra', nil, nil, nil, {message = msg, delay = 1.5})
                     return true
                 end
-            end, {blocking = false, blockable = false})
+            end, {blocking = false, blockable = true})
         end
     }
 end

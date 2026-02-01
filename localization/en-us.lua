@@ -70,7 +70,12 @@ return {
 				"*probably* safe, but streamers can",
 				"click this to be extra cautious",
 				"and/or if they've had bad experiences"
-			}
+			},
+
+			--Title chatter
+			chatter_biblio_default = "It's Bibliography time!",
+			chatter_j_biblio_emilia = "I'm dead! :D",
+			chatter_j_biblio_scarlex = "I know what you're doing..."
 		},
 		["v_dictionary"] = {
             v_biblio_savedby = "Saved by #1#",
