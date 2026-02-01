@@ -97,6 +97,9 @@ SMODS.current_mod.menu_cards = function ()
             for i,v in ipairs(G.title_top.cards) do
                 if v.config.center.key == key then
                     card = v
+                    card.click = function(self)
+                        G.FUNCS["openModUI_" .. self.config.center.original_mod.id]()
+                    end
                     break
                 end
             end

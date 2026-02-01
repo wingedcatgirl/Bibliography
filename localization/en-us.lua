@@ -63,7 +63,14 @@ return {
 			--Config options
 			option_biblio_lorepop = "Show lore popups",
 			option_biblio_nocred = "Disable credit badges",
-			option_biblio_copysafe = "Silence unlicensed music\n(STREAMERS CLICK THIS, PROBABLY)",
+			option_biblio_copysafe = "Silence unlicensed music",
+			info_biblio_copysafe = {
+				"Currently all unlicensed music",
+				"is from video games, so it's",
+				"*probably* safe, but streamers can",
+				"click this to be extra cautious",
+				"and/or if they've had bad experiences"
+			}
 		},
 		["v_dictionary"] = {
             v_biblio_savedby = "Saved by #1#",

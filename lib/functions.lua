@@ -349,7 +349,7 @@ end
 ---@param args BibCreditBadge
 ---@return table|nil
 BIBLIO.credit_badge = function (args)
-    if BIBLIO.config.no_credit_badges then return nil end
+    if BIBLIO.config.no_credit_badges and not args.example then return nil end
 
     local string, bcol, tcol, scale
 

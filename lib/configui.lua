@@ -17,10 +17,15 @@ SMODS.current_mod.config_tab = function()
             ref_table = BIBLIO.config,
             ref_value = 'no_credit_badges',
         }),
+        BIBLIO.credit_badge{credits = {
+            {type = "Example Badge", credit = "Jane"},
+            {type = "Example 2", credit = "Alice"}
+        }, bcol = G.C.MULT, example = true},
         create_toggle({
             label = localize("option_biblio_copysafe"),
             ref_table = BIBLIO.config,
             ref_value = 'no_unlicensed_tunes',
+            info = localize("info_biblio_copysafe")
         }),
         }}
     }}
