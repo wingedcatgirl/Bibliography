@@ -43,6 +43,8 @@ local files = {
         "darenEX",
         "hallie",
         "hallieEX",
+        "catkids",
+        "wildfiresys",
 
         --others' chars
         "amanda",
@@ -58,6 +60,11 @@ local files = {
         "cirno",
         "zenos",
         "zenosEX",
+        "hotelsora",
+        "rubysquad",
+
+        --Other?
+        "straightemult"
     },
     stickers = {
         "multienhance"

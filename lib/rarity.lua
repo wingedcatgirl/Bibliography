@@ -132,3 +132,9 @@ SMODS.Rarity{ --Upgraded Sublime/Nth. If we actually upgrade an Enough Already!!
     badge_colour = SMODS.Gradients.biblio_enoughalready,
     default_weight = 0
 }
+
+SMODS.Rarity{
+    key = "unavailable",
+    badge_colour = G.C.RED,
+    default_weight = 0
+}

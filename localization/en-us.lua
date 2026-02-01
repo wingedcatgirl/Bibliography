@@ -55,6 +55,7 @@ return {
             k_biblio_exalted = "Exalted",
             k_biblio_sublime = "Sublime",
             k_biblio_enoughalready = "Enough already!!!",
+			k_biblio_unavailable = "UNAVAILABLE",
 
 			--Boosters
 			biblio_catcher = "Clown Catcher",
@@ -112,6 +113,7 @@ return {
             k_biblio_exalted = "Exalted",
             k_biblio_sublime = "Sublime",
             k_biblio_enoughalready = "Enough already!!!",
+            k_biblio_unavailable = "UNAVAILABLE",
 			biblio_multienhance = "Multi-enhanced",
 		},
 		["challenge_names"] = {
@@ -473,6 +475,47 @@ return {
 					"{C:green}1 in #1#{} chance to",
 					"retrigger played {C:attention}9s{}",
 					"#2# times"
+				},
+			},
+			["j_biblio_catkids"] = {
+				["name"] = "Yui & Eiri",
+				["text"] = {
+					"{X:dark_edition,C:white}^#1#{} Mult if played",
+					"hand contains a {C:attention}#2#{}"
+				},
+			},
+			["j_biblio_wildfiresys"] = {
+				["name"] = "Wildfire system",
+				["text"] = {
+					"{X:dark_edition,C:white}^#1#{} Mult if played",
+					"hand contains a {C:attention}#2#{}"
+				},
+			},
+			["j_biblio_hotelsora"] = {
+				["name"] = "Hotel Sora",
+				["text"] = {
+					{
+						"{X:dark_edition,C:white}^#1#{} Mult if played",
+						"hand contains a {C:attention}#2#{}"
+					},
+					{
+						"{X:dark_edition,C:white}^#3#{} Mult if played",
+						"hand contains a {C:attention}#4#{}"
+					},
+				},
+			},
+			["j_biblio_rubysquad"] = {
+				["name"] = "Ruby Squad",
+				["text"] = {
+					"{X:dark_edition,C:white}^#1#{} Mult if played",
+					"hand contains a {C:attention}#2#{}"
+				},
+			},
+			["j_biblio_straightemult"] = {
+				["name"] = "?????",
+				["text"] = {
+					"{X:dark_edition,C:white}^#1#{} Mult if played",
+					"hand contains a {C:attention}#2#{}"
 				},
 			},
 			--HEY FUTURE MINTY, PUT NEW JOKERS ⬆️HERE⬆️ :P 
