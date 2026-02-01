@@ -84,11 +84,16 @@ end
 
 SMODS.current_mod.menu_cards = function ()
     local words = {
-        j_biblio_emilia = "I'm dead! :D" --This is a placeholder until we think of a better thing for her to say :V
+        j_biblio_emilia = "I'm dead! :D", --This is a placeholder until we think of a better thing for her to say :V
+        j_biblio_scarlex = "I know what you're doing...", --... fine, they're ALL placeholders :p :p :p
     }
 
     local card
-    local key = "j_biblio_emilia"
+    local _,key = pseudorandom_element(words, os.time())
+    if not G.P_CENTERS[key] then
+        BIBLIO.say("Key "..tostring(key).." doesn't exist?")
+        return nil
+    end
     return {
         {
             key = key
