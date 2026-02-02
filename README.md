@@ -1,11 +1,10 @@
 ## Bibliography - A~~n Indiscriminate Collection of Blorbos~~ Balatro Mod
 
 ### Instructions
-1. Install [Lovely](https://github.com/ethangreen-dev/lovely-injector) and [Steamodded](https://github.com/Steamodded/smods)
-2. (Optional but **highly recommended**:) Install [Amulet](https://github.com/frostice482/amulet)
-3. Install Bibliography
-4. Look at all the funny characters
-5. Watch number get biggerer
+1. Install [Lovely](https://github.com/ethangreen-dev/lovely-injector), [Steamodded](https://github.com/Steamodded/smods), and [Amulet](https://github.com/frostice482/amulet)
+2. Install Bibliography
+3. Look at all the funny characters
+4. Watch number get biggerer
 
 > [!NOTE]
 > This mod is in **early development**.  
