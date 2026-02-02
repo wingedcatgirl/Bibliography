@@ -12,7 +12,7 @@
 
 ### FAQ (Feasibly Askable Questions) ~~(nobody's asked me anything about this ._.)~~
 **Q**: So the main gimmick is just Jokers What Am OCs?  
-**A**: Mainly! I'll also put in canon characters if I feel like it.
+**A**: Mainly! There's also some canon characters.
 
 **Q**: What power level is this mod planned to be?  
 **A**: There will be potential for computer-breaking numbers, probably. Eventually. Once I implement the Jokers involved, and also a reasonable-ish way to acquire them.
