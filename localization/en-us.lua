@@ -115,6 +115,7 @@ return {
             k_biblio_enoughalready = "Enough already!!!",
             k_biblio_unavailable = "UNAVAILABLE",
 			biblio_multienhance = "Multi-enhanced",
+			biblio_bound = "Bound",
 		},
 		["challenge_names"] = {
 
@@ -621,6 +622,15 @@ return {
 				text = {
 					"Possesses multiple",
 					"enhancements"
+				}
+			},
+			biblio_bound = {
+				name = "Bound",
+				label = "Bound",
+				text = {
+					"Takes {C:attention}no{} space",
+					"Vanishes in {C:chips}#1#{} round#2#",
+					"{C:mult}Indestructible{} otherwise"
 				}
 			},
 			p_biblio_catcher_1 = {

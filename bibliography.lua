@@ -67,6 +67,7 @@ local files = {
         "straightemult"
     },
     stickers = {
+        "bound",
         "multienhance"
     },
     tarots = {
