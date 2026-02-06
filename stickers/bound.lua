@@ -1,8 +1,9 @@
 SMODS.Sticker{
     key = "bound",
     badge_colour = HEX("CA7CA7"),
-    pos = {x=100, y=100}, --Makes the sticker invisible (art TBA)
+    pos = {x=0, y=0},
     default_compat = true,
+    atlas = "stickers",
     sets = {
         Joker = true,
         Default = true,
@@ -49,7 +50,7 @@ SMODS.Sticker{
         if context.end_of_round and context.main_eval then
             card.ability.biblio_bound_timer = card.ability.biblio_bound_timer - 1
             if card.ability.biblio_bound_timer <= 0 then
-                SMODS.destroy_cards(card, true)
+                SMODS.destroy_cards(card, true, nil, true)
             end
         end
     end
