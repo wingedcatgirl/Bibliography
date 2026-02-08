@@ -41,7 +41,7 @@ SMODS.Sticker{
         }
     end,
     calculate = function (self, card, context)
-        if context.check_eternal and card.ability.biblio_bound_timer > 0 then
+        if context.check_eternal and context.other_card == card and card.ability.biblio_bound_timer > 0 then
             return {
                 no_destroy = {override_compat = true}
             }
