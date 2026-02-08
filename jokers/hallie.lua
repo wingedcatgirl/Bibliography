@@ -68,10 +68,8 @@ SMODS.Joker {
             if level then
                 local text, _ = G.FUNCS.get_poker_hand_info(G.hand.highlighted)
                 card.ability.extra.active = false
-                return {
-                    level_up = true,
-                    level_up_hand = text
-                }
+                SMODS.smart_level_up_hand(card, text, false, 1)
+                return nil, true
             end
         end
 
@@ -81,7 +79,7 @@ SMODS.Joker {
             }
         end
 
-        if context.after then card.ability.extra.burning = false end
+        if context.biblio_post_discard then card.ability.extra.burning = false end
 
         if context.end_of_round and not card.ability.extra.active then
             card.ability.extra.active = true

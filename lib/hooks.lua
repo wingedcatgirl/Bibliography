@@ -99,3 +99,11 @@ function Card:click()
         return click(self)
     end
 end
+
+local discard = G.FUNCS.discard_cards_from_highlighted
+function G.FUNCS.discard_cards_from_highlighted(e, hook)
+    local ret = discard(e, hook)
+
+    SMODS.calculate_context{biblio_post_discard = true}
+    return ret
+end

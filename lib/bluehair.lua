@@ -1,4 +1,4 @@
-if not SMODS.find_mod("cardpronouns") then return end
+if not next(SMODS.find_mod("cardpronouns")) then return end
 
 if not CardPronouns.classifications.neo then
     CardPronouns.PronounClassification {
