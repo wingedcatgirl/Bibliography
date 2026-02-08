@@ -58,7 +58,7 @@ SMODS.Joker {
         if context.before and card.ability.extra.active then
             card.ability.extra.triggered = true
             for i,v in ipairs(context.full_hand) do
-                if not (v:get_id() == 2 or v:get_id() == 3 or v:get_id() == 5 or v:get_id() == 8 or v:get_id() == 14 or (SMODS.find_mod("MintysSillyMod" and v:is_3()))) then
+                if not (v:get_id() == 2 or v:get_id() == 3 or v:get_id() == 5 or v:get_id() == 8 or v:get_id() == 14 or (next(SMODS.find_mod("MintysSillyMod")) and v:is_3())) then
                     card.ability.extra.triggered = false
                     break
                 end

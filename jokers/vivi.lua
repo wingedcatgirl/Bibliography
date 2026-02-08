@@ -3,8 +3,8 @@ SMODS.Joker {
     name = "Vivi Elakha",
     biblio_evolution = "j_biblio_vivi_EX",
     biblio_evol_effect = function (self, newcard, oldextra)
-        newcard.ability.extra.mp = oldextra.ability.mp
-        newcard.ability.extra.mpcap = oldextra.ability.mpcap
+        newcard.ability.extra.mp = oldextra.mp
+        newcard.ability.extra.mpcap = oldextra.mpcap
     end,
     --biblio_crucible_effect = function (self, card) end,
     pronouns = "she_her",
