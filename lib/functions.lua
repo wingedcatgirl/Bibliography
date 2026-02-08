@@ -501,7 +501,9 @@ function BIBLIO.catcher_mode()
             G.GAME.biblio_catcher_calmed = nil
             G.GAME.biblio_catcher_timeup = nil
             if (G.pack_cards and G.pack_cards.cards) then
-                G.FUNCS.end_consumeable(nil, 0.2)
+                if G.booster_pack then
+                    G.FUNCS.end_consumeable(nil, 0.2)
+                end
             end
             return true
         end

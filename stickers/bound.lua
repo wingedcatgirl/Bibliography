@@ -11,6 +11,7 @@ SMODS.Sticker{
     },
     rate = 0.05,
     should_apply = function (self, card, center, area, bypass_roll)
+        if area ~= G.shop and area ~= G.pack_cards then return false end
         if bypass_roll or G.GAME.modifiers.all_biblio_bound == "absolute" then return true end
         if self.sets[center.set] and not (center[self.key.."_compat"] == false) then
             if G.GAME.modifiers.all_biblio_bound then return true end

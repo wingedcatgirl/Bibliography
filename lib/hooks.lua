@@ -93,9 +93,6 @@ function Card:click()
             BIBLIO.acquire(self)
             G.GAME.pack_choices = G.GAME.pack_choices - 1
             BIBLIO.booster_sound(card)
-            if G.GAME.pack_choices <= 0 then
-                G.FUNCS.end_consumeable(nil, 0.2)
-            end
         end
         return
     else

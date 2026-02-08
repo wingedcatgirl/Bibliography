@@ -51,7 +51,7 @@ SMODS.Joker {
     end,
     calculate = function(self, card, context)
         if card.ability.extra.active and context.pre_discard and not context.hook then
-            if G.GAME.current_round.discards_used then
+            if G.GAME.current_round.discards_used == 1 then
                 card.ability.extra.burning = true
                 local text, _ = G.FUNCS.get_poker_hand_info(G.hand.highlighted)
                 return {
