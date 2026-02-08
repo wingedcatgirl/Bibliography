@@ -167,6 +167,10 @@ SMODS.Consumable{
                         G.P_CENTERS[oldkey]:biblio_crucible_effect(v)
                         return true
                     end)
+                elseif Jen and BIBLIO.marblecheck[G.jokers.highlighted[i].config.center.key] then
+                    SMODS.add_card{
+                        key = "j_jen_godsmarble"
+                    }
                 end
             end
         end

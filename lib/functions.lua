@@ -115,6 +115,8 @@ end
 function BIBLIO.can_crucible(card)
     --if #SMODS.find_card("c_biblio_crucible") == 1 and card == #SMODS.find_card("c_biblio_crucible")[1] then return false end --Can't use a Crucible on itself... if we ever make an evolved Crucible at all, anyway.
 
+    BIBLIO.marblecheck = BIBLIO.marblecheck or {}
+
     local _,res = pcall(function ()
         return card.config.center.biblio_evolution or (type(card.config.center.biblio_crucible_effect) == "function")
     end)
@@ -122,6 +124,22 @@ function BIBLIO.can_crucible(card)
     local key = card.config.center.key
     if type(G.P_CENTERS[key].biblio_crucible_check) == "function" then
         res = res and G.P_CENTERS[key]:biblio_crucible_check(card)
+    end
+
+    if BIBLIO.marblecheck[key] then return true end
+
+    if Jen and Jen.fusions and string.find(key, "j_jen") then --boldly assuming Jen doesn't do crossmod
+        for k,v in pairs(Jen.fusions) do
+            local this, marble
+            for kk,vv in pairs(v.ingredients) do
+                if vv == key then this = true end
+                if vv == "j_jen_godsmarble" then marble = true end
+                if this and marble then
+                    BIBLIO.marblecheck[key] = true
+                    return true
+                end
+            end
+        end
     end
 
     return not not (_ and res)
@@ -654,5 +672,5 @@ SMODS.current_mod.calculate = function (self, context)
 end
 
 SMODS.current_mod.process_loc_text = function()
-    
+
 end
