@@ -128,7 +128,7 @@ function BIBLIO.can_crucible(card)
 
     if BIBLIO.marblecheck[key] then return true end
 
-    if Jen and Jen.fusions and string.find(key, "j_jen") then --boldly assuming Jen doesn't do crossmod
+    if Jen and Jen.fusions and string.find(key, "j_jen") and key ~= "j_jen_godsmarble" then --boldly assuming Jen doesn't do crossmod
         for k,v in pairs(Jen.fusions) do
             local this, marble
             for kk,vv in pairs(v.ingredients) do
