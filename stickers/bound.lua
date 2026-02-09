@@ -9,11 +9,16 @@ SMODS.Sticker{
         Default = true,
         Enhanced = true
     },
+    exclude = {
+        "j_luchador",
+        "j_invisible",
+        "j_diet_cola"
+    },
     rate = 0.05,
     should_apply = function (self, card, center, area, bypass_roll)
         if area ~= G.shop and area ~= G.pack_cards then return false end
         if bypass_roll or G.GAME.modifiers.all_biblio_bound == "absolute" then return true end
-        if self.sets[center.set] and not (center[self.key.."_compat"] == false) then
+        if self.sets[center.set] and not (center[self.key.."_compat"] == false or (center[self.key.."_compat"] == nil and center.perishable_compat == false)) and not self.exclude[center.key] then
             if G.GAME.modifiers.all_biblio_bound then return true end
             --if G.biblio_debug then return true end
             if pseudorandom("biblio_bound_check") < self.rate then

@@ -57,6 +57,15 @@ SMODS.Joker {
         return true
     end,
     calculate = function(self, card, context)
+        --[[
+        if (context.pre_discard or context.joker_main) and G.biblio_debug then
+            return {
+                level_up = 1,
+                level_up_hand = "High Card"
+            }
+        end
+        --]]
+
         if card.ability.extra.active and context.pre_discard and not context.hook then
             local level
             local luck,odds = SMODS.get_probability_vars(card, 1, G.GAME.current_round.discards_left)
