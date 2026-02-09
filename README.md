@@ -31,7 +31,7 @@
 **A**: Sure, if you're accepting that there's no timeline on when I get around to actually implementing a given suggestion. I should probably set up a form or something for this... I'll do it later.
 
 ### Crossmodding if you want to
-- If you want your cards to evolve with the Crucible, put the evolved form's key as a string in `biblio_evolution`. (Alternately instead of a string you can do a table of strings to select randomly, or a `function(self, card, crucible) -> string` that returns the key based any criteria you imagine up.) For rarities you can legally do what you want but canonically it goes Common/Uncommon -> Evolved, Evolved/Rare/Epic-and-equivalent -> Ascended... plus additional rarities for silliness.
+- If you want your cards to evolve with the Crucible, put the evolved form's key as a string in `biblio_evolution`. (Alternately instead of a string you can do a table of strings to select randomly, or a `function(self, card, crucible) -> string` that returns the key based on any criteria you imagine up.) For rarities you can legally do what you want but canonically it goes Common/Uncommon -> Evolved, Evolved/Rare/Epic-and-equivalent -> Ascended... plus additional rarities for silliness.
     - Add a `biblio_evol_effect(self, oldcard, newextra)` function to transfer stats and/or do additional things.
     - If you want the Crucible to do a different thing other than evolution, give it a `biblio_crucible_effect(self, card)` function instead.
     - Use `biblio_crucible_check(self, card) -> boolean` to add extra requirements (e.g. money).
