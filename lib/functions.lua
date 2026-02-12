@@ -581,6 +581,39 @@ function BIBLIO.acquire(acquired_card) --Acquired, haha, from Bunco
     end
 end
 
+local reset_numbers = { --Numbers stored in G.GAME.modifiers which *directly* track what reset-ante-to-0-but-less-on-repeat mechanics are resetting to right now
+    "cry_astero_ante",
+    "biblio_reset_ante",
+    --TARGET: MORE RESET ANTE TRACKERS, SYNC 'EM ALL UP BITCHES
+
+}
+
+function BIBLIO.check_reset_ante()
+    local max = 0
+
+    for _,v in ipairs(reset_numbers) do
+        max = math.max(max, G.GAME.modifiers[v])
+    end
+    for _,v in ipairs(reset_numbers) do
+        G.GAME.modifiers[v] = math.max(max, G.GAME.modifiers[v])
+    end
+    return max
+end
+
+function BIBLIO.increment_reset_ante(mod)
+    mod = mod or 1
+    local max = 0
+    for _,v in ipairs(reset_numbers) do
+        for __=1,mod do
+            G.GAME.modifiers[v] = math.max((G.GAME.modifiers[v] or 0)^1.13,(G.GAME.modifiers[v] or 0)+1)
+        end
+        max = math.max(max, G.GAME.modifiers[v])
+    end
+    for _,v in ipairs(reset_numbers) do
+        G.GAME.modifiers[v] = math.max(max, G.GAME.modifiers[v])
+    end
+end
+
 --Talisman compatibility compatibility
 to_big = to_big or function(x)
     return x
