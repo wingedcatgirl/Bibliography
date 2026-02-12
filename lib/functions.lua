@@ -17,14 +17,7 @@ end
 ---@param card Card|table Card to check
 ---@return boolean
 BIBLIO.in_collection = function (card)
-    if G.your_collection then
-        for k, v in pairs(G.your_collection) do
-            if card.area == v then
-                return true
-            end
-        end
-    end
-    return false
+    return card.area and card.area.config.collection
 end
 
 ---Converts a map of enhancements into an info-queue tip
