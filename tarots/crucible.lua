@@ -37,7 +37,7 @@ SMODS.Consumable{
         local found = false
         local juice_em = #SMODS.find_card(self.key) == 0
         for i,v in ipairs(G.jokers.cards) do
-            if BIBLIO.can_crucible(v) then
+            if BIBLIO.can_crucible(v, card) then
                 found = true
                 if juice_em then
                     juice_card_until(v,function ()
@@ -47,7 +47,7 @@ SMODS.Consumable{
             end
         end
         for i,v in ipairs(G.consumeables.cards) do
-            if BIBLIO.can_crucible(v) then
+            if BIBLIO.can_crucible(v, card) then
                 found = true
                 if juice_em then
                     juice_card_until(v,function ()
@@ -60,7 +60,7 @@ SMODS.Consumable{
             juice_card_until(card, function ()
                 if card.REMOVED then return false end
                 for i,v in ipairs(G.jokers.cards) do
-                    if BIBLIO.can_crucible(v) then
+                    if BIBLIO.can_crucible(v, card) then
                         return true
                     end
                 end
@@ -73,7 +73,7 @@ SMODS.Consumable{
             local found = false
             local juice_em = (card == SMODS.find_card(self.key)[1])
             for i,v in ipairs(G.jokers.cards) do
-                if BIBLIO.can_crucible(v) then
+                if BIBLIO.can_crucible(v, card) then
                     found = true
                     if juice_em then
                         juice_card_until(v,function ()
@@ -83,7 +83,7 @@ SMODS.Consumable{
                 end
             end
             for i,v in ipairs(G.consumeables.cards) do
-                if BIBLIO.can_crucible(v) then
+                if BIBLIO.can_crucible(v, card) then
                     found = true
                     local key = v.config.center.key
                     if juice_em then
@@ -98,7 +98,7 @@ SMODS.Consumable{
                 juice_card_until(card, function ()
                     if card.REMOVED then return false end
                     for i,v in ipairs(G.jokers.cards) do
-                        if BIBLIO.can_crucible(v) then
+                        if BIBLIO.can_crucible(v, card) then
                             return true
                         end
                     end
@@ -114,7 +114,7 @@ SMODS.Consumable{
         if #cards > card.ability.max_highlighted then return false end
 
         for _,v in ipairs(cards) do
-            if not BIBLIO.can_crucible(v) then
+            if not BIBLIO.can_crucible(v, card) then
                 return false
             end
         end
@@ -134,7 +134,7 @@ SMODS.Consumable{
             elseif type(v.config.center.biblio_evolution) == "string" then
                 evol = v.config.center.biblio_evolution
             elseif type(v.config.center.biblio_evolution) ~= "nil" then
-                error("Bibliography: Invalid configuration of evolution data on "..card.config.center.key)
+                error("Bibliography: Invalid configuration of evolution data on "..card.config.center.key.."; incorrect data type", 2)
             end
             local values = type(v.ability.extra) == "table" and copy_table(v.ability.extra) or {}
             G.E_MANAGER:add_event(Event({
@@ -187,7 +187,7 @@ SMODS.Consumable{
     calculate = function (self, card, context)
         if context.card_added then
             if card == SMODS.find_card(self.key)[1] then
-                if BIBLIO.can_crucible(context.card) then
+                if BIBLIO.can_crucible(context.card, card) then
                     juice_card_until(context.card, function ()
                         return #SMODS.find_card(self.key) > 0
                     end)
@@ -198,7 +198,7 @@ SMODS.Consumable{
                 juice_card_until(card, function ()
                     if card.REMOVED then return false end
                     for i,v in ipairs(G.jokers.cards) do
-                        if BIBLIO.can_crucible(v) then
+                        if BIBLIO.can_crucible(v, card) then
                             return true
                         end
                     end

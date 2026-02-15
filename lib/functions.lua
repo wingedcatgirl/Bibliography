@@ -110,16 +110,31 @@ function BIBLIO.get_all_highlighted(card, areas)
 end
 
 ---Can we use the Crucible on this card?
----@param card Card|table
+---@param card Card|table Card being checked
+---@param crucible Card|table Crucible being considered
 ---@return boolean
-function BIBLIO.can_crucible(card)
-    --if #SMODS.find_card("c_biblio_crucible") == 1 and card == #SMODS.find_card("c_biblio_crucible")[1] then return false end --Can't use a Crucible on itself... if we ever make an evolved Crucible at all, anyway.
+function BIBLIO.can_crucible(card, crucible)
+    if card == crucible then return false end -- Can't use a Crucible on itself
 
     BIBLIO.marblecheck = BIBLIO.marblecheck or {}
 
     local _,res = pcall(function ()
         return card.config.center.biblio_evolution or (type(card.config.center.biblio_crucible_effect) == "function")
     end)
+
+    if card.config.center.biblio_evolution then
+        local check = false
+        if type(card.config.center.biblio_evolution) == "string" then
+            check = not not G.P_CENTERS[card.config.center.biblio_evolution]
+        elseif type(card.config.center.biblio_evolution) == "table" then
+            for _,v in ipairs(card.config.center.biblio_evolution) do
+                check = check or G.P_CENTERS[v]
+            end
+        elseif type(card.config.center.biblio_evolution) == "function" then
+            local key = card.config.center:biblio_evolution(card, crucible)
+            check = not not G.P_CENTERS[key]
+        end
+    end
 
     local key = card.config.center.key
     if type(G.P_CENTERS[key].biblio_crucible_check) == "function" then
