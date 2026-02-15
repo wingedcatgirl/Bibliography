@@ -1,16 +1,20 @@
-SMODS.Joker:take_ownership("pokermon_celebi", {
-    biblio_evolution = "j_biblio_cedar",
-    biblio_evol_effect = function (self, newcard, oldextra)
-        for _,v in ipairs{"skip_count", "skip_target", "xmult_mod", "ptype", "going_again", "curr_energy_count", "curr_c_energy_count"} do
-            newcard.ability.extra[v] = oldextra[v]
-        end
-        if not oldextra.going_again then
-            newcard.ability.extra.skip_count = 0
-            newcard.ability.extra.skip_target = 1
-            newcard.ability.extra.going_again = true
-        end
-    end,
-})
+local poke = SMODS.find_mod("Pokermon")[1]
+
+if poke then
+    SMODS.Joker:take_ownership("pokermon_celebi", {
+        biblio_evolution = "j_biblio_cedar",
+        biblio_evol_effect = function (self, newcard, oldextra)
+            for _,v in ipairs{"skip_count", "skip_target", "xmult_mod", "ptype", "going_again", "curr_energy_count", "curr_c_energy_count"} do
+                newcard.ability.extra[v] = oldextra[v]
+            end
+            if not oldextra.going_again then
+                newcard.ability.extra.skip_count = 0
+                newcard.ability.extra.skip_target = 1
+                newcard.ability.extra.going_again = true
+            end
+        end,
+    })
+end
 
 local alphaplaceholder_base = {
     x = math.random(0, 8),
@@ -31,7 +35,7 @@ SMODS.Joker {
     atlas = 'jokers',
     pos = alphaplaceholder_base,
     soul_pos = alphaplaceholder_soul,
-    rarity = "biblio_exalted",
+    rarity = poke and "biblio_exalted" or "biblio_unavailable",
     set_badges = function (self, card, badges)
         if not (self.discovered or card.bypass_discovery_ui) then return end
         badges[#badges+1] = BIBLIO.credit_badge{type = "OC", credit = "Minty", bcol = HEX("CA7CA7"), tcol = G.C.WHITE}
