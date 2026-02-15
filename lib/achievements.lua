@@ -41,3 +41,33 @@ SMODS.Achievement{
         end
     end
 }
+
+SMODS.Achievement{
+    key = "negativity",
+    bypass_all_unlocked = true,
+    hidden_text = true,
+    reset_on_startup = dev,
+    unlock_condition = function (self, args)
+        local deckkey = G.GAME.selected_back.effect.center.key or "deck not found oopsie"
+        local forceedition = G.GAME.modifiers.cry_force_edition or "not found"
+        if deckkey == "b_cry_e_deck" and forceedition == "e_negative" then return end
+
+        if args and args.type == "biblio_modify_any_card" then
+            local areas = {
+                "jokers", "consumeables", "deck", "hand", "discard"
+            }
+            local check = true
+
+            for _,area in ipairs(areas) do
+                for __,card in ipairs(G[area].cards) do
+                    if not card.edition.negative then
+                        check = false
+                        break
+                    end
+                end
+                if not check then break end
+            end
+            return check
+        end
+    end
+}

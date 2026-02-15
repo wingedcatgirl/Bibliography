@@ -88,12 +88,14 @@ return {
 		achievement_names = {
 			ach_biblio_cannibalism = "Can't escape the cannibal memes",
 			ach_biblio_sparkling_elation = "Sparkling Elation",
-			ach_biblio_baka = "Baka!"
+			ach_biblio_baka = "Baka!",
+			ach_biblio_negativity = "Unshakable Negativity",
 		},
 		achievement_descriptions = {
 			ach_biblio_cannibalism = "Emilia expired like a bowl of Ramen",
 			ach_biblio_sparkling_elation = "Peri became Negative and consumed herself",
-			ach_biblio_baka = "Eiko met Cirno. Namecalling ensued."
+			ach_biblio_baka = "Eiko met Cirno. Namecalling ensued.",
+			ach_biblio_negativity = "As far as the eye can see.",
 		},
 		["suits_plural"] = {
 
