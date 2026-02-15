@@ -8,8 +8,8 @@ HEX = function (str)
 end
 
 local oldlvl = level_up_hand
-level_up_hand = function (card, hand, instant, amount)
-    if (G.GAME.immutable_level or 0) > 0 then return oldlvl(card, hand, instant, amount) end
+level_up_hand = function (card, hand, instant, amount, ...)
+    if (G.GAME.immutable_level or 0) > 0 then return oldlvl(card, hand, instant, amount, ...) end
     G.GAME.immutable_level = (G.GAME.immutable_level or 0) + 1
 
     local vals = {
@@ -60,7 +60,7 @@ level_up_hand = function (card, hand, instant, amount)
     end
 
     if newvals.amount > 0 and not cancel_level then
-        oldlvl(newvals.card, newvals.hand, newvals.instant, newvals.amount)
+        oldlvl(newvals.card, newvals.hand, newvals.instant, newvals.amount, ...)
     end
 
     if next(additionals) then
@@ -68,7 +68,7 @@ level_up_hand = function (card, hand, instant, amount)
             if not (v.no_message or v.instant or newvals.instant or instant) then
                 card_eval_status_text(v.message_card or card, "extra", nil, nil, nil, {message = v.message or localize("k_again_ex")})
             end
-            oldlvl(v.card, v.hand, v.instant, v.amount)
+            oldlvl(v.card, v.hand, v.instant, v.amount, ...)
         end
     end
 
@@ -77,16 +77,16 @@ level_up_hand = function (card, hand, instant, amount)
 end
 
 local showman = SMODS.showman
-SMODS.showman = function (key)
+SMODS.showman = function (key, ...)
     if key == "c_wheel_of_fortune" and (next(SMODS.find_card("j_biblio_peri")) or next(SMODS.find_card("j_biblio_peri_EX"))) then
         return true
     end
 
-    return showman(key)
+    return showman(key, ...)
 end
 
 local click = Card.click
-function Card:click()
+function Card:click(...)
     if G.GAME.biblio_catcher_timeup then return nil end
     if G.pack_cards and self.area == G.pack_cards and (G.GAME.biblio_catcher_mode and not G.GAME.biblio_catcher_calmed) then
         if G.FUNCS.check_for_buy_space(self) then
@@ -96,7 +96,7 @@ function Card:click()
         end
         return
     else
-        return click(self)
+        return click(self, ...)
     end
 end
 
@@ -106,4 +106,11 @@ function G.FUNCS.discard_cards_from_highlighted(e, hook, ...)
 
     SMODS.calculate_context{biblio_post_discard = true}
     return ret
+end
+
+local seted = Card.set_edition
+function Card:set_edition(edition, immediate, silent, delay, ...)
+    seted(self, edition, immediate, silent, delay, ...)
+
+    check_for_unlock{type = "biblio_modify_any_card"}
 end
