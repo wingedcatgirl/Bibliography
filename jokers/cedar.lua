@@ -143,7 +143,7 @@ SMODS.Joker {
                         end
 
                         BIBLIO.check_reset_ante()
-                        if G.GAME.round_resets.ante > G.GAME.modifiers.biblio_reset_ante then return true end
+                        if G.GAME.round_resets.ante >= G.GAME.modifiers.biblio_reset_ante then return true end
                         ease_ante(-G.GAME.round_resets.ante - G.GAME.modifiers.biblio_reset_ante)
                         BIBLIO.increment_reset_ante(1)
                         return true
