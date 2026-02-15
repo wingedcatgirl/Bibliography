@@ -1,16 +1,18 @@
 local poke = SMODS.find_mod("Pokermon")[1]
+local stats = {"skip_count", "skip_target", "xmult_mod", "ptype", "going_again", "curr_energy_count", "curr_c_energy_count", "rounds"}
 
 if poke then
     SMODS.Joker:take_ownership("pokermon_celebi", {
         biblio_evolution = "j_biblio_cedar",
         biblio_evol_effect = function (self, newcard, oldextra)
-            for _,v in ipairs{"skip_count", "skip_target", "xmult_mod", "ptype", "going_again", "curr_energy_count", "curr_c_energy_count"} do
+            for _,v in ipairs(stats) do
                 newcard.ability.extra[v] = oldextra[v]
             end
             if not oldextra.going_again then
                 newcard.ability.extra.skip_count = 0
                 newcard.ability.extra.skip_target = 1
                 newcard.ability.extra.going_again = true
+                newcard.ability.extra.rounds = G.GAME.round
             end
         end,
     })
@@ -24,6 +26,7 @@ local alphaplaceholder_soul = {
     x = math.random(0, 21),
     y = 1
 }
+
 
 SMODS.Joker {
     key = "cedar",
@@ -124,7 +127,8 @@ SMODS.Joker {
         end
 
         if context.game_over and card.ability.extra.xmult_mod >= card.ability.extra.xmult_target then
-            
+            local xmult = 1 + (G.GAME.round * card.ability.extra.xmult_mod)
+            if xmult < card.ability.extra.xmult_target then return end
 
             return {
                 message = "Rewind!",
@@ -134,7 +138,7 @@ SMODS.Joker {
                         local oldextra = copy_table(card.ability.extra)
                         card:set_ability("j_pokermon_celebi")
 
-                        for _,v in ipairs{"skip_count", "skip_target", "xmult_mod", "ptype", "going_again", "curr_energy_count", "curr_c_energy_count"} do
+                        for _,v in ipairs(stats) do
                             card.ability.extra[v] = oldextra[v]
                         end
 

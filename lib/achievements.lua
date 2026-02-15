@@ -48,8 +48,11 @@ SMODS.Achievement{
     hidden_text = true,
     reset_on_startup = dev,
     unlock_condition = function (self, args)
-        local deckkey = G.GAME.selected_back.effect.center.key or "deck not found oopsie"
-        local forceedition = G.GAME.modifiers.cry_force_edition or "not found"
+        local deckkey, forceedition
+        pcall(function ()
+            deckkey = G.GAME.selected_back.effect.center.key or "deck not found oopsie"
+            forceedition = G.GAME.modifiers.cry_force_edition or "not found"
+        end)
         if deckkey == "b_cry_e_deck" and forceedition == "e_negative" then return end
 
         if args and args.type == "biblio_modify_any_card" then
