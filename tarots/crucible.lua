@@ -1,3 +1,5 @@
+local polterjens = SMODS.find_mod("jen")[1] -- todo double check this capitalization
+
 SMODS.Consumable{
     set = 'Tarot',
     key = 'crucible',
@@ -168,7 +170,7 @@ SMODS.Consumable{
                         G.P_CENTERS[oldkey]:biblio_crucible_effect(v)
                         return true
                     end)
-                elseif Jen and BIBLIO.marblecheck[G.jokers.highlighted[i].config.center.key] then
+                elseif polterjens and BIBLIO.marblecheck[G.jokers.highlighted[i].config.center.key] then
                     SMODS.add_card{
                         key = "j_jen_godsmarble"
                     }
