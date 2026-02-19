@@ -48,6 +48,9 @@ SMODS.Achievement{
     hidden_text = true,
     reset_on_startup = dev,
     unlock_condition = function (self, args)
+        if G.STAGE ~= G.STAGES.RUN then return false end
+        if not (args and args.card and args.card.edition and args.card.edition.negative) then return false end
+
         local deckkey, forceedition
         pcall(function ()
             deckkey = G.GAME.selected_back.effect.center.key or "deck not found oopsie"
@@ -62,12 +65,15 @@ SMODS.Achievement{
             local check = true
 
             for _,area in ipairs(areas) do
-                for __,card in ipairs(G[area].cards) do
-                    if not card.edition.negative then
-                        check = false
-                        break
+                if G[area] then
+                    for __,card in ipairs(G[area].cards) do
+                        if not card.edition.negative then
+                            check = false
+                            break
+                        end
                     end
                 end
+
                 if not check then break end
             end
             return check

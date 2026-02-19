@@ -112,5 +112,5 @@ local seted = Card.set_edition
 function Card:set_edition(edition, immediate, silent, delay, ...)
     seted(self, edition, immediate, silent, delay, ...)
 
-    check_for_unlock{type = "biblio_modify_any_card"}
+    check_for_unlock{type = "biblio_modify_any_card", card = self}
 end
