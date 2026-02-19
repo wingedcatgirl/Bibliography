@@ -1,4 +1,4 @@
-local polterjens = SMODS.find_mod("jen")[1] -- todo double check this capitalization
+local polterjens = SMODS.find_mod("jen")[1] or SMODS.find_mod("pwx")[1]
 
 SMODS.Consumable{
     set = 'Tarot',
