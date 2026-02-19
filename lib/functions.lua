@@ -136,6 +136,7 @@ function BIBLIO.can_crucible(card, crucible)
 
     if BIBLIO.marblecheck[key] then return true end
 
+    --todo get pwx's new global name for after it changes id and make this work accordingly
     if Jen and Jen.fusions and string.find(key, "j_jen") and key ~= "j_jen_godsmarble" then --boldly assuming Jen doesn't do crossmod
         for k,v in pairs(Jen.fusions) do
             local this, marble
