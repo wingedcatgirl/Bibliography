@@ -1,10 +1,28 @@
 local dev = not not string.find(SMODS.current_mod.version, "~")
 
-SMODS.Achievement{
+
+---@param t SMODS.Achievement
+---@return SMODS.Achievement
+local function cheevo (t)
+    for _,v in ipairs{"bypass_all_unlocked", "hidden_name", "hidden_text", "reset_on_startup"} do
+        if t[v] == nil then t[v] = true end
+    end
+
+    return SMODS.Achievement{
+        key = t.key,
+        atlas = t.atlas or "cheevo",
+        pos = t.pos or {x=0,y=0},
+        hidden_pos = t.hidden_pos or {x=1, y=0},
+        bypass_all_unlocked = t.bypass_all_unlocked,
+        hidden_name = t.hidden_name,
+        hidden_text = t.hidden_text,
+        reset_on_startup = t.reset_on_startup,
+        unlock_condition = t.unlock_condition
+    }
+end
+
+cheevo{
     key = "cannibalism",
-    bypass_all_unlocked = true,
-    hidden_text = true,
-    reset_on_startup = dev,
     unlock_condition = function (self, args)
         if args and args.type == "joker_expired" then
             if args.key == "j_biblio_emilia" or args.key == "j_biblio_emilia_EX" then
@@ -14,11 +32,8 @@ SMODS.Achievement{
     end
 }
 
-SMODS.Achievement{
+cheevo{
     key = "sparkling_elation",
-    bypass_all_unlocked = true,
-    hidden_text = true,
-    reset_on_startup = dev,
     unlock_condition = function (self, args)
         if args and args.type == "self_destruct" then
             if args.key == "j_biblio_peri_EX" then
@@ -28,11 +43,8 @@ SMODS.Achievement{
     end
 }
 
-SMODS.Achievement{
+cheevo{
     key = "baka",
-    bypass_all_unlocked = true,
-    hidden_text = true,
-    reset_on_startup = dev,
     unlock_condition = function (self, args)
         if args and args.type == "joker_set" then
             if args.set == "ach_biblio_baka" then
@@ -42,11 +54,8 @@ SMODS.Achievement{
     end
 }
 
-SMODS.Achievement{
+cheevo{
     key = "negativity",
-    bypass_all_unlocked = true,
-    hidden_text = true,
-    reset_on_startup = dev,
     unlock_condition = function (self, args)
         if G.STAGE ~= G.STAGES.RUN then return false end
         if not (args and args.card and args.card.edition and args.card.edition.negative) then return false end

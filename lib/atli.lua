@@ -31,3 +31,10 @@ SMODS.Atlas({ --technically copyrighted (it's the google 📚️ emoji) but who 
     px = 34,
     py = 34
 })
+
+SMODS.Atlas{
+    key = "cheevo",
+    path = "cheevo.png",
+    px = 66,
+    py = 66,
+}

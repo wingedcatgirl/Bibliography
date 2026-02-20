@@ -95,6 +95,7 @@ SMODS.current_mod.menu_cards = function ()
         "j_biblio_emilia",
         "j_biblio_scarlex",
     }
+    local edition = SMODS.poll_edition() or SMODS.poll_edition() --Roll with advantage!
 
     local card
     local key = pseudorandom_element(cards, os.time())
@@ -107,7 +108,8 @@ SMODS.current_mod.menu_cards = function ()
     if msg == "ERROR" then msg = localize("chatter_biblio_default") end
     return {
         {
-            key = key
+            key = key,
+            edition = edition,
         },
         func = function ()
             for i,v in ipairs(G.title_top.cards) do
