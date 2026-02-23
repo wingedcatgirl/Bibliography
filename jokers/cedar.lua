@@ -7,7 +7,7 @@ if poke then
         biblio_evolution = "j_biblio_cedar",
         biblio_evol_effect = function (self, newcard, oldextra)
             for _,v in ipairs(stats) do
-                newcard.ability.extra[v] = oldextra[v]
+                newcard.ability.extra[v] = oldextra[v] or newcard.ability.extra[v]
             end
             if not oldextra.going_again then
                 newcard.ability.extra.skip_count = 0
