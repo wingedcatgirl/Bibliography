@@ -77,7 +77,7 @@ cheevo{
             for _,area in ipairs(areas) do
                 if G[area] then
                     for __,card in ipairs(G[area].cards) do
-                        if not card.edition.negative then
+                        if not (card.edition and card.edition.negative) then
                             check = false
                             break
                         end
