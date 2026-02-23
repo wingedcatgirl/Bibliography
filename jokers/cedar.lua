@@ -51,7 +51,6 @@ SMODS.Joker {
     perishable_compat = false,
     blueprint_compat = true,
     demicoloncompat = false,
-    stage = "Legendary",
     config = {
         extra = {
             reward = 1,
