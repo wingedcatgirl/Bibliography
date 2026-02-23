@@ -601,10 +601,10 @@ function BIBLIO.check_reset_ante()
     local max = 0
 
     for _,v in ipairs(reset_numbers) do
-        max = math.max(max, G.GAME.modifiers[v])
+        max = math.max(max, G.GAME.modifiers[v] or 0)
     end
     for _,v in ipairs(reset_numbers) do
-        G.GAME.modifiers[v] = math.max(max, G.GAME.modifiers[v])
+        G.GAME.modifiers[v] = math.max(max, G.GAME.modifiers[v] or 0)
     end
     return max
 end
