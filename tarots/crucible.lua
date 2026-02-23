@@ -157,6 +157,7 @@ SMODS.Consumable{
                         blockable = false,
                         func = function()
                             if G.P_CENTERS[evol].locked then unlock_card(G.P_CENTERS[evol]) end
+                            if not G.P_CENTERS[evol].discovered then discover_card(G.P_CENTERS[evol]) end
                             G.jokers.highlighted[i]:juice_up(0.3, 0.5)
                             G.jokers.highlighted[i]:set_ability(evol)
                             if type(G.P_CENTERS[oldkey].biblio_evol_effect) == "function" then

@@ -521,10 +521,40 @@ return {
 					"hand contains a {C:attention}#2#{}"
 				},
 			},
+            j_biblio_cedar = {
+                name = "Cedar",
+                text = {
+                    {
+						"{C:attention}-#2#{} Ante after skipping {C:attention}#1#{} {C:inactive}[#3#]{} {C:attention}Blinds{}",
+                    	"{C:inactive}(Required skips increase each time)",
+					},
+                    {
+						"{X:mult,C:white}X#6#{} more Mult for each Blind skipped",
+                    	"{C:inactive}(Currently {X:mult,C:white}X#4#{} per round, {X:mult,C:white}X#5#{C:inactive} total){}"
+					},
+                }
+            },
+            j_biblio_cedar_ready = {
+                name = "Cedar",
+                text = {
+                    {
+						"{C:attention}-#2#{} Ante after skipping {C:attention}#1#{} {C:inactive}[#3#]{} {C:attention}Blinds{}",
+                    	"{C:inactive}(Required skips increase each time)",
+					},
+                    {
+						"{X:mult,C:white}X#6#{} more Mult for each Blind skipped",
+                    	"{C:inactive}(Currently {X:mult,C:white}X#4#{} per round, {X:mult,C:white}X#5#{C:inactive} total){}"
+					},
+					{
+						"Prevents Death, then",
+						"sets Ante to {C:chips}#8#{} and {C:attention}reverts{} to Celebi"
+					}
+                }
+            },
 			--HEY FUTURE MINTY, PUT NEW JOKERS ⬆️HERE⬆️ :P 
-			["j_biblio_template"] = {
-				["name"] = "Joker Template",
-				["text"] = {
+			j_biblio_template = {
+				name = "Joker Template",
+				text = {
 					"Does something",
 				},
 			},

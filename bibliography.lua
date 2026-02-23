@@ -21,10 +21,11 @@ local files = {
     backs = {
         "party",
         "library",
+        "test",
     },
     boosters = {
         "catcher",
-        "starterpack"
+        "starterpack",
     },
     tags = {
         "starter"
@@ -43,6 +44,8 @@ local files = {
         "darenEX",
         "hallie",
         "hallieEX",
+        --"micha",
+        "cedar",
         "catkids",
         "wildfiresys",
 

@@ -1,8 +1,9 @@
 local poke = SMODS.find_mod("Pokermon")[1]
-local stats = {"skip_count", "skip_target", "xmult_mod", "ptype", "going_again", "curr_energy_count", "curr_c_energy_count", "rounds"}
+local stats = {"reward", "skip_count", "skip_target", "Xmult_mod", "xmult_mod_mod", "xmult_target", "ptype", "going_again", "curr_energy_count", "curr_c_energy_count", "rounds"}
 
 if poke then
-    SMODS.Joker:take_ownership("pokermon_celebi", {
+    sendTraceMessage("Granting Celebi evolution into Cedar...", "Bibliography")
+    SMODS.Joker:take_ownership("poke_celebi", {
         biblio_evolution = "j_biblio_cedar",
         biblio_evol_effect = function (self, newcard, oldextra)
             for _,v in ipairs(stats) do
@@ -56,7 +57,7 @@ SMODS.Joker {
             reward = 1,
             skip_count = 0,
             skip_target = 1,
-            xmult_mod = 0.05,
+            Xmult_mod = 0.05,
             xmult_mod_mod = 0.03,
             xmult_target = 10,
             going_again = false,
@@ -65,12 +66,13 @@ SMODS.Joker {
     },
     loc_vars = function(self, info_queue, card)
         local key = self.key
-        local type_tooltip = type_tooltip or function (_,_,_)
-            
-        end
+        local type_tooltip = type_tooltip or function (...) end
         type_tooltip(self, info_queue, card)
 
-        local xmult = 1 + (G.GAME.round * card.ability.extra.xmult_mod)
+        local xmult = 1 + (G.GAME.round * card.ability.extra.Xmult_mod)
+        if xmult > card.ability.extra.xmult_target then
+            key = key.."_ready"
+        end
         if G.localization.descriptions.Lore[key] and BIBLIO.config.lore_popups then
             info_queue[#info_queue + 1] = {
                 set = "Lore",
@@ -83,7 +85,7 @@ SMODS.Joker {
                 card.ability.extra.skip_target,
                 card.ability.extra.reward,
                 card.ability.extra.skip_target - card.ability.extra.skip_count,
-                card.ability.extra.xmult_mod,
+                card.ability.extra.Xmult_mod,
                 xmult,
                 card.ability.extra.xmult_mod_mod,
                 card.ability.extra.xmult_target,
@@ -99,9 +101,9 @@ SMODS.Joker {
     calculate = function(self, card, context)
         if context.skip_blind and not context.blueprint then
             card.ability.extra.skip_count = card.ability.extra.skip_count + 1
+            card.ability.extra.Xmult_mod = card.ability.extra.Xmult_mod + card.ability.extra.xmult_mod_mod
             if card.ability.extra.skip_count >= card.ability.extra.skip_target then
                 ease_ante(-card.ability.extra.reward)
-                card.ability.extra.xmult_mod = card.ability.extra.xmult_mod + card.ability.extra.xmult_mod_mod
                 G.GAME.round_resets.blind_ante = G.GAME.round_resets.blind_ante or G.GAME.round_resets.ante
                 G.GAME.round_resets.blind_ante = G.GAME.round_resets.blind_ante - card.ability.extra.reward
                 card.ability.extra.skip_target = card.ability.extra.skip_target + 1
@@ -119,31 +121,32 @@ SMODS.Joker {
         end
         if context.cardarea == G.jokers and context.scoring_hand then
             if context.joker_main then
-                local xmult = 1 + (G.GAME.round * card.ability.extra.xmult_mod)
+                local xmult = 1 + (G.GAME.round * card.ability.extra.Xmult_mod)
                 return {
                     xmult = xmult
                 }
             end
         end
 
-        if context.game_over and card.ability.extra.xmult_mod >= card.ability.extra.xmult_target then
-            local xmult = 1 + (G.GAME.round * card.ability.extra.xmult_mod)
+        if context.game_over then
+            local xmult = 1 + (G.GAME.round * card.ability.extra.Xmult_mod)
             if xmult < card.ability.extra.xmult_target then return end
 
             return {
                 message = "Rewind!",
-                saved = localize{type = "name_text", set = self.set, key = self.key},
+                saved = localize{type = "variable", key = "v_biblio_savedby", vars = {localize{type = "name_text", set = self.set, key = self.key}}},
                 func = function ()
                     BIBLIO.event(function ()
                         local oldextra = copy_table(card.ability.extra)
-                        card:set_ability("j_pokermon_celebi")
+                        card:set_ability("j_poke_celebi")
 
                         for _,v in ipairs(stats) do
                             card.ability.extra[v] = oldextra[v]
                         end
 
                         BIBLIO.check_reset_ante()
-                        if G.GAME.round_resets.ante >= G.GAME.modifiers.biblio_reset_ante then return true end
+                        if G.GAME.round_resets.ante <= G.GAME.modifiers.biblio_reset_ante then return true end
+                        card.ability.extra.xmult_target = card.ability.extra.xmult_target^1.13
                         ease_ante(-G.GAME.round_resets.ante - G.GAME.modifiers.biblio_reset_ante)
                         BIBLIO.increment_reset_ante(1)
                         return true
