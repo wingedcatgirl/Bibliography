@@ -29,7 +29,7 @@ SMODS.Joker {
     --biblio_evol_effect = function (self, newcard, oldextra) end,
     --biblio_crucible_check = function (self, card) end,
     --biblio_crucible_effect = function (self, card) end,
-    --pronouns = "",
+    pronouns = "they_any",
     atlas = 'jokers',
     pos = alphaplaceholder_base,
     soul_pos = alphaplaceholder_soul,
