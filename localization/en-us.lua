@@ -551,6 +551,25 @@ return {
 					}
                 }
             },
+			j_biblio_micha = {
+				name = "Micha",
+				text = {
+					{
+						"At the end of the {C:attention}shop{},",
+						"create a {C:dark_edition}Negative{} {C:tarot}Tarot{},",
+						"{C:spectral}Spectral{} or {C:item}Item{} card",
+					},
+					{
+						"{C:green}#1#%{} chance to create a",
+						"{C:dark_edition}Negative{} Joker {C:attention}instead{}",
+						"{C:inactive,s:0.8}(Odds can't be increased){}",
+					},
+					{
+						"Whenever Ante {C:attention}decreases{}, add",
+						"{C:dark_edition}Negative{} to a random playing card"
+					}
+				}
+			},
 			--HEY FUTURE MINTY, PUT NEW JOKERS ⬆️HERE⬆️ :P 
 			j_biblio_template = {
 				name = "Joker Template",

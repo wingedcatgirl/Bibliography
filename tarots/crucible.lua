@@ -42,8 +42,9 @@ SMODS.Consumable{
             if BIBLIO.can_crucible(v, card) then
                 found = true
                 if juice_em then
+                    local key = v.config.center_key
                     juice_card_until(v,function ()
-                        return #SMODS.find_card(self.key) > 0
+                        return key == v.config.center_key and #SMODS.find_card(self.key) > 0
                     end)
                 end
             end
@@ -52,8 +53,9 @@ SMODS.Consumable{
             if BIBLIO.can_crucible(v, card) then
                 found = true
                 if juice_em then
+                    local key = v.config.center_key
                     juice_card_until(v,function ()
-                        return #SMODS.find_card(self.key) > 0
+                        return key == v.config.center_key and #SMODS.find_card(self.key) > 0
                     end)
                 end
             end
@@ -78,8 +80,9 @@ SMODS.Consumable{
                 if BIBLIO.can_crucible(v, card) then
                     found = true
                     if juice_em then
+                        local key = v.config.center_key
                         juice_card_until(v,function ()
-                            return #SMODS.find_card(self.key) > 0
+                            return key == v.config.center_key and #SMODS.find_card(self.key) > 0
                         end)
                     end
                 end
@@ -87,10 +90,10 @@ SMODS.Consumable{
             for i,v in ipairs(G.consumeables.cards) do
                 if BIBLIO.can_crucible(v, card) then
                     found = true
-                    local key = v.config.center.key
+                    local key = v.config.center_key
                     if juice_em then
                         juice_card_until(v,function ()
-                            return key == v.config.center.key and #SMODS.find_card(self.key) > 0
+                            return key == v.config.center_key and #SMODS.find_card(self.key) > 0
                         end)
                     end
                 end
@@ -198,8 +201,10 @@ SMODS.Consumable{
             end
             if not card.juiceing then
                 card.juiceing = true
+                local key = card.config.center_key
                 juice_card_until(card, function ()
                     if card.REMOVED then return false end
+                    if card.config.center_key ~= key then return false end
                     for i,v in ipairs(G.jokers.cards) do
                         if BIBLIO.can_crucible(v, card) then
                             return true

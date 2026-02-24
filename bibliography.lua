@@ -44,7 +44,7 @@ local files = {
         "darenEX",
         "hallie",
         "hallieEX",
-        --"micha",
+        "micha",
         "cedar",
         "catkids",
         "wildfiresys",
