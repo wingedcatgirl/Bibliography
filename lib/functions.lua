@@ -641,6 +641,7 @@ SMODS.current_mod.reset_game_globals = function(init)
             e_holo = true,
             e_foil = true,
         }
+        G.consumeables.config.highlighted_limit = math.max(G.consumeables.config.highlighted_limit, 50)
     end
 end
 

@@ -36,7 +36,11 @@ SMODS.Consumable{
     end,
 
     biblio_crucible_effect = function (self, card, crucible)
-        card.ability.max_highlighted = card.ability.max_highlighted + crucible.ability.max_highlighted
+        if crucible.no_cheating then return nil end
+        card.ability.max_highlighted = card.ability.max_highlighted + (crucible.ability.max_highlighted + 1) --Have to refund the 1 use used to use it...
+        crucible.ability.max_highlighted = 0 --Prevent shenanigans from trying to crucible multiple crucibles
+        crucible.no_cheating = true
+        SMODS.destroy_cards(crucible)
     end,
 
     add_to_deck = function (self, card, from_debuff)
@@ -129,6 +133,10 @@ SMODS.Consumable{
         end
         return #cards > 0
     end,
+    keep_on_use = function (self, card)
+        local cards = BIBLIO.get_all_highlighted(card, {"jokers", "consumeables"})
+        return #cards < card.ability.max_highlighted
+    end,
 
     use = function(self, card, area, copier)
         local cards = BIBLIO.get_all_highlighted(card, {"jokers", "consumeables"})
@@ -156,33 +164,39 @@ SMODS.Consumable{
                 end
             }))
             delay(0.2)
-            for i = 1, #G.jokers.highlighted do
-                if evol then
-                    G.E_MANAGER:add_event(Event({
-                        trigger = 'after',
-                        delay = 0.3,
-                        blockable = false,
-                        func = function()
-                            if G.P_CENTERS[evol].locked then unlock_card(G.P_CENTERS[evol]) end
-                            if not G.P_CENTERS[evol].discovered then discover_card(G.P_CENTERS[evol]) end
-                            G.jokers.highlighted[i]:juice_up(0.3, 0.5)
-                            G.jokers.highlighted[i]:set_ability(evol)
-                            if type(G.P_CENTERS[oldkey].biblio_evol_effect) == "function" then
-                                G.P_CENTERS[oldkey]:biblio_evol_effect(v, values)
-                            end
-                            return true
+            if evol then
+                G.E_MANAGER:add_event(Event({
+                    trigger = 'after',
+                    delay = 0.3,
+                    blockable = false,
+                    func = function()
+                        card.ability.max_highlighted = card.ability.max_highlighted - 1
+                        if G.P_CENTERS[evol].locked then unlock_card(G.P_CENTERS[evol]) end
+                        if not G.P_CENTERS[evol].discovered then discover_card(G.P_CENTERS[evol]) end
+                        v:juice_up(0.3, 0.5)
+                        v:set_ability(evol)
+                        if type(G.P_CENTERS[oldkey].biblio_evol_effect) == "function" then
+                            G.P_CENTERS[oldkey]:biblio_evol_effect(v, values)
                         end
-                    }))
-                elseif type(v.config.center.biblio_crucible_effect) == "function" then
-                    BIBLIO.event(function ()
-                        G.P_CENTERS[oldkey]:biblio_crucible_effect(v, card)
                         return true
-                    end)
-                elseif polterjens and BIBLIO.marblecheck[G.jokers.highlighted[i].config.center.key] then
-                    SMODS.add_card{
-                        key = "j_jen_godsmarble"
-                    }
-                end
+                    end
+                }))
+            elseif type(v.config.center.biblio_crucible_effect) == "function" then
+                BIBLIO.event(function ()
+                    card.ability.max_highlighted = card.ability.max_highlighted - 1
+                    G.P_CENTERS[oldkey]:biblio_crucible_effect(v, card)
+                    return true
+                end)
+            elseif polterjens and BIBLIO.marblecheck[v.config.center.key] then
+                card.ability.max_highlighted = card.ability.max_highlighted - 1
+                SMODS.add_card{
+                    key = "j_jen_godsmarble"
+                }
+            end
+            if card.ability.max_highlighted <= 0 and _ ~= #cards then
+                card.getting_sliced = true
+                SMODS.destroy_cards(card)
+                break
             end
         end
         G.E_MANAGER:add_event(Event({
@@ -190,9 +204,17 @@ SMODS.Consumable{
             delay = 0.2,
             func = function()
                 G.jokers:unhighlight_all()
+                G.consumeables:unhighlight_all()
                 return true
             end
         }))
+        if card.ability.max_highlighted <= 0 and not card.getting_sliced then
+            BIBLIO.event(function ()
+                card.getting_sliced = true
+                SMODS.destroy_cards(card)
+                return true
+            end)
+        end
     end,
     calculate = function (self, card, context)
         if context.card_added then
