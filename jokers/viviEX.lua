@@ -3,7 +3,7 @@ SMODS.Joker {
     name = "Vivi Elakha, the Fae-Touched",
     --biblio_evolution = "j_biblio_viviX",
     --biblio_evol_effect = function (self, newcard, oldextra) end,
-    --biblio_crucible_effect = function (self, card) end,
+    --biblio_crucible_effect = function (self, card, crucible) end,
     pronouns = "she_her",
     atlas = 'jokers',
     pos = {

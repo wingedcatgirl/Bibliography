@@ -2,8 +2,8 @@ SMODS.Joker {
     key = "kris_EX",
     name = "Kris Dreemurr, the Cage",
     --biblio_evol_effect = function (self, newcard, oldextra) end,
-    --biblio_crucible_check = function (self, card) end,
-    biblio_crucible_effect = function (self, card)
+    --biblio_crucible_check = function (self, card, crucible) end,
+    biblio_crucible_effect = function (self, card, crucible)
         card.ability.extra.soul_mod = card.ability.extra.soul_mod + 0.5
         card.ability.extra.edition_mod = card.ability.extra.edition_mod + 1
     end,

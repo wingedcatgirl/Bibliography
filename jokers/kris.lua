@@ -3,8 +3,8 @@ SMODS.Joker {
     name = "Kris Dreemurr",
     biblio_evolution = "j_biblio_kris_EX",
     --biblio_evol_effect = function (self, newcard, oldextra) end,
-    --biblio_crucible_check = function (self, card) end,
-    --biblio_crucible_effect = function (self, card) end,
+    --biblio_crucible_check = function (self, card, crucible) end,
+    --biblio_crucible_effect = function (self, card, crucible) end,
     pronouns = "they_them",
     atlas = 'jokers',
     pos = {

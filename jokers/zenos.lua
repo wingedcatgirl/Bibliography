@@ -3,7 +3,7 @@ SMODS.Joker {
     name = "Zenos yae Galvus",
     --biblio_evolution = "j_biblio_KEY",
     --biblio_evol_effect = function (self, newcard, oldextra) end,
-    biblio_crucible_effect = function (self, card)
+    biblio_crucible_effect = function (self, card, crucible)
         G.GAME.zenos_banished = (G.GAME.zenos_banished or 0) + 1
         SMODS.calculate_effect({message = localize("k_biblio_banished") }, card)
         SMODS.destroy_cards(card)

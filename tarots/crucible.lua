@@ -35,6 +35,10 @@ SMODS.Consumable{
         }
     end,
 
+    biblio_crucible_effect = function (self, card, crucible)
+        card.ability.max_highlighted = card.ability.max_highlighted + crucible.ability.max_highlighted
+    end,
+
     add_to_deck = function (self, card, from_debuff)
         local found = false
         local juice_em = #SMODS.find_card(self.key) == 0
@@ -171,7 +175,7 @@ SMODS.Consumable{
                     }))
                 elseif type(v.config.center.biblio_crucible_effect) == "function" then
                     BIBLIO.event(function ()
-                        G.P_CENTERS[oldkey]:biblio_crucible_effect(v)
+                        G.P_CENTERS[oldkey]:biblio_crucible_effect(v, card)
                         return true
                     end)
                 elseif polterjens and BIBLIO.marblecheck[G.jokers.highlighted[i].config.center.key] then
@@ -217,6 +221,6 @@ SMODS.Consumable{
     end,
 
     in_pool = function (self, args)
-        return true
+        return true, pseudorandom("biblio_crucible_dupes", 1, 2) == 1 and {allow_duplicates = true} or nil
     end
 }

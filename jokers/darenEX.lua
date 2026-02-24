@@ -12,7 +12,7 @@ SMODS.Joker {
     name = "Daren Mathews, Sorrow's Silence",
     --biblio_evolution = "j_biblio_KEY",
     --biblio_evol_effect = function (self, newcard, oldextra) end,
-    --biblio_crucible_effect = function (self, card) end,
+    --biblio_crucible_effect = function (self, card, crucible) end,
     --pronouns = "",
     atlas = 'jokers',
     pos = alphaplaceholder_base,

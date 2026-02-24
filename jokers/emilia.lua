@@ -5,7 +5,7 @@ SMODS.Joker {
     biblio_evol_effect = function (self, newcard, oldextra)
         newcard.ability.extra.discards = oldextra.discards * 3
     end,
-    --biblio_crucible_effect = function (self, card) end,
+    --biblio_crucible_effect = function (self, card, crucible) end,
     pronouns = "she_her",
     atlas = 'jokers',
     pos = {

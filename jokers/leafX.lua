@@ -2,7 +2,7 @@ local soulpos = {x = 1, y = 3}
 SMODS.Joker {
     key = "leafX",
     name = "Leaf Saito, Stellar Dragoon",
-    biblio_crucible_effect = function (self, card)
+    biblio_crucible_effect = function (self, card, crucible)
         card.ability.extra.partial = card.ability.extra.partial + 1
         if card.ability.extra.partial >= card.ability.extra.reps then
             card.ability.extra.partial = 0

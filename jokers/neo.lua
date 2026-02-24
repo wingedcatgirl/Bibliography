@@ -3,7 +3,7 @@ SMODS.Joker {
     name = "Neo Riptide",
     --biblio_evolution = "j_biblio_KEY",
     --biblio_evol_effect = function (self, newcard, oldextra) end,
-    --biblio_crucible_effect = function (self, card) end,
+    --biblio_crucible_effect = function (self, card, crucible) end,
     pronouns = "rip_ript",
     atlas = 'jokers',
     pos = {

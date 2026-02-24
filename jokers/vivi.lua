@@ -6,7 +6,7 @@ SMODS.Joker {
         newcard.ability.extra.mp = oldextra.mp
         newcard.ability.extra.mpcap = oldextra.mpcap
     end,
-    --biblio_crucible_effect = function (self, card) end,
+    --biblio_crucible_effect = function (self, card, crucible) end,
     pronouns = "she_her",
     atlas = 'jokers',
     pos = {

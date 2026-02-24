@@ -10,10 +10,10 @@ local alphaplaceholder_soul = {
 SMODS.Joker {
     key = "emilia_EX",
     name = "Emilia Mathews",
-    biblio_crucible_check = function (self, card)
+    biblio_crucible_check = function (self, card, crucible)
         return card.ability.extra.regain > 0
     end,
-    biblio_crucible_effect = function (self, card) 
+    biblio_crucible_effect = function (self, card, crucible) 
         card.ability.extra.discards = card.ability.extra.discards + card.ability.extra.regain
         card.ability.extra.regain = card.ability.extra.regain - 1
         SMODS.calculate_effect({message = localize("k_biblio_healed") }, card)

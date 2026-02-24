@@ -1,7 +1,7 @@
 SMODS.Joker {
     key = "hallie_EX",
     name = "Hallie, Heart of Ember",
-    --biblio_crucible_effect = function (self, card) end,
+    --biblio_crucible_effect = function (self, card, crucible) end,
     pronouns = "any_all",
     atlas = 'jokers',
     pos = {
