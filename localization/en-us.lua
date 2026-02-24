@@ -135,7 +135,7 @@ return {
             k_biblio_exalted = "Exalted",
             k_biblio_sublime = "Sublime",
             k_biblio_enoughalready = "Enough already!!!",
-            k_biblio_unavailable = "UNAVAILABLE",
+            k_biblio_unavailable = "Unavailable",
 			biblio_multienhance = "Multi-enhanced",
 			biblio_bound = "Bound",
 		},
