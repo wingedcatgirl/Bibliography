@@ -108,6 +108,18 @@ function G.FUNCS.discard_cards_from_highlighted(e, hook, ...)
     return ret
 end
 
+local polled = SMODS.poll_edition
+function SMODS.poll_edition(args, ...)
+    args = args or {}
+    args.mod = args.mod or 1
+    local krises = SMODS.merge_lists({SMODS.find_card("j_biblio_kris"), SMODS.find_card("j_biblio_kris_EX")})
+    for i,v in ipairs(krises) do
+        args.mod = args.mod * (v.ability.extra.edition_mod or 1)
+    end
+
+    return polled(args, ...)
+end
+
 local seted = Card.set_edition
 function Card:set_edition(edition, immediate, silent, delay, ...)
     seted(self, edition, immediate, silent, delay, ...)

@@ -63,6 +63,8 @@ local files = {
         "cirno",
         "zenos",
         "zenosEX",
+        "kris",
+        "krisEX",
         "hotelsora",
         "rubysquad",
 

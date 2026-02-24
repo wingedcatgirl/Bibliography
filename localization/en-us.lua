@@ -46,6 +46,23 @@ return {
 			k_biblio_zenos_ex_11 = "This is my moment! Our moment!",
 			k_biblio_zenos_willful = "Rise once more! It mustn't end yet!",
 
+			--Kris titles
+			k_biblio_kris_1 = "The Cage",
+			k_biblio_kris_2 = "Tactician",
+			k_biblio_kris_3 = "Moss Finder",
+			k_biblio_kris_4 = "Director",
+			k_biblio_kris_5 = "Moss Mystery",
+			k_biblio_kris_6 = "Blazer",
+			k_biblio_kris_7 = "Ice Blazer",
+			k_biblio_kris_8 = "Sheath",
+			k_biblio_kris_9 = "Enjoying the youthful days",
+			k_biblio_kris_10 = "Dark Hero",
+			k_biblio_kris_11 = "Moss Most",
+			k_biblio_kris_12 = "Dark Bead",
+			k_biblio_kris_13 = "Bed Inspector",
+			k_biblio_kris_14 = "Point and hearts come out",
+			k_biblio_kris_15 = "with human SOUL and parts",
+
             --Rarities
             k_biblio_illustrious = "Illustrious",
             k_biblio_mythical = "Mythical",
@@ -580,6 +597,44 @@ return {
 						"{C:dark_edition}Negative{} to a random playing card"
 					}
 				}
+			},
+			j_biblio_kris = {
+				name = {
+					"Kris Dreemurr",
+					--"{s:0.7}title something"
+				},
+				text = {
+					{
+						"Hidden cards are {C:green}#1#X{}",
+						"as likely to appear"
+					},
+					{
+						"Editions are {C:green}#2#X{}",
+						"as likely to appear"
+					}
+				},
+			},
+			j_biblio_kris_EX = {
+				name = {
+					"Kris Dreemurr",
+					"{s:0.7}#5#"
+				},
+				text = {
+					{
+						"Hidden cards are {C:green}#1#X{}",
+						"as likely to appear"
+					},
+					{
+						"Editions are {C:green}#2#X{}",
+						"as likely to appear"
+					},
+					{
+						"When discarding {C:hearts}Hearts{},",
+						"{C:green}#3# in #4#{} chance to",
+						"create {C:dark_edition}The Soul",
+						"{C:inactive}(Can overflow)"
+					}
+				},
 			},
 			--HEY FUTURE MINTY, PUT NEW JOKERS ⬆️HERE⬆️ :P 
 			j_biblio_template = {

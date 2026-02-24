@@ -1,0 +1,25 @@
+[manifest]
+version = "1.2"
+dump_lua = true
+priority = 0
+
+# Increase soulable card rate
+[[patches]]
+[patches.pattern]
+target = "functions/common_events.lua"
+pattern = "for _, v in ipairs(modded_souls) do"
+position = "before"
+payload = """    
+-- BIBLIO: Find Kris and increase SOUL rate accordingly
+--BIBLIO.say("(Before) Soul rate is currently "..tostring(1-non_soul_rate), "TRACE")
+local biblio_soul_mod = 1
+local krises = SMODS.merge_lists({SMODS.find_card("j_biblio_kris"), SMODS.find_card("j_biblio_kris_EX")})
+for i,v in ipairs(krises) do
+    biblio_soul_mod = biblio_soul_mod * (v.ability.extra.soul_mod or 1)
+end
+non_soul_rate = 1 - ((1 - non_soul_rate) * biblio_soul_mod)
+
+--BIBLIO.say("(After) Soul rate is currently "..tostring(1-non_soul_rate), "TRACE")
+"""
+overwrite = true
+match_indent = true
