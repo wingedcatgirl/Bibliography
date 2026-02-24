@@ -9,7 +9,7 @@
 	"priority": 0,
 	"badge_colour": "CA7CA7",
 	"badge_text_colour": "FFFFFF",
-	"version": "0.1.1~BETA20260222",
+	"version": "0.1.1~BETA20260223",
 	"dependencies": [
 		"Steamodded (>=1.0.0~BETA-1323c)",
 		"Amulet"
