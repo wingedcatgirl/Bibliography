@@ -637,6 +637,52 @@ return {
 					}
 				},
 			},
+			j_biblio_loano = {
+				name = {
+					"Loaño Ishida",
+					--"{s:0.7}title something"
+				},
+				text = {
+					{
+						"If poker hand contains",
+						"both light and dark suits",
+						"create {C:attention}The Fool{}"
+					},
+					{
+						"If poker hand contains",
+						"equal light and dark suits",
+						"created Fool is {C:dark_edition}Negative"
+					}
+				},
+			},
+			j_biblio_loano_light = {
+				name = {
+					"Loaño Ishida",
+					--"{s:0.7}title something"
+				},
+				text = {
+					{
+						"Does something",
+					},
+					{
+						"And something else"
+					}
+				},
+			},
+			j_biblio_loano_dark = {
+				name = {
+					"Loaño Ishida",
+					--"{s:0.7}title something"
+				},
+				text = {
+					{
+						"Does something",
+					},
+					{
+						"And something else"
+					}
+				},
+			},
 			--HEY FUTURE MINTY, PUT NEW JOKERS ⬆️HERE⬆️ :P 
 			j_biblio_template = {
 				name = {
@@ -644,7 +690,12 @@ return {
 					--"{s:0.7}title something"
 				},
 				text = {
-					"Does something",
+					{
+						"Does something",
+					},
+					{
+						"And something else"
+					}
 				},
 			},
 		},

@@ -632,6 +632,55 @@ to_number = to_number or function(x)
     return x
 end
 
+BIBLIO.dark_suits = {
+    Spades = true,
+    Clubs = true,
+    bunc_Halberds = true,
+    six_Moons = true,
+    paperback_Crowns = true,
+    --Additional dark suits go here
+
+}
+
+BIBLIO.light_suits = {
+    Hearts = true,
+    Diamonds = true,
+    bunc_Fleurons = true,
+    six_Stars = true,
+    paperback_Stars = true,
+    minty_3s = true,
+    --Additional light suits go here
+
+
+}
+
+---Check which shade a card's suit falls into
+---@param shade string|nil Which shade to check against, `light` or `dark`; any other non-nil input indicates wanting unclassified suits. 
+---@return boolean|string res If `shade` is provided, boolean indicating whether card is that shade. Otherwise, string indicating the card's shade.
+function Card:biblio_suit_shade(shade)
+    if SMODS.has_no_suit(self) then return shade == nil and "shadeless" or false end
+    if SMODS.has_any_suit(self) then return shade ~= nil or "mixed" end
+    local suit = self.base.suit
+    local light, dark = false, false
+    if self:is_suit(suit) then
+        light = BIBLIO.light_suits[suit]
+        dark = BIBLIO.dark_suits[suit]
+    end
+    if not light and shade ~= "dark" then
+        for k in pairs(BIBLIO.light_suits) do
+            if self:is_suit(k) then light = true break end
+        end
+    end
+    if not dark and shade ~= "light" then
+        for k in pairs(BIBLIO.dark_suits) do
+            if self:is_suit(k) then dark = true break end
+        end
+    end
+    if shade == "light" then return light end
+    if shade == "dark" then return dark end
+    if shade ~= nil then return (not light == not dark) end --Any other input indicates "is this a secret third shade?"
+    return (light and dark and "mixed") or (light and "light") or (dark and "dark") or "shadeless" --Nil input indicates "what shade is this?"
+end
 
 SMODS.current_mod.reset_game_globals = function(init)
     if init then

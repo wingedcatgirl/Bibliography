@@ -115,7 +115,7 @@ function poll_edition(_key, _mod, _no_neg, _guaranteed, _options, ...)
     for i,v in ipairs(krises) do
         _mod = _mod * (v.ability.extra.edition_mod or 1)
     end
-    BIBLIO.say("Edition mod is now ".._mod)
+    BIBLIO.say("Edition mod is now ".._mod, "TRACE")
 
     return polled(_key, _mod, _no_neg, _guaranteed, _options, ...)
 end
