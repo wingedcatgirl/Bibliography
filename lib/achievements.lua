@@ -56,6 +56,19 @@ cheevo{
 }
 
 cheevo{
+    key = "n51",
+    unlock_condition = function (self, args)
+        if args and args.type == "joker_set" then
+            if args.set == "ach_biblio_n51" then
+                for i,v in ipairs(G.playing_cards) do
+                    if not v.edition then return true end
+                end
+            end
+        end
+    end
+}
+
+cheevo{
     key = "negativity",
     unlock_condition = function (self, args)
         if G.STAGE ~= G.STAGES.RUN then return false end

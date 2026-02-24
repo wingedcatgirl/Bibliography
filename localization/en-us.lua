@@ -90,12 +90,14 @@ return {
 			ach_biblio_sparkling_elation = "Sparkling Elation",
 			ach_biblio_baka = "Baka!",
 			ach_biblio_negativity = "Unshakable Negativity",
+			ach_biblio_n51 = "#51shipping",
 		},
 		achievement_descriptions = {
 			ach_biblio_cannibalism = "Emilia expired like a bowl of Ramen",
 			ach_biblio_sparkling_elation = "Peri became Negative and consumed herself",
 			ach_biblio_baka = "Eiko met Cirno. Namecalling ensued.",
 			ach_biblio_negativity = "As far as the eye can see.",
+			ach_biblio_n51 = "Probably a more popular ship when they're not half OCs.",
 		},
 		["suits_plural"] = {
 
@@ -522,7 +524,10 @@ return {
 				},
 			},
             j_biblio_cedar = {
-                name = "Cedar",
+                name = {
+					"Cedar",
+					--"{s:0.7}title something"
+				},
                 text = {
                     {
 						"{C:attention}-#2#{} Ante after skipping {C:attention}#1#{} {C:inactive}[#3#]{} {C:attention}Blinds{}",
@@ -535,7 +540,10 @@ return {
                 }
             },
             j_biblio_cedar_ready = {
-                name = "Cedar",
+                name = {
+					"Cedar",
+					--"{s:0.7}title something"
+				},
                 text = {
                     {
 						"{C:attention}-#2#{} Ante after skipping {C:attention}#1#{} {C:inactive}[#3#]{} {C:attention}Blinds{}",
@@ -552,7 +560,10 @@ return {
                 }
             },
 			j_biblio_micha = {
-				name = "Micha",
+				name = {
+					"Micha",
+					--"{s:0.7}title something"
+				},
 				text = {
 					{
 						"At the end of the {C:attention}shop{},",
@@ -572,7 +583,10 @@ return {
 			},
 			--HEY FUTURE MINTY, PUT NEW JOKERS ⬆️HERE⬆️ :P 
 			j_biblio_template = {
-				name = "Joker Template",
+				name = {
+					"Joker Template",
+					--"{s:0.7}title something"
+				},
 				text = {
 					"Does something",
 				},

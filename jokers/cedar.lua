@@ -107,6 +107,12 @@ SMODS.Joker {
                 G.GAME.round_resets.blind_ante = G.GAME.round_resets.blind_ante - card.ability.extra.reward
                 card.ability.extra.skip_target = card.ability.extra.skip_target + 1
                 card.ability.extra.skip_count = 0
+                if SMODS.find_card("j_biblio_micha")[1] then
+                    check_for_unlock{
+                        type = "joker_set",
+                        set = "ach_biblio_n51",
+                    }
+                end
                 return {
                     message = "Rewind!"
                 }
@@ -145,6 +151,12 @@ SMODS.Joker {
 
                         BIBLIO.check_reset_ante()
                         if G.GAME.round_resets.ante <= G.GAME.modifiers.biblio_reset_ante then return true end
+                        if SMODS.find_card("j_biblio_micha")[1] then
+                            check_for_unlock{
+                                type = "joker_set",
+                                set = "ach_biblio_n51",
+                            }
+                        end
                         card.ability.extra.xmult_target = card.ability.extra.xmult_target^1.13
                         ease_ante(-G.GAME.round_resets.ante - G.GAME.modifiers.biblio_reset_ante)
                         BIBLIO.increment_reset_ante(1)
