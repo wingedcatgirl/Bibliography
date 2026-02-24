@@ -9,7 +9,7 @@ local alphaplaceholder_soul = {
 
 SMODS.Joker {
     key = "kris_EX",
-    name = "Kris Dreemurr",
+    name = "Kris Dreemurr, the Cage",
     --biblio_evol_effect = function (self, newcard, oldextra) end,
     --biblio_crucible_check = function (self, card) end,
     biblio_crucible_effect = function (self, card)
@@ -23,7 +23,7 @@ SMODS.Joker {
     rarity = "biblio_evolved",
     set_badges = function (self, card, badges)
         if not (self.discovered or card.bypass_discovery_ui) then return end
-        badges[#badges+1] = BIBLIO.credit_badge{type = "Character", credit = "Deltarune", bcol = HEX("b5e61d"), tcol = G.C.WHITE}
+        badges[#badges+1] = BIBLIO.credit_badge{type = "Character", credit = "Deltarune", bcol = HEX("75fbed"), tcol = G.C.WHITE}
     end,
     cost = 12,
     unlocked = true,
