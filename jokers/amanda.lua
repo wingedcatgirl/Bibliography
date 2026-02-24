@@ -69,7 +69,7 @@ SMODS.Joker {
         end)
     end,
     calculate = function(self, card, context)
-        if context.mod_probability and (context.identifier == "glass" or context.identifier == "minty_pistolshot") then
+        if context.mod_probability and (context.identifier == "glass" or context.identifier == "minty_pistolshot" or context.identifier == "minty_pistol_desc") then
             return {
                 numerator = context.numerator * 3
             }
