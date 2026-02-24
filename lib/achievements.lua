@@ -1,9 +1,13 @@
 local dev = not not string.find(SMODS.current_mod.version, "~")
 
-
----@param t SMODS.Achievement
----@return SMODS.Achievement
+---@param t SMODS.Achievement|table
+---@return SMODS.Achievement|nil
 local function cheevo (t)
+    if t.req and not next(SMODS.find_mod(t.req)) then
+        sendInfoMessage("Mod "..t.req.." not found, skipping achievement "..t.key, "Bibliography")
+        return nil
+    end
+
     for _,v in ipairs{"bypass_all_unlocked", "hidden_name", "hidden_text"} do
         if t[v] == nil then t[v] = true end
     end
@@ -55,8 +59,9 @@ cheevo{
     end
 }
 
-cheevo{
+local n51 = cheevo{
     key = "n51",
+    req = "Pokermon",
     unlock_condition = function (self, args)
         if args and args.type == "joker_set" then
             if args.set == "ach_biblio_n51" then
