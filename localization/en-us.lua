@@ -17,6 +17,7 @@ return {
 			k_biblio_inactive_desc = "Inactive",
 			k_biblio_gone = "Gone!",
 			k_biblio_baka = "Baka!",
+			k_biblio_calmed = "Calmed!",
 			k_biblio_fellforit = "Fell for it!",
 			k_biblio_failed_maybelie = "Didn't work...?",
 			k_biblio_dotdotdot = "...", --Used as both placeholder for messages TBA and actual message for particularly taciturn cahracters
@@ -677,9 +678,10 @@ return {
 			c_biblio_calmer = {
 				name = "Catcher Calmer",
 				text = {
+					"Passive effect:",
 					"The next {C:attention}#1#{} Catcher",
 					"pack#2# will act like",
-					"normal Booster packs"
+					"#3#normal Booster pack#2#"
 				}
 			},
             c_wheel_of_fortune={

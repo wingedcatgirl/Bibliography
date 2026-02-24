@@ -28,16 +28,18 @@ SMODS.Consumable{
             key = key,
             vars = {
                 card.ability.count,
-                card.ability.count == 1 and "" or "s"
+                card.ability.count == 1 and "" or "s",
+                card.ability.count == 1 and "a " or ""
             }
         }
     end,
+    select_card = "consumeables",
 
     calculate = function (self, card, context)
         if context.biblio_catcher_started then
             if not G.GAME.biblio_catcher_calmed then
                 G.GAME.biblio_catcher_calmed = true
-                SMODS.calculate_effect({message = "Calmed!"}, card, false)
+                SMODS.calculate_effect({message = localize("k_biblio_calmed")}, card, false)
                 card.ability.count = card.ability.count - 1
                 if card.ability.count <= 0 then
                     SMODS.destroy_cards(card, true, true, true)

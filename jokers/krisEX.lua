@@ -69,11 +69,14 @@ SMODS.Joker {
     calculate = function(self, card, context)
         if context.discard and context.other_card:is_suit("Hearts") then
             if SMODS.pseudorandom_probability(card, "biblio_kris_ex_soul_creat", 1, card.ability.extra.soul_odds) then
-                SMODS.add_card{
-                    set = "Spectral",
-                    key = "c_soul",
-                    area = G.consumeables
-                }
+                BIBLIO.event(function ()
+                    SMODS.add_card{
+                        set = "Spectral",
+                        key = "c_soul",
+                        area = G.consumeables
+                    }
+                    return true
+                end)
             end
         end
     end
