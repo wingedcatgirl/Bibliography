@@ -526,7 +526,7 @@ return {
             j_biblio_cedar = {
                 name = {
 					"Cedar",
-					--"{s:0.7}title something"
+					"{s:0.7}Aeon of Eons"
 				},
                 text = {
                     {
@@ -542,7 +542,7 @@ return {
             j_biblio_cedar_ready = {
                 name = {
 					"Cedar",
-					--"{s:0.7}title something"
+					"{s:0.7}Aeon of Eons"
 				},
                 text = {
                     {
@@ -562,7 +562,7 @@ return {
 			j_biblio_micha = {
 				name = {
 					"Micha",
-					--"{s:0.7}title something"
+					"{s:0.7}Curious Myth"
 				},
 				text = {
 					{
