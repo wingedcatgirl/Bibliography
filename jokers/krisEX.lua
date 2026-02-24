@@ -1,12 +1,3 @@
-local alphaplaceholder_base = {
-    x = math.random(0, 8),
-    y = 0
-}
-local alphaplaceholder_soul = {
-    x = math.random(0, 21),
-    y = 1
-}
-
 SMODS.Joker {
     key = "kris_EX",
     name = "Kris Dreemurr, the Cage",
@@ -18,8 +9,14 @@ SMODS.Joker {
     end,
     pronouns = "they_them",
     atlas = 'jokers',
-    pos = alphaplaceholder_base,
-    soul_pos = alphaplaceholder_soul,
+    pos = {
+        x = 7,
+        y = 4
+    },
+    soul_pos = {
+        x = 7,
+        y = 5
+    },
     rarity = "biblio_evolved",
     set_badges = function (self, card, badges)
         if not (self.discovered or card.bypass_discovery_ui) then return end
