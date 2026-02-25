@@ -58,6 +58,7 @@ local files = {
         "neo",
         "ryan",
         "yuu",
+        "yuuEX",
         "loano",
 
         --canon chars

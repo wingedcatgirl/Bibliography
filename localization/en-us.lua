@@ -384,6 +384,26 @@ return {
 					},
 				},
 			},
+			["j_biblio_yuu_EX"] = {
+				["name"] = {
+					"Yuu Akimoto",
+					"{s:0.7}Architect of Fate"
+				},
+				["text"] = {
+					{
+						"Cards can have additional enhancements",
+					},
+					{
+						"When a card with a base enhancement scores",
+						"a random card in deck gains that enhancement",
+					},
+					{
+						"When a Lucky card scores,",
+						"{C:green}#1# in #2#{} chance to add",
+						"{C:dark_edition}Negative{} to a random held Joker"
+					}
+				},
+			},
 			["j_biblio_daren"] = {
 				["name"] = "Daren Mathews",
 				["text"] = {
