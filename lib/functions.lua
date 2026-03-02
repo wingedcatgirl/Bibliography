@@ -691,6 +691,10 @@ SMODS.current_mod.reset_game_globals = function(init)
             e_foil = true,
         }
         G.consumeables.config.highlighted_limit = math.max(G.consumeables.config.highlighted_limit, 50)
+        if string.find(G.GAME.pseudorandom.seed:lower(), "akimoto") then
+            G.GAME.biblio_advantage = (G.GAME.biblio_advantage or 0) + 3
+            check_for_unlock{type = "biblio_secret_seed", seed = "akimoto", bypass_seeded = true}
+        end
     end
 end
 

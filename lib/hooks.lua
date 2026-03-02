@@ -76,6 +76,22 @@ level_up_hand = function (card, hand, instant, amount, ...)
     G.GAME.immutable_level = G.GAME.immutable_level - 1
 end
 
+local pseudornd = SMODS.pseudorandom_probability
+SMODS.pseudorandom_probability = function (trigger_obj, seed, base_numerator, base_denominator, identifier, no_mod,...)
+    local res = pseudornd(trigger_obj, seed, base_numerator, base_denominator, identifier, no_mod,...)
+    local postprob = SMODS.post_prob[#SMODS.post_prob]
+
+    if G.GAME.biblio_advantage and G.GAME.biblio_advantage > 1 then
+        for i=1,(G.GAME.biblio_advantage-1) do
+            SMODS.post_prob[#SMODS.post_prob] = nil
+            res = res or pseudornd(trigger_obj, seed, base_numerator, base_denominator, identifier, no_mod,...)
+        end
+        postprob.result = res
+        SMODS.post_prob[#SMODS.post_prob] = postprob
+    end
+    return res
+end
+
 local showman = SMODS.showman
 SMODS.showman = function (key, ...)
     if key == "c_wheel_of_fortune" and (next(SMODS.find_card("j_biblio_peri")) or next(SMODS.find_card("j_biblio_peri_EX"))) then
@@ -125,4 +141,18 @@ function Card:set_edition(edition, immediate, silent, delay, ...)
     seted(self, edition, immediate, silent, delay, ...)
 
     check_for_unlock{type = "biblio_modify_any_card", card = self}
+end
+
+local check = check_for_unlock
+function check_for_unlock(args)
+    local ret
+    if args and args.bypass_seeded then
+        local seeded = G.GAME.seeded
+        G.GAME.seeded = nil
+        ret = check(args)
+        G.GAME.seeded = seeded
+    else
+        ret = check(args)
+    end
+    return ret
 end

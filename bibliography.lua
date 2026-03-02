@@ -21,6 +21,7 @@ local files = {
     backs = {
         "party",
         "library",
+        "akimoto",
         "test",
     },
     boosters = {
@@ -56,6 +57,7 @@ local files = {
         "periEX",
         "eiko",
         "neo",
+        "neoEX",
         "ryan",
         "yuu",
         "yuuEX",

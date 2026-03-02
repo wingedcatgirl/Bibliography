@@ -1,6 +1,6 @@
 SMODS.Joker {
     key = "yuu",
-    name = "Yuu Akimoto",
+    name = "Yuu Akimoto, Architect of Fate",
     biblio_evolution = "j_biblio_yuu_EX",
     --biblio_evol_effect = function (self, newcard, oldextra) end,
     --biblio_crucible_effect = function (self, card, crucible) end,

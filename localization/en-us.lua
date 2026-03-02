@@ -481,6 +481,22 @@ return {
 					"count as triggered"
 				},
 			},
+			["j_biblio_neo_EX"] = {
+				["name"] = {
+					"Aws. Neo Riptide",
+					"{s:0.7}the Tide Turner"
+				},
+				["text"] = {
+					{
+						"Blinds {C:attention}always{}",
+						"count as triggered",
+					},
+					{
+						"Disables effect of every ",
+						"Boss Blind {C:attention}twice{}",
+					}
+				},
+			},
 			["j_biblio_ryan"] = {
 				["name"] = "Ryan Akimoto",
 				["text"] = {
@@ -733,6 +749,17 @@ return {
 					"Start with a free",
 					"{C:attention,T:p_biblio_starter}Starter Pack{}"
 				}
+			},
+			b_biblio_akimoto = {
+				name = "Akimoto Deck",
+				text = {
+					"Random events roll",
+					"with {C:purple}3X{} advantage",
+				},
+				unlock = {
+					"Harness the {C:purple}secret{}",
+					"{C:purple}power{} of the Akimotos"
+				},
 			}
         },
 		["Blind"] = {
