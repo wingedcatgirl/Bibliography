@@ -69,6 +69,7 @@ local files = {
         "zenosEX",
         "kris",
         "krisEX",
+        "hugh",
         "hotelsora",
         "rubysquad",
 

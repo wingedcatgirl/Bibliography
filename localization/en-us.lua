@@ -719,6 +719,19 @@ return {
 					}
 				},
 			},
+			j_biblio_hugh = {
+				name = {
+					"Hugh Morris",
+					--"{s:0.7}title something"
+				},
+				text = {
+					{
+						"Each scored {C:hearts}Heart{} has",
+						"a {C:green}#1# in #2#{} chance to",
+						"create a {C:attention}Bound{} {C:hearts}Bloodstone"
+					},
+				},
+			},
 			--HEY FUTURE MINTY, PUT NEW JOKERS ⬆️HERE⬆️ :P 
 			j_biblio_template = {
 				name = {
