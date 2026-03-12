@@ -82,6 +82,10 @@ return {
 			--Config options
 			option_biblio_lorepop = "Show lore popups",
 			option_biblio_nocred = "Disable credit badges",
+			tab_biblio_ao3 = "Connect to AO3",
+			option_biblio_ao3name = "Enter AO3 username",
+			option_biblio_psuedname = "Enter AO3 pseud (optional)",
+			option_biblio_ao3check = "Confirm AO3 page",
 			option_biblio_copysafe = "Silence unlicensed music",
 			info_biblio_copysafe = {
 				"Currently all unlicensed music",
@@ -729,6 +733,19 @@ return {
 						"Each scored {C:hearts}Heart{} has",
 						"a {C:green}#1# in #2#{} chance to",
 						"create a {C:attention}Bound{} {C:hearts}Bloodstone"
+					},
+				},
+			},
+			j_biblio_shizuku = {
+				name = {
+					"Shizuku Tsukishima",
+					--"{s:0.7}title something"
+				},
+				text = {
+					{
+						"{X:mult,C:white}X#1#{} Mult if you",
+						"have posted to AO3 today",
+						"{C:inactive}(Currently: #2#)"
 					},
 				},
 			},

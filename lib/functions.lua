@@ -590,6 +590,66 @@ function BIBLIO.acquire(acquired_card) --Acquired, haha, from Bunco
     end
 end
 
+BIBLIO.https = require"SMODS.https"
+
+function BIBLIO.is_ao3_connected()
+    local username = G.GAME.biblio_ao3_name or G.PROFILES[G.SETTINGS.profile].biblio_ao3_name or ""
+    if username == "No Username" or username == "" then
+        return false
+    end
+    local pseud = (G.GAME.biblio_pseudname ~= "No Pseud" and G.GAME.biblio_pseudname ~= "") and G.GAME.biblio_pseudname or username
+    local url = "https://archiveofourown.org/users/"..username.."/pseuds/"..pseud
+    local code, page = BIBLIO.https.request(url)
+    local lastup = string.find(page, "datetime")
+
+    return tostring(code) == "200", tostring(code) == "200" and string.sub(page, lastup+10, lastup+20) or nil
+end
+
+function BIBLIO.ao3_datecheck()
+    if G.biblio_debug then return true end
+    local last_update = G.GAME.biblio_last_ao3
+    if not last_update then
+        local succ,update = BIBLIO.is_ao3_connected()
+        if succ then
+            last_update = update
+            if G.STAGES == G.STAGES.RUN then
+                G.GAME.biblio_ao3_found = true
+                G.GAME.biblio_last_ao3 = update
+            end
+        else
+            return false
+        end
+    end
+    local months = {
+        "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+    }
+    local time = os.time()
+    local date = os.date("*t")
+    local day, month, year = tostring(date.day), months[date.month], tostring(date.year)
+
+    local valid = day == last_update:sub(1,2) and year == last_update:sub(8,12) and month == last_update:sub(4,6)
+
+    if not valid then --Check yesterday too, because time zones~
+        time = time - 86400
+        date = os.date("*t", time)
+        day, month, year = tostring(date.day), months[date.month], tostring(date.year)
+
+        valid = day == last_update:sub(1,2) and year == last_update:sub(8,12) and month == last_update:sub(4,6)
+    end
+
+    return valid
+end
+
+function BIBLIO.get_last_ao3()
+    if BIBLIO.ao3_datecheck() then return G.GAME.biblio_last_ao3 or "11 Mar 2026" end
+    local succ,res = BIBLIO.is_ao3_connected()
+    if succ and G.STAGES == G.STAGES.RUN then
+        G.GAME.biblio_last_ao3 = res
+        return res
+    end
+    return succ and res or "11 Mar 2026"
+end
+
 local reset_numbers = { --Numbers stored in G.GAME.modifiers which *directly* track what reset-ante-to-0-but-less-on-repeat mechanics are resetting to right now
     "cry_astero_ante",
     "biblio_reset_ante",
@@ -695,6 +755,9 @@ SMODS.current_mod.reset_game_globals = function(init)
             G.GAME.biblio_advantage = (G.GAME.biblio_advantage or 0) + 3
             check_for_unlock{type = "biblio_secret_seed", seed = "akimoto", bypass_seeded = true}
         end
+        G.GAME.biblio_ao3_name = G.PROFILES[G.SETTINGS.profile].biblio_ao3_name or ""
+        G.GAME.biblio_pseudname = (G.PROFILES[G.SETTINGS.profile].biblio_pseudname and G.PROFILES[G.SETTINGS.profile].biblio_pseudname ~= "" and G.PROFILES[G.SETTINGS.profile].biblio_pseudname ~= "No Pseud" and G.PROFILES[G.SETTINGS.profile].biblio_pseudname) or G.GAME.biblio_ao3_name
+        G.GAME.biblio_ao3_found, G.GAME.biblio_last_ao3 = BIBLIO.is_ao3_connected()
     end
 end
 

@@ -13,6 +13,11 @@ SMODS.Sound{ --Source: Chaotix
     path = "chaotix high five jingle.ogg"
 }
 
+SMODS.Sound{ --Source: Sonic 2
+    key = "s2_buzzer",
+    path = "S2 buzzer.wav"
+}
+
 SMODS.Sound{ --Source: Chaotix
     key = "music_ch_take_off",
     pitch = 1, --You have to specify this for a music or it will slow down arbitrarily!!!!
