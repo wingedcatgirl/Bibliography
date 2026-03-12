@@ -592,6 +592,9 @@ end
 
 BIBLIO.https = require"SMODS.https"
 
+---Checks AO3
+---@return boolean res Whether the AO3 handle+pseud is valid
+---@return string|nil date If the handle is valid, the most recent update on that pseud
 function BIBLIO.is_ao3_connected()
     local username = G.GAME.biblio_ao3_name or G.PROFILES[G.SETTINGS.profile].biblio_ao3_name or ""
     if username == "No Username" or username == "" then
@@ -605,6 +608,8 @@ function BIBLIO.is_ao3_connected()
     return tostring(code) == "200", tostring(code) == "200" and string.sub(page, lastup+10, lastup+20) or nil
 end
 
+---Checks if it is currently the day of the most recent AO3 update on the connected account
+---@return boolean result
 function BIBLIO.ao3_datecheck()
     if G.biblio_debug then return true end
     local last_update = G.GAME.biblio_last_ao3
@@ -640,6 +645,8 @@ function BIBLIO.ao3_datecheck()
     return valid
 end
 
+---Checks if the connected AO3 handle+pseud has updated lately
+---@return string result Date of last update. Uses `11 Mar 2026` as a fallback for leftover debugging reasons.
 function BIBLIO.get_last_ao3()
     if BIBLIO.ao3_datecheck() then return G.GAME.biblio_last_ao3 or "11 Mar 2026" end
     local succ,res = BIBLIO.is_ao3_connected()
@@ -657,6 +664,8 @@ local reset_numbers = { --Numbers stored in G.GAME.modifiers which *directly* tr
 
 }
 
+---Checks what ante reset-to-0-but-less-on-repeat mechanics are currently resetting to.
+---@return integer ante
 function BIBLIO.check_reset_ante()
     local max = 0
 
@@ -669,6 +678,8 @@ function BIBLIO.check_reset_ante()
     return max
 end
 
+---Increases the target value of reset-ante-to-0-but-less-on-repeat mechanics.
+---@param mod? number Number of steps by which to increase (default 1). Note that a step may be more than 1 ante!
 function BIBLIO.increment_reset_ante(mod)
     mod = mod or 1
     local max = 0
