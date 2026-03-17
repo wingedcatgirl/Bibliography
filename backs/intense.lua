@@ -8,7 +8,7 @@ SMODS.Back{
     calculate = function (self, back, context)
         if context.ante_change and context.ante_end then
             return {
-                message = "Intensify!",
+                message = localize("k_biblio_intensify"),
                 BIBLIO.event(function ()
                     G.jokers.config.card_limit = G.jokers.config.card_limit + back.effect.config.extra.slots
                     play_sound('highlight2', 0.685, 0.2)

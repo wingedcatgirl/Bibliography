@@ -19,6 +19,7 @@ return {
 			k_biblio_baka = "Baka!",
 			k_biblio_calmed = "Calmed!",
 			k_biblio_fellforit = "Fell for it!",
+			k_biblio_intensify = "Intensify!",
 			k_biblio_failed_maybelie = "Didn't work...?",
 			k_biblio_dotdotdot = "...", --Used as both placeholder for messages TBA and actual message for particularly taciturn cahracters
 
