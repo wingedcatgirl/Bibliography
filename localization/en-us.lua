@@ -790,7 +790,15 @@ return {
 					"Harness the {C:purple}secret{}",
 					"{C:purple}power{} of the Akimotos"
 				},
-			}
+			},
+			b_biblio_intense = {
+				name = "Intense Deck",
+				text = {
+					"At end of Ante:",
+					"{C:blue}+2{} Joker slots",
+					"{C:attention}Blind scaling increases{}"
+				},
+			},
         },
 		["Blind"] = {
 

@@ -22,6 +22,7 @@ local files = {
         "party",
         "library",
         "akimoto",
+        "intense",
         "test",
     },
     boosters = {
