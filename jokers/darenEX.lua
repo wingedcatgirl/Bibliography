@@ -39,7 +39,7 @@ SMODS.Joker {
     },
     loc_vars = function(self, info_queue, card)
         local key = self.key
-        local mult = card.ability.extra.multrate * (math.min(G.GAME.dollars or 0,0))
+        local mult = -(card.ability.extra.multrate * (math.min(G.GAME.dollars or 0,0)))
         if G.localization.descriptions.Lore[key] and BIBLIO.config.lore_popups then
             info_queue[#info_queue + 1] = {
                 set = "Lore",
@@ -84,6 +84,12 @@ SMODS.Joker {
                     end
                 }
             end
+        end
+
+        if context.joker_main then
+            return {
+                mult = -(card.ability.extra.multrate * (math.min(G.GAME.dollars or 0,0)))
+            }
         end
 
         if context.end_of_round and context.main_eval then

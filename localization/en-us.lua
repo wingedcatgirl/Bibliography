@@ -750,6 +750,27 @@ return {
 					},
 				},
 			},
+			j_biblio_jeri = {
+				name = {
+					"Jeri Marsh",
+					"{s:0.7}Chosen of Prophecy"
+				},
+				text = {
+					"For each card scored,",
+					"decrease Blind size by",
+					"{C:attention}#1#%{} of its maximum",
+					"value this round"
+				},
+			},
+			j_biblio_jeri_EX = {
+				name = {
+					"Jeri Marsh",
+					"{s:0.7}Melody ♪ Fateless"
+				},
+				text = {
+					"?"
+				},
+			},
 			--HEY FUTURE MINTY, PUT NEW JOKERS ⬆️HERE⬆️ :P 
 			j_biblio_template = {
 				name = {
@@ -1038,6 +1059,20 @@ return {
 				text = {
 					"Forgotten footfalls,",
 					"engraved in ash"
+				}
+			},
+			j_biblio_jeri = {
+				name = "Jeri Marsh",
+				text = {
+					"Hounded by destiny,",
+					"no escape in sight."
+				}
+			},
+			j_biblio_jeri_EX = {
+				name = "Melody ♪ Fateless",
+				text = {
+					"Unchained from prophecy",
+					"she now makes her own fate."
 				}
 			}
         },

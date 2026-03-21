@@ -11,6 +11,7 @@ SMODS.Back{
                 message = localize("k_biblio_intensify"),
                 BIBLIO.event(function ()
                     G.jokers.config.card_limit = G.jokers.config.card_limit + back.effect.config.extra.slots
+                    G.GAME.modifiers.scaling = (G.GAME.modifiers.scaling or 1) + 1
                     play_sound('highlight2', 0.685, 0.2)
                     play_sound('generic1')
                     return true

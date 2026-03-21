@@ -73,6 +73,7 @@ SMODS.Joker {
         end
 
         if context.after and card.ability.extra.triggered then
+            card.ability.extra.triggered = false
             card.ability.extra.active = false
         end
 
