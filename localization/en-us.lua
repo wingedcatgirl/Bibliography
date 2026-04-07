@@ -21,6 +21,8 @@ return {
 			k_biblio_fellforit = "Fell for it!",
 			k_biblio_intensify = "Intensify!",
 			k_biblio_failed_maybelie = "Didn't work...?",
+			k_biblio_reverted_ex = "Reverted!",
+			k_biblio_stronger = "Getting stronger",
 			k_biblio_dotdotdot = "...", --Used as both placeholder for messages TBA and actual message for particularly taciturn cahracters
 
 			--Zenos taunts
@@ -536,9 +538,9 @@ return {
 			["j_biblio_cirno"] = {
 				["name"] = "Cirno",
 				["text"] = {
-					"{C:green}1 in #1#{} chance to",
+					"{C:green}#1# in #2#{} chance to",
 					"retrigger played {C:attention}9s{}",
-					"#2# times"
+					"#3# times"
 				},
 			},
 			["j_biblio_catkids"] = {
@@ -768,7 +770,9 @@ return {
 					"{s:0.7}Melody ♪ Fateless"
 				},
 				text = {
-					"?"
+					"Each scored card permanently",
+					"gains {C:attention}#1#%{} Blind size reduction",
+					"{C:inactive}({C:attention}#2#%{C:inactive} left before reverting)"
 				},
 			},
 			--HEY FUTURE MINTY, PUT NEW JOKERS ⬆️HERE⬆️ :P 

@@ -19,7 +19,7 @@ SMODS.Joker {
     rarity = 1,
     set_badges = function (self, card, badges)
         if not (self.discovered or card.bypass_discovery_ui) then return end
-        badges[#badges+1] = BIBLIO.credit_badge{type = "OC", credit = "Ozbourne", bcol = HEX("FF0000"), tcol = G.C.WHITE}
+        badges[#badges+1] = BIBLIO.credit_badge{type = "OC", credit = "Ozbourne", bcol = HEX("FF0000")}
     end,
     cost = 5,
     unlocked = true,

@@ -359,11 +359,15 @@ BIBLIO.event = function(func, args)
     G.E_MANAGER:add_event(Event(args))
 end
 
+---Deeply copies tables without choking on object references
+---@param tbl table Table to copy
+---@param depth number|nil Number of layers to attempt copying; default 30
+---@return table newtbl Copied table
 BIBLIO.safe_copy_table = function(tbl, depth)
     local newtbl = {}
     depth = depth or 30
     for k,v in pairs(tbl) do
-        if type(v) ~= "table" or (type(v.is) == "function" and v:is(Card)) or depth <= 0 then
+        if type(v) ~= "table" or (type(v.is) == "function" and v:is(Object)) or depth <= 0 then
             newtbl[k] = v
         else
             newtbl[k] = BIBLIO.safe_copy_table(v, depth-1)
@@ -371,6 +375,14 @@ BIBLIO.safe_copy_table = function(tbl, depth)
     end
     return newtbl
 end
+
+local creditcolors = {
+    default = { b = "CA7CA7", t = "FFFFFF" },
+    Kira = { b = "F51F95" },
+    Minty = { b = "CA7CA7" },
+    MP = { b = G.C.BLACK },
+    Ozbourne = { b = "FF0000" }
+}
 
 ---Create a credit badge (unless credits are disabled)
 ---@param args BibCreditBadge
@@ -413,8 +425,11 @@ BIBLIO.credit_badge = function (args)
         end
         string = ct
     end
-    bcol = args.bcol or HEX("CA7CA7")
-    tcol = args.tcol or HEX("FFFFFF")
+    bcol = args.bcol or (creditcolors[args.credit or (args.credits and args.credits[1]) or "default"] or {}).b or HEX("CA7CA7")
+    tcol = args.tcol or (creditcolors[args.credit or (args.credits and args.credits[1]) or "default"] or {}).t or HEX("FFFFFF")
+    if type(bcol) == "string" then bcol = HEX(bcol) end
+    if type(tcol) == "string" then tcol = HEX(tcol) end
+
     scale = args.scale or 0.7
 
     --copied a bunch of this from creditlib

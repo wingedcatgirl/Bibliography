@@ -151,8 +151,9 @@ SMODS.Consumable{
             elseif type(v.config.center.biblio_evolution) == "string" then
                 evol = v.config.center.biblio_evolution
             elseif type(v.config.center.biblio_evolution) ~= "nil" then
-                error("Bibliography: Invalid configuration of evolution data on "..card.config.center.key.."; incorrect data type", 2)
+                error("Bibliography: Invalid configuration of evolution data on "..card.config.center.key.."; should be function, table, string, or nil (was "..type(v.config.center.biblio_evolution)..")", 2)
             end
+            assert(not evol or G.P_CENTERS[evol], "Bibliography: Invalid key for evolution of "..card.config.center.key.."; "..evol.." isn't a center that exists")
             local values = type(v.ability.extra) == "table" and copy_table(v.ability.extra) or {}
             G.E_MANAGER:add_event(Event({
                 trigger = 'after',

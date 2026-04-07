@@ -8,19 +8,20 @@ local alphaplaceholder_soul = {
 }
 
 SMODS.Joker {
-    key = "cirno",
-    name = "Cirno",
+    key = "jeal",
+    name = "Jeal",
     --biblio_evolution = "j_biblio_KEY",
     --biblio_evol_effect = function (self, newcard, oldextra) end,
+    --biblio_crucible_check = function (self, card, crucible) end,
     --biblio_crucible_effect = function (self, card, crucible) end,
-    pronouns = "she_her",
+    pronouns = "he_him",
     atlas = 'jokers',
     pos = alphaplaceholder_base,
     soul_pos = alphaplaceholder_soul,
-    rarity = 1,
+    rarity = 4,
     set_badges = function (self, card, badges)
         if not (self.discovered or card.bypass_discovery_ui) then return end
-        badges[#badges+1] = BIBLIO.credit_badge{type = "Character", credit = "Touhou", bcol = HEX("50ffe8"), tcol = G.C.WHITE}
+        badges[#badges+1] = BIBLIO.credit_badge{type = "OC", credit = "Kira", bcol = HEX("F51F95"), tcol = G.C.WHITE}
     end,
     cost = 5,
     unlocked = true,
@@ -31,13 +32,11 @@ SMODS.Joker {
     demicoloncompat = false,
     config = {
         extra = {
-            count = 9,
-            odds = 9,
+            
         }
     },
     loc_vars = function(self, info_queue, card)
         local key = self.key
-        local luck, odds = SMODS.get_probability_vars(card, 1, card.ability.extra.odds, "cirno_retrigger", false)
         if G.localization.descriptions.Lore[key] and BIBLIO.config.lore_popups then
             info_queue[#info_queue + 1] = {
                 set = "Lore",
@@ -47,8 +46,7 @@ SMODS.Joker {
         return {
             key = key,
             vars = {
-                luck, odds,
-                card.ability.extra.count
+                
             }
         }
     end,
@@ -57,22 +55,7 @@ SMODS.Joker {
         --insert any additional conditions
         return true
     end,
-    add_to_deck = function (self, card, from_debuff)
-        if next(SMODS.find_card("j_biblio_eiko")) or next(SMODS.find_card("j_biblio_eiko_EX")) then
-            check_for_unlock{type = "joker_set", set = "ach_biblio_baka"}
-        end
-    end,
     calculate = function(self, card, context)
-        if context.repetition and context.other_card:get_id() == SMODS.Ranks["9"].id then --Remember to update this when quantum ranks get invented
-            if SMODS.pseudorandom_probability(card, "cirno_retrigger", 1, card.ability.extra.odds) then
-                return {
-                    repetitions = 1,
-                    extra = {
-                        repetitions = card.ability.extra.count-1,
-                        remove_default_message = true
-                    }
-                }
-            end
-        end
+        -- Calculation goes here
     end
 }

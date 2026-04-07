@@ -10,8 +10,16 @@ local alphaplaceholder_soul = {
 SMODS.Joker {
     key = "jeri",
     name = "Jeri Marsh, Chosen of Prophecy",
-    --biblio_evolution = "j_biblio_jeri_EX",
-    --biblio_evol_effect = function (self, newcard, oldextra) end,
+    biblio_evolution = function (self, card, crucible)
+        if card.ability.extra.stronger and false then --*hussie voice* ALT ISN'T DONE YET
+            return "j_biblio_jeri_doomed"
+        else
+            return "j_biblio_jeri_EX"
+        end
+    end,
+    biblio_evol_effect = function (self, newcard, oldextra)
+        newcard.ability.extra.percent = oldextra.percent
+    end,
     --biblio_crucible_check = function (self, card, crucible) end,
     --biblio_crucible_effect = function (self, card, crucible) end,
     pronouns = "she_her",
@@ -33,7 +41,11 @@ SMODS.Joker {
     config = {
         extra = {
             percent = 2,
-            amount = 0
+            amount = 0,
+            stronger = false
+        },
+        immutable = {
+            percent = 2
         }
     },
     loc_vars = function(self, info_queue, card)
@@ -62,22 +74,26 @@ SMODS.Joker {
         end
 
         if context.individual and context.cardarea == G.play and not context.end_of_round then
-            local dec =  math.max(G.GAME.blind.chips * (card.ability.extra.percent/100), card.ability.extra.amount)
+            local dec = math.max(G.GAME.blind.chips * (card.ability.extra.percent/100), card.ability.extra.amount)
             card.ability.extra.amount = dec
             
             return {
-                --message = localize("k_minty_shaked"),
-                message_card = G.GAME.blind,
-                func = function ()
-                    local final_chips = G.GAME.blind.chips - dec
-                    G.GAME.blind.chips = final_chips
-                    G.E_MANAGER:add_event(Event({blocking = true, func = function()
-                        G.GAME.blind:juice_up()
-                        G.GAME.blind.chip_text = number_format(final_chips)
-                        return true
-                    end}))
-                end
+                x_blind_size = math.max(1-card.ability.extra.percent, 1-(dec/G.GAME.blind.chips)),
+                sound = "xblindsize",
+                message = localize{type = 'variable', key = 'a_blind_size', vars = {"-"..card.ability.extra.percent.."%"}},
+                remove_default_message = true,
             }
+        end
+
+        if not card.ability.extra.stronger then
+            if card.ability.extra.percent > card.ability.immutable.percent then
+                card.ability.extra.stronger = true
+                BIBLIO.event(function ()
+                    play_sound("biblio_dr_ominous")
+                    --SMODS.calculate_effect({message = localize("k_biblio_stronger")}, card)
+                    return true
+                end)
+            end
         end
     end
 }

@@ -17,21 +17,22 @@ SMODS.Joker {
     atlas = 'jokers',
     pos = alphaplaceholder_base,
     soul_pos = alphaplaceholder_soul,
-    rarity = 1,
+    rarity = "biblio_evolved",
     set_badges = function (self, card, badges)
         if not (self.discovered or card.bypass_discovery_ui) then return end
         badges[#badges+1] = BIBLIO.credit_badge{type = "OC", credit = "Minty", bcol = HEX("CA7CA7"), tcol = G.C.WHITE}
     end,
-    cost = 5,
+    cost = 8,
     unlocked = true,
     discovered = false,
-    eternal_compat = true,
+    eternal_compat = false,
     perishable_compat = true,
-    blueprint_compat = true,
+    blueprint_compat = false,
     demicoloncompat = false,
     config = {
         extra = {
-            
+            percent = 2,
+            left = 50
         }
     },
     loc_vars = function(self, info_queue, card)
@@ -45,7 +46,8 @@ SMODS.Joker {
         return {
             key = key,
             vars = {
-                
+                card.ability.extra.percent,
+                card.ability.extra.left
             }
         }
     end,
@@ -55,6 +57,38 @@ SMODS.Joker {
         return true
     end,
     calculate = function(self, card, context)
-        -- Calculation goes here
+        if context.individual and context.cardarea == G.play and card.ability.extra.left > 0 then
+            SMODS.scale_card(context.other_card, {
+                ref_table = context.other_card.ability,
+                ref_value = "perma_x_blind_size",
+                scalar_table = card.ability.extra,
+                scalar_value = "percent",
+                operation = function (ref_table, ref_value, initial, change)
+                    ref_table[ref_value] = (initial or 1) - (change/100)
+                end,
+            })
+            SMODS.scale_card(card, {
+                ref_table = card.ability.extra,
+                ref_value = "left",
+                scalar_value = "percent",
+                operation = "-",
+                no_message = true,
+                block_overrides = {
+                    message = true
+                }
+            })
+            return nil, true
+        end
+        if context.after and card.ability.extra.left <= 0 then
+            local pct = card.ability.extra.percent
+            BIBLIO.event(function ()
+                card:set_ability("j_biblio_jeri")
+                card.ability.extra.percent = pct
+                card.ability.immutable.percent = pct
+                SMODS.calculate_effect({message = localize("k_biblio_reverted_ex"), message_card = card})
+                return true
+            end)
+            return nil
+        end
     end
 }
