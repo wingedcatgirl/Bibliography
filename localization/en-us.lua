@@ -544,11 +544,9 @@ return {
 				},
 				["text"] = {
 					{
-						"{C:red}Self-banishes{} in",
-						"{C:attention}#1#{} rounds",
-						"Redeem a free",
-						"{C:dark_edition}Antimatter{} if",
-						"destroyed otherwise,",
+						"{C:red}Self-banishes{} in {C:attention}#1#{} rounds",
+						"Redeem a free {C:dark_edition}Antimatter{}",
+						"if destroyed otherwise",
 					},
 					{
 						"If another Joker would",
