@@ -1,7 +1,7 @@
 SMODS.Joker {
     key = "amy",
     name = "Amy",
-    --biblio_evolution = "j_biblio_KEY",
+    biblio_evolution = "j_biblio_amy_EX",
     --biblio_evol_effect = function (self, newcard, oldextra) end,
     --biblio_crucible_effect = function (self, card, crucible) end,
     pronouns = "she_her",
@@ -16,7 +16,7 @@ SMODS.Joker {
         y = 1
     },
     --]]
-    rarity = 1,
+    rarity = 2,
     set_badges = function (self, card, badges)
         if not (self.discovered or card.bypass_discovery_ui) then return end
         badges[#badges+1] = BIBLIO.credit_badge{type = "OC", credit = "Ozbourne", bcol = HEX("FF0000")}
@@ -24,7 +24,7 @@ SMODS.Joker {
     cost = 5,
     unlocked = true,
     discovered = false,
-    eternal_compat = true,
+    eternal_compat = false,
     perishable_compat = true,
     blueprint_compat = false,
     demicoloncompat = false,

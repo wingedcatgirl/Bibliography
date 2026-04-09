@@ -57,6 +57,7 @@ local files = {
         --others' chars
         "amanda",
         "amy",
+        "amyEX",
         "peri",
         "periEX",
         "eiko",

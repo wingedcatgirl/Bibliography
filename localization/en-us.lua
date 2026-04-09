@@ -23,6 +23,8 @@ return {
 			k_biblio_failed_maybelie = "Didn't work...?",
 			k_biblio_reverted_ex = "Reverted!",
 			k_biblio_stronger = "Getting stronger",
+			k_biblio_fading = "Fading...",
+			k_biblio_blocked_ex = "Blocked!",
 			k_biblio_dotdotdot = "...", --Used as both placeholder for messages TBA and actual message for particularly taciturn cahracters
 
 			--Zenos taunts
@@ -535,6 +537,26 @@ return {
 					"{C:inactive}(Does nothing...?)",
 				},
 			},
+			["j_biblio_amy_EX"] = {
+				["name"] = {
+					"Amy",
+					"{s:0.7}Bodyguard Unjester"
+				},
+				["text"] = {
+					{
+						"{C:red}Self-banishes{} in",
+						"{C:attention}#1#{} rounds",
+						"Redeem a free",
+						"{C:dark_edition}Antimatter{} if",
+						"destroyed otherwise,",
+					},
+					{
+						"If another Joker would",
+						"be destroyed, instead",
+						"destroy this Joker"
+					}
+				},
+			},
 			["j_biblio_cirno"] = {
 				["name"] = "Cirno",
 				["text"] = {
@@ -1015,6 +1037,14 @@ return {
 					"She would probably",
 					"be very upset that",
 					"she has no image."
+				}
+			},
+			j_biblio_amy_EX = {
+				name = "Bodyguard Unjester",
+				text = {
+					"Fading fast,",
+					"her only hope of",
+					"survival is death"
 				}
 			},
 			j_biblio_hallie = {
