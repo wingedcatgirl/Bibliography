@@ -6,7 +6,11 @@ SMODS.current_mod.optional_features = {
 }
 
 local files = {
-    lib = {
+    --[[
+    { name = "", content = {
+    } },
+    --]]
+    { name = "lib", content = {
         "hooks",
         "functions",
         "configui",
@@ -17,22 +21,22 @@ local files = {
         "bluehair",
         "vanillatweaks",
         "achievements",
-    },
-    backs = {
+    } },
+    { name = "backs", content = {
         "party",
         "library",
         "akimoto",
         "intense",
         "test",
-    },
-    boosters = {
+    } },
+    { name = "boosters", content = {
         "catcher",
         "starterpack",
-    },
-    tags = {
+    } },
+    { name = "tags", content = {
         "starter"
-    },
-    jokers = {
+    } },
+    { name = "jokers", content = {
         --my chars
         "leaf",
         "leafX",
@@ -81,26 +85,26 @@ local files = {
 
         --Other?
         "straightemult"
-    },
-    stickers = {
+    } },
+    { name = "stickers", content = {
         "bound",
         "multienhance"
-    },
-    tarots = {
+    } },
+    { name = "tarots", content = {
         "crucible",
         "calmer"
-    },
-    rotarots = {
+    } },
+    { name = "rotarots", content = {
         "crucible"
-    }
+    } },
 }
 
-for folder, list in pairs(files) do
-    for _, name in ipairs(list) do
-        sendTraceMessage("Loading file: "..folder..'/'..name..'.lua', "Bibliography")
-        local loaded,errormessage = pcall(SMODS.load_file(folder..'/'..name..'.lua'))
+for _, folder in ipairs(files) do
+    for _, name in ipairs(folder.content) do
+        sendTraceMessage("Loading file: "..folder.name..'/'..name..'.lua', "Bibliography")
+        local loaded,errormessage = pcall(SMODS.load_file(folder.name..'/'..name..'.lua'))
         if not loaded then
-            sendErrorMessage("File '"..folder.."/"..name..".lua' failed to load!", "Bibliography")
+            sendErrorMessage("File '"..folder.name.."/"..name..".lua' failed to load!", "Bibliography")
             sendErrorMessage(errormessage, "Bibliography")
         end
     end
