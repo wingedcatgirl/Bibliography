@@ -33,6 +33,9 @@ SMODS.Joker {
             number = 1
         }
     },
+    attributes = {
+        "editions", "tarots", "generation"
+    },
     loc_vars = function(self, info_queue, card)
         local key = self.key
         info_queue[#info_queue+1] = {

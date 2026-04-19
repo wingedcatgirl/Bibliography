@@ -30,7 +30,7 @@ SMODS.Joker {
     demicoloncompat = false,
     config = {
         extra = {
-            
+            "enhancements", "mod_chance"
         }
     },
     loc_vars = function(self, info_queue, card)

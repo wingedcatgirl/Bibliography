@@ -35,6 +35,9 @@ SMODS.Joker {
             xmult = 3
         }
     },
+    attributes = {
+        "xmult", "meta"
+    },
     loc_vars = function(self, info_queue, card)
         local key = self.key
         local active = BIBLIO.ao3_datecheck()

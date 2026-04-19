@@ -63,6 +63,9 @@ SMODS.Joker {
             ptype = "Grass"
         }
     },
+    attributes = {
+        "xmult", "scaling", "ante", "prevents_death"
+    },
     loc_vars = function(self, info_queue, card)
         local key = self.key
         local type_tooltip = type_tooltip or function (...) end

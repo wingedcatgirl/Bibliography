@@ -36,6 +36,9 @@ SMODS.Joker {
             soul_odds = 25
         }
     },
+    attributes = {
+        "suit", "hearts", "discard", "chance", "editions", "generation"
+    },
     loc_vars = function(self, info_queue, card)
         local key = self.key
         local luck,odds = SMODS.get_probability_vars(card, 1, card.ability.extra.soul_odds, "biblio_kris_ex_soul_creat", false)

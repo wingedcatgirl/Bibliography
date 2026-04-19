@@ -33,6 +33,9 @@ SMODS.Joker {
             left = 5
         }
     },
+    attributes = {
+        "generation", "voucher", "ban_card"
+    },
     loc_vars = function(self, info_queue, card)
         local key = self.key
         info_queue[#info_queue+1] = G.P_CENTERS.v_antimatter

@@ -50,6 +50,9 @@ SMODS.Joker {
             percent = 15
         }
     },
+    attributes = {
+        "chance", "generation", "editions", "tarots", "spectrals", "item", "ante_change"
+    },
     loc_vars = function(self, info_queue, card)
         local key = self.key
         local type_tooltip = type_tooltip or function (...) end

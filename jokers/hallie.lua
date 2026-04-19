@@ -34,6 +34,9 @@ SMODS.Joker {
             burning = false
         }
     },
+    attributes = {
+        "destroy_card", "level_up", "chance"
+    },
     loc_vars = function(self, info_queue, card)
         local key = self.key
         local luck,odds = SMODS.get_probability_vars(card, 1, (G.STAGE == G.STAGES.RUN) and G.GAME.current_round.discards_left or "N")

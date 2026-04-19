@@ -38,6 +38,9 @@ SMODS.Joker {
             blind_size = 3,
         }
     },
+    attributes = {
+        "joker_slot", "boss_blind", "xblindsize", "banish_card"
+    },
     loc_vars = function(self, info_queue, card)
         local key = self.key
         if G.localization.descriptions.Lore[key] and BIBLIO.config.lore_popups then

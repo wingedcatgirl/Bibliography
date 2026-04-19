@@ -30,6 +30,9 @@ SMODS.Joker {
             norecurse = false
         }
     },
+    attributes = {
+        "hand_level"
+    },
     loc_vars = function(self, info_queue, card)
         local key = self.key
         local _handname, _played, _order = 'High Card', -1, 100

@@ -33,6 +33,9 @@ SMODS.Joker {
             mult = 0
         }
     },
+    attributes = {
+        "discard", "destroy_card", "level_up", "hand_type", "mult"
+    },
     loc_vars = function(self, info_queue, card)
         local key = self.key
         if G.localization.descriptions.Lore[key] and BIBLIO.config.lore_popups then

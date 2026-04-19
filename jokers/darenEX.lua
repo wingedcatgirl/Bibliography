@@ -37,6 +37,9 @@ SMODS.Joker {
             target = -100
         }
     },
+    attributes = {
+        "passive", "economy", "mult", "ante", "scaling"
+    },
     loc_vars = function(self, info_queue, card)
         local key = self.key
         local mult = -(card.ability.extra.multrate * (math.min(G.GAME.dollars or 0,0)))

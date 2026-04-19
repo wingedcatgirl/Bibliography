@@ -36,6 +36,9 @@ SMODS.Joker {
             odds = 5,
         }
     },
+    attributes = {
+        "chance", "hearts", "generation"
+    },
     loc_vars = function(self, info_queue, card)
         local key = self.key
         local luck, odds = SMODS.get_probability_vars(card, card.ability.extra.luck, card.ability.extra.odds, "biblio_hugh_morris", false)

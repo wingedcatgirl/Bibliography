@@ -15,6 +15,7 @@ local files = {
         "functions",
         "configui",
         --"tabs",
+        "attributes",
         "rarity",
         "atli",
         "sounds",
