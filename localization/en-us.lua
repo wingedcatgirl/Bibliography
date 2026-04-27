@@ -787,7 +787,7 @@ return {
 			j_biblio_jeri_EX = {
 				name = {
 					"Jeri Marsh",
-					"{s:0.7}Melody ♪ Fateless"
+					"{s:0.7}Fatebreaker"
 				},
 				text = {
 					"Each scored card permanently",
@@ -1108,7 +1108,7 @@ return {
 				}
 			},
 			j_biblio_jeri_EX = {
-				name = "Melody ♪ Fateless",
+				name = "Fatebreaker",
 				text = {
 					"Unchained from prophecy",
 					"she now makes her own fate."

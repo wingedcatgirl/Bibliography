@@ -9,7 +9,7 @@ local alphaplaceholder_soul = {
 
 SMODS.Joker {
     key = "jeri_EX",
-    name = "Jeri Marsh, Melody ♪ Fateless",
+    name = "Jeri Marsh, Fatebreaker",
     --biblio_evol_effect = function (self, newcard, oldextra) end,
     --biblio_crucible_check = function (self, card, crucible) end,
     --biblio_crucible_effect = function (self, card, crucible) end,
