@@ -11,14 +11,26 @@ SMODS.Joker {
     key = "jeri",
     name = "Jeri Marsh, Chosen of Prophecy",
     biblio_evolution = function (self, card, crucible)
-        if card.ability.extra.stronger and false then --*hussie voice* ALT ISN'T DONE YET
-            return "j_biblio_jeri_doomed"
+        if crucible.config.center_key == "c_biblio_tribulation" then return self.key end
+
+        if card.ability.extra.stronger then
+            BIBLIO.say("alt isn't done yet~", 'TRACE')
+            return "j_biblio_jeri_EX" -- "j_biblio_jeri_doomed" --*hussie voice* ALT ISN'T DONE YET
         else
             return "j_biblio_jeri_EX"
         end
     end,
     biblio_evol_effect = function (self, newcard, oldextra)
         newcard.ability.extra.percent = oldextra.percent
+        newcard.ability.immutable.percent = oldextra.percent
+
+        if newcard.config.center_key == self.key then
+            newcard.ability.extra.percent = newcard.ability.extra.percent*1.5
+            SMODS.calculate_context{} --Null calculate to trigger the snowgrave noise
+            BIBLIO.event(function ()
+                return true
+            end)
+        end
     end,
     --biblio_crucible_check = function (self, card, crucible) end,
     --biblio_crucible_effect = function (self, card, crucible) end,

@@ -84,10 +84,12 @@ SMODS.Joker {
         end
         if context.after and card.ability.extra.left <= 0 then
             local pct = card.ability.extra.percent
+            local stronger = card.ability.extra.stronger
             BIBLIO.event(function ()
                 card:set_ability("j_biblio_jeri")
                 card.ability.extra.percent = pct
                 card.ability.immutable.percent = pct
+                card.ability.extra.stronger = stronger
                 SMODS.calculate_effect({message = localize("k_biblio_reverted_ex"), message_card = card})
                 return true
             end)

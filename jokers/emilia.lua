@@ -3,7 +3,9 @@ SMODS.Joker {
     name = "Emilia Mathews",
     biblio_evolution = "j_biblio_emilia_EX",
     biblio_evol_effect = function (self, newcard, oldextra)
+        SMODS.change_discard_limit(-oldextra.discards)
         newcard.ability.extra.discards = oldextra.discards * 3
+        SMODS.change_discard_limit(newcard.ability.extra.discards)
     end,
     --biblio_crucible_effect = function (self, card, crucible) end,
     pronouns = "she_her",
@@ -37,7 +39,7 @@ SMODS.Joker {
         }
     },
     attributes = {
-        "discard"
+        "discard",
     },
     loc_vars = function(self, info_queue, card)
         local key = self.key

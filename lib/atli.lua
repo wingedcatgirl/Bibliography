@@ -1,5 +1,5 @@
 local super_basic_items = {
-    "jokers", "tarots", "boosters", "stickers"
+    "jokers", "tarots", "boosters", "stickers", "spectrals"
 }
 
 for _,v in ipairs(super_basic_items) do

@@ -1,6 +1,12 @@
 ---Debug messages
 ---@param message string Message to send
----@param level? string Log level, DEBUG by default, TRACE won't send unless dev mode is active since DebugPlus doesn't have that filter fsr
+---@param level? string 
+---|"'FATAL'" # Something has gone horribly wrong and crashes are likely
+---|"'ERROR'" # Something has gone horribly wrong, but crashes aren't likely (yet)
+---|"'WARN '" # Something has gone wrong, but the program can handle it (e.g. call to a deprecated function)
+---|"'INFO '" # Information even a casual player might want if they added DebugPlus
+---|"'DEBUG'" # Debugging info most people don't need (default value)
+---|"'TRACE'" # Potential debugging info even we don't (yet) need
 BIBLIO.say = function(message, level)
     message = message or "???"
     level = level or "DEBUG"

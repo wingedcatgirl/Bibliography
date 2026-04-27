@@ -95,6 +95,9 @@ local files = {
         "crucible",
         "calmer"
     } },
+    { name = "spectrals", content = {
+        "tribulation"
+    } },
     { name = "rotarots", content = {
         "crucible"
     } },

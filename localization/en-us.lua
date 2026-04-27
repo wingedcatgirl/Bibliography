@@ -876,7 +876,14 @@ return {
             },
 		},
 		["Spectral"] = {
-
+			c_biblio_tribulation = {
+				name = "Tribulation",
+				text = {
+                    "Evolve {C:attention}#1#{} eligible",
+                    "card#2# to a new level",
+					"{C:red,s:0.8}May have unexpected results..."
+				}
+			}
 		},
 		["Planet"] = {
 
