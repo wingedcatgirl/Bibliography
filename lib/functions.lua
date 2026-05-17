@@ -494,6 +494,7 @@ end
 ---@param card Card|table
 function BIBLIO.booster_sound(card)
     if not (G.STATE == G.STATES.SMODS_BOOSTER_OPENED) and (SMODS.OPENED_BOOSTER and SMODS.OPENED_BOOSTER.ability and SMODS.OPENED_BOOSTER.ability.play_sound_on_take) then return end
+    if G.SETTINGS.SOUND.game_sounds_volume == 0 or G.SETTINGS.SOUND.music_volume == 0 then return end
 
     local args = type(SMODS.OPENED_BOOSTER.ability.play_sound_on_take) == "function" and SMODS.OPENED_BOOSTER.ability.play_sound_on_take(card) or SMODS.OPENED_BOOSTER.ability.play_sound_on_take
     if args then
@@ -504,6 +505,9 @@ function BIBLIO.booster_sound(card)
             sound = args.sound
             pitch = args.pitch
             vol = args.vol or 0.6
+        end
+        if G.SETTINGS.SOUND.game_sounds_volume > G.SETTINGS.SOUND.music_volume then --If sounds are louder than music, reduce the volume accordingly
+            vol = (vol or 0.6) * (G.SETTINGS.SOUND.music_volume/G.SETTINGS.SOUND.game_sounds_volume)
         end
         if sound and SMODS.Sounds[sound] then
             play_sound(sound, pitch, vol)
