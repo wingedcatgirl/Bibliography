@@ -953,6 +953,24 @@ return {
 					"from a selection of {C:attention}#2#{}!"
 				}
 			},
+			p_biblio_catcher_jumbo = {
+				name = "Jumbo Clown Catcher",
+				text = {
+					"Try your luck",
+					"and/or skill! Grab",
+					"{C:attention}#1#{} Bibliography Joker#3#",
+					"from a selection of {C:attention}#2#{}!"
+				}
+			},
+			p_biblio_catcher_mega = {
+				name = "Mega Clown Catcher",
+				text = {
+					"Try your luck",
+					"and/or skill! Grab",
+					"{C:attention}#1#{} Bibliography Joker#3#",
+					"from a selection of {C:attention}#2#{}!"
+				}
+			},
 			p_biblio_starter = {
 				name = "Starter Pack",
 				text = {
