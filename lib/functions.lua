@@ -523,10 +523,6 @@ function BIBLIO.catcher_mode()
     SMODS.calculate_context{biblio_catcher_started = true}
     BIBLIO.event(function ()
         if not (G.pack_cards and G.pack_cards.cards) or G.GAME.pack_choices <= 0 then
-            if G.GAME.real_banned_keys then
-                G.GAME.banned_keys = G.GAME.real_banned_keys or {}
-                G.GAME.real_banned_keys = nil
-            end
             G.GAME.biblio_catcher_mode = nil
             G.GAME.biblio_catcher_calmed = nil
             G.GAME.biblio_catcher_timeup = nil
@@ -569,6 +565,38 @@ function BIBLIO.catcher_mode()
             frames = 0
         end
     end, {blockable = false, blocking = false, delay = 0.2})
+end
+
+---Default `create_card` function for Biblio boosters
+---@param self SMODS.Booster Booster prototype object
+---@param card Card The individual booster pack object
+---@param i number The order of the card to be created in this booster
+---@return table results Table to be passed to `SMODS.create_card`
+function BIBLIO.create_booster_clown (self, card, i)
+    if i == 1 and card.ability.catcher then
+        BIBLIO.catcher_mode()
+    end
+
+    local key = SMODS.poll_object{
+        type = "Joker",
+        seed = "minty_mod_pack",
+        filter = function (pool)
+            local newpool = {}
+            for _,item in ipairs(pool) do
+                local center = G.P_CENTERS[item.key]
+                if center and item.type == "Joker" and center.original_mod and center.original_mod.id == "bibliography" then
+                    newpool[#newpool+1] = item
+                end
+            end
+            return newpool
+        end
+    }
+
+    return {
+        set = "Joker",
+        key = key,
+        skip_materialize = true
+    }
 end
 
 ---Acquire a card, ignoring limits

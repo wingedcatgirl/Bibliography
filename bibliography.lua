@@ -2,7 +2,8 @@ BIBLIO = {}
 BIBLIO.config = SMODS.current_mod.config
 
 SMODS.current_mod.optional_features = {
-	quantum_enhancements = true
+	quantum_enhancements = true,
+    object_weights = true
 }
 
 local files = {

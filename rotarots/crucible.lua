@@ -20,44 +20,39 @@ SMODS.Consumable({
         return #G.jokers.cards < G.jokers.config.card_limit
     end,
     use = function(self, card, area, copier)
-        local oldban = copy_table(G.GAME.banned_keys or {})
-
         local olddie = {}
-        for k,v in pairs(SMODS.Rarities) do --Temporarily set all rarities' disable-if-empty flag to true
-            olddie[k] = v.disable_if_empty --Save the original values before changing them
+        for k, v in pairs(SMODS.Rarities) do --Temporarily set all rarities' disable-if-empty flag to true
+            olddie[k] = v.disable_if_empty   --Save the original values before changing them
             v.disable_if_empty = true
-        end
-
-        for k,v in pairs(G.P_CENTERS) do
-            if not (v.biblio_evolution or v.biblio_crucible_effect) then
-                G.GAME.banned_keys[k] = true
-            end
         end
 
 
         local capacity = G.jokers.config.card_limit - #G.jokers.cards
-        for _=1, math.min(capacity, card.ability.num) do
-            local rarity = SMODS.poll_rarity("Joker", "biblio_rot_crucible_rarity".._)
-            local vrarities = {
-                [1] = "Common",
-                [2] = "Uncommon",
-                [3] = "Rare"
+        for i = 1, math.min(capacity, card.ability.num) do
+            local joker = SMODS.poll_object {
+                type = "Joker",
+                filter = function(pool)
+                    local newpool = {}
+                    for _, item in ipairs(pool) do
+                        local center = G.P_CENTERS[item.key]
+                        if center and (center.biblio_evolution or center.biblio_crucible_effect) then
+                            newpool[#newpool + 1] = item
+                        end
+                    end
+                    return #newpool > 0 and newpool or {{type = "Joker", key = not G.GAME.pool_flags.gros_michel_extinct and "j_gros_michel" or "j_cavendish"}} --If you're out of evolveable Jokers, have a banan instead~
+                end
             }
-            rarity = vrarities[rarity] or rarity
-            local pool = SMODS.get_clean_pool("Joker", rarity, nil, "biblio_rot_crucible")
-            local joker = pseudorandom_element(pool, "biblio_rot_crucible_joker")
             SMODS.add_card({
                 set = "Joker",
                 key = joker
             })
         end
 
-        for k,v in pairs(SMODS.Rarities) do
+        for k, v in pairs(SMODS.Rarities) do
             v.disable_if_empty = olddie[k] --Restore the original values
         end
-        G.GAME.banned_keys = oldban
     end,
     loc_vars = function(self, info_queue, card)
-        return { vars = {card.ability.num} }
+        return { vars = { card.ability.num } }
     end
 })
