@@ -30,6 +30,12 @@ SMODS.current_mod.config_tab = function()
             ref_value = 'lore_popups',
         }),
         create_toggle({
+            label = localize("option_biblio_reminders"),
+            ref_table = BIBLIO.config,
+            ref_value = 'beginner_reminders',
+            info = localize("info_biblio_reminders")
+        }),
+        create_toggle({
             label = localize("option_biblio_nocred"),
             ref_table = BIBLIO.config,
             ref_value = 'no_credit_badges',

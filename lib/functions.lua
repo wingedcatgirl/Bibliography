@@ -583,7 +583,7 @@ function BIBLIO.create_booster_clown (self, card, i)
 
     local key = SMODS.poll_object{
         type = "Joker",
-        seed = "minty_mod_pack",
+        seed = "biblio_pack",
         filter = function (pool)
             local newpool = {}
             for _,item in ipairs(pool) do

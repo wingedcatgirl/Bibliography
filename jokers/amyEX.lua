@@ -45,6 +45,12 @@ SMODS.Joker {
                 key = key,
             }
         end
+        if BIBLIO.config.beginner_reminders then
+            info_queue[#info_queue+1] = {
+                set = "Other",
+                key = "biblio_reminder_banish"
+            }
+        end
         return {
             key = key,
             vars = {

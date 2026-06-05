@@ -28,6 +28,7 @@ SMODS.Attribute{ --Cards which care about something outside what would normally 
 }
 
 SMODS.Attribute{ --Cards which ban cards, preventing them from appearing again
+                 --N.B, Bibliography uses "banish" to mean "destroy and ban"
     key = "ban_card",
     alias = {
         "banish_card", "banning", "banishing"

@@ -86,6 +86,10 @@ return {
 
 			--Config options
 			option_biblio_lorepop = "Show lore popups",
+			option_biblio_reminders = "Beginner reminders",
+			info_biblio_reminders = {
+				"Explain new keywords"
+			},
 			option_biblio_nocred = "Disable credit badges",
 			tab_biblio_ao3 = "Connect to AO3",
 			option_biblio_ao3name = "Enter AO3 username",
@@ -449,7 +453,7 @@ return {
 				["name"] = "Emilia Mathews",
 				["text"] = {
 					"Ignore discard limits",
-					"Expires after",
+					"{C:red}self-banishes{} after",
 					"{C:attention}#1#{} extra discards"
 				},
 			},
@@ -461,7 +465,7 @@ return {
 				["text"] = {
 					{
 						"Ignore discard limits",
-						"Expires after",
+						"{C:red}self-banishes{} after",
 						"{C:attention}#1#{} extra discards"
 					},
 					{
@@ -795,6 +799,18 @@ return {
 					"{C:inactive}({C:attention}#2#%{C:inactive} left before reverting)"
 				},
 			},
+			j_biblio_minty = {
+				name = "Mint Sylvanis",
+				text = {
+					{
+						"{C:attention}3s{} count as a fifth suit, and",
+						"can be used to play Spectrum hands"
+					},
+					{
+						"{C:inactive,s:0.7}It's an alias in-universe too, if you were wondering."
+					}
+				}
+			},
 			--HEY FUTURE MINTY, PUT NEW JOKERS ⬆️HERE⬆️ :P 
 			j_biblio_template = {
 				name = {
@@ -978,9 +994,25 @@ return {
                     "{C:attention}#2#{C:joker} Joker{} cards",
 					"from {C:attention}Bibliography"
 				}
+			},
+			biblio_reminder_banish = {
+				name = "Banish",
+				text = {
+					"{C:red}Remove{} an object,",
+					"{C:attention}bypassing Eternal,",
+					"and {C:red}ban{} it as well"
+				}
+			},
+			biblio_reminder_ban = {
+				name = "Ban",
+				text = {
+					"Prevent an object from",
+					"appearing naturally"
+				}
 			}
 		},
         ["Lore"] = { --NOTE TO FUTURE PEOPLE TAKING INSPIRATION: adding new categories for infoqueues isn't automatic; we had to patch it in, see lore.toml
+					 --Alternately you can just put it in "Other", you don't have to be extra like us
             ["j_biblio_leaf"] = {
                 name = "Leaf Saito",
                 text = {
@@ -1131,7 +1163,23 @@ return {
 					"Unchained from prophecy",
 					"she now makes her own fate."
 				}
-			}
+			},
+			j_biblio_minty = {
+				name = "Mint Sylvanis",
+				text = {
+					"No, not Cloudy, that's who",
+					"she got the name {C:attention}from{}.",
+					"Which explains much about her."
+				}
+			},
+			j_biblio_minty_EX = {
+				name = "Ever but never present",
+				text = {
+					"When all you have is a domain,",
+					"every problem looks like trespassing.",
+					"Or solveable by trespassing. One of."
+				}
+			},
         },
 	},
 }
