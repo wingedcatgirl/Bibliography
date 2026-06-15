@@ -3,7 +3,7 @@ version = "1.2"
 dump_lua = true
 priority = 0
 
-# Allow localizing items from Lore set
+# Edit generate_card_UI to allow creating info queues from items in Lore set
 [[patches]]
 [patches.pattern]
 target = "functions/common_events.lua"
