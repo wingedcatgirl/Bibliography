@@ -13,12 +13,10 @@ SMODS.Joker {
         x = 4,
         y = 2
     },
-    --[[
     soul_pos = {
-        x = 16,
-        y = 1
+        x = 4,
+        y = 3
     },
-    --]]
     rarity = 2,
     set_badges = function (self, card, badges)
         if not (self.discovered or card.bypass_discovery_ui) then return end
@@ -37,10 +35,25 @@ SMODS.Joker {
             mpcap = 100,
             curecost = 9,
             cureval = 1,
+            can_cure = true,
             raisecost = 54,
-            active = true
+            can_raise = true
         }
     },
+    use = function (self, card)
+            card.ability.extra.mp = card.ability.extra.mp - card.ability.extra.curecost
+            card.ability.extra.mpcap = card.ability.extra.mpcap + 1
+            card.ability.extra.can_cure = false
+            SMODS.calculate_effect ({
+                message = localize("k_biblio_healed"),
+                func = function ()
+                    ease_hands_played(card.ability.extra.cureval)
+                end
+            }, card)
+    end,
+    can_use = function (self, card)
+        return card.ability.extra.can_cure and card.ability.extra.mp >= card.ability.extra.curecost and G.STATE == G.STATES.SELECTING_HAND
+    end,
     attributes = {
         "hands"
     },
@@ -61,7 +74,7 @@ SMODS.Joker {
                 card.ability.extra.cureval,
                 card.ability.extra.cureval == 1 and "" or "s",
                 card.ability.extra.raisecost,
-                card.ability.extra.active and localize("k_biblio_active_desc") or localize("k_biblio_inactive_desc")
+                card.ability.extra.can_raise and localize("k_biblio_active_desc") or localize("k_biblio_inactive_desc")
             }
         }
     end,
@@ -75,21 +88,10 @@ SMODS.Joker {
             card.ability.extra.mp = card.ability.extra.mp + 1
         end
 
-        if context.final_scoring_step and G.GAME.current_round.hands_played == 1 and (G.GAME.blind.chips > G.GAME.chips) and card.ability.extra.mp >= card.ability.extra.curecost then
-            card.ability.extra.mp = card.ability.extra.mp - card.ability.extra.curecost
-            card.ability.extra.mpcap = card.ability.extra.mpcap + 1
-            return {
-                message = localize("k_biblio_healed"),
-                func = function ()
-                    ease_hands_played(card.ability.extra.cureval)
-                end
-            }
-        end
-
-        if context.final_scoring_step and card.ability.extra.active and (G.GAME.current_round.hands_left < 1) and (G.GAME.blind.chips > G.GAME.chips) and card.ability.extra.mp >= card.ability.extra.raisecost then
+        if context.final_scoring_step and card.ability.extra.can_raise and (G.GAME.current_round.hands_left < 1) and (G.GAME.blind.chips > G.GAME.chips) and card.ability.extra.mp >= card.ability.extra.raisecost then
             card.ability.extra.mp = card.ability.extra.mp - card.ability.extra.raisecost
             card.ability.extra.mpcap = card.ability.extra.mpcap + 6
-            card.ability.extra.active = false
+            card.ability.extra.can_raise = false
             return {
                 message = localize("k_biblio_revived"),
                 func = function ()
@@ -99,8 +101,16 @@ SMODS.Joker {
             }
         end
 
-        if (not card.ability.extra.active) and context.ante_end then
-            card.ability.extra.active = true
+        if (not card.ability.extra.can_raise) and context.ante_end then
+            card.ability.extra.can_cure = true
+            card.ability.extra.can_raise = true
+            return {
+                message = localize("k_reset")
+            }
+        end
+
+        if (not card.ability.extra.can_cure) and context.end_of_round and context.main_eval then
+            card.ability.extra.can_cure = true
             return {
                 message = localize("k_reset")
             }

@@ -156,10 +156,29 @@ return {
 
 		},
 		["poker_hands"] = {
+			["biblio_Spectrum"] = "Spectrum",
+			["biblio_Spectrum Five"] = "Spectrum Five",
+			["biblio_Straight Spectrum_2"] = "Royal Spectrum",
+			["biblio_Spectrum House"] = "Spectrum House",
+			["biblio_Straight Spectrum"] = "Straight Spectrum",
 
 		},
 		["poker_hand_descriptions"] = {
-
+			["biblio_Spectrum"] = {
+				"5 cards with different suits",
+			},
+			["biblio_Spectrum Five"] = {
+				"5 cards with the same rank,",
+				"each with a different suit",
+			},
+			["biblio_Straight Spectrum"] = {
+				"5 cards in a row (consecutive ranks),",
+				"each with a different suit",
+			},
+			["biblio_Spectrum House"] = {
+				"A Three of a Kind and a Pair with",
+				"each card having a different suit",
+			},
 		},
 		["quips"] = {
 
@@ -240,7 +259,7 @@ return {
 						"{C:inactive}(Currently #1#/#2#){}"
 					},
 					{
-						"After second played hand each round,",
+						"Once per round, {C:attention}use{} to cast",
 						"{C:chips}Cure{}: Restores #4# hand#5#",
 						"{C:inactive}(Costs #3# MP){}"
 					},
@@ -264,7 +283,7 @@ return {
 						--"{C:inactive}(Further Crucibles grant #12# Max MP)"
 					},
 					{
-						"After every {C:attention}#11#{C:inactive}(#10#){} played hands,",
+						"{C:attention}Use{} every {C:attention}#11#{C:inactive}(#10#){} hands to cast",
 						"{C:chips}Cura{}: Restores #4# hand#5#",
 						"{C:inactive}(Costs #3# MP){}"
 					},
@@ -808,6 +827,32 @@ return {
 					},
 					{
 						"{C:inactive,s:0.7}It's an alias in-universe too, if you were wondering."
+					}
+				}
+			},
+			j_biblio_minty_EX = {
+				name = {
+					"Mintleaf Sylvanis",
+					"{s:0.7}Ever but never present"
+				},
+				text = {
+					{
+						"{C:attention}3s{} count as a fifth suit, and",
+						"can be used to play Spectrum hands"
+					},
+					{
+						"{C:attention}Use{} once per round to warp selected cards",
+						"{C:inactive}(Max 1 Joker, 1 consumeable, 3 total)"
+					},
+					{
+						"{C:attention}Invoke{} once per Ante to take",
+						"the fight into this Joker's domain"
+					},
+					{
+						"While in domain:",
+						"Use warped cards and this Joker {C:attention}only{}*",
+						"{C:inactive,s:0.8}temporary playing cards will be created if deck size would be below #3#",
+						"May {C:attention}prevent death{} (current odds: {C:green}#1# in #2#{})"
 					}
 				}
 			},

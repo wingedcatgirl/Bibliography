@@ -35,3 +35,7 @@ function HEX(hex) end
 ---@field biblio_crucible_check? fun(self:SMODS.Joker|table, card:Card|table, crucible:Card|table):boolean Must return `true` for this card to be Crucible-eligible
 ---@field biblio_crucible_effect? fun(self:SMODS.Joker|table, card:Card|table, crucible:Card|table):nil Alternative effect of a Crucible, instead of changing center
 ---@field biblio_bound_compat? boolean Compatibility flag for the Bound sticker; inherits Perishable compatibility by default
+
+---@class SMODS.Joker
+---@field alt_use? fun(self:SMODS.Joker|table, card:SMODS.Joker|table):nil
+---@field can_alt_use? fun(self:SMODS.Joker|table, card:SMODS.Joker|table):boolean

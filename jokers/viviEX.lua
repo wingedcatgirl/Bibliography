@@ -2,7 +2,9 @@ SMODS.Joker {
     key = "vivi_EX",
     name = "Vivi Elakha, the Fae-Touched",
     --biblio_evolution = "j_biblio_viviX",
-    --biblio_evol_effect = function (self, newcard, oldextra) end,
+    biblio_evol_effect = function (self, newcard, oldextra) 
+        if oldextra.can_cure then newcard.ability.extra.handcount = newcard.ability.extra.curefreq end
+    end,
     --biblio_crucible_effect = function (self, card, crucible) end,
     pronouns = "she_her",
     atlas = 'jokers',
@@ -42,6 +44,20 @@ SMODS.Joker {
             glyph = 1,
         }
     },
+    use = function (self, card)
+            card.ability.extra.mp = card.ability.extra.mp - card.ability.extra.curecost
+            card.ability.extra.mpcap = card.ability.extra.mpcap + 1
+            card.ability.extra.handcount = 0
+            SMODS.calculate_effect ({
+                message = localize("k_biblio_healed"),
+                func = function ()
+                    ease_hands_played(card.ability.extra.cureval)
+                end
+            }, card)
+    end,
+    can_use = function (self, card)
+        return (card.ability.extra.handcount >= card.ability.extra.curefreq) and card.ability.extra.mp >= card.ability.extra.curecost and G.STATE == G.STATES.SELECTING_HAND
+    end,
     attributes = {
         "hands", "prevents_death", "ante"
     },
@@ -75,20 +91,8 @@ SMODS.Joker {
             card.ability.extra.mp = card.ability.extra.mp + 1
         end
 
-        if context.final_scoring_step then
+        if context.final_scoring_step and (card.ability.extra.handcount < card.ability.extra.curefreq) then
             card.ability.extra.handcount = card.ability.extra.handcount + 1
-        end
-
-        if context.final_scoring_step and (card.ability.extra.handcount >= card.ability.extra.curefreq)  and (G.GAME.blind.chips > G.GAME.chips) and card.ability.extra.mp >= card.ability.extra.curecost then
-            card.ability.extra.mp = card.ability.extra.mp - card.ability.extra.curecost
-            card.ability.extra.mpcap = card.ability.extra.mpcap + 1
-            card.ability.extra.handcount = 0
-            return {
-                message = localize("k_biblio_healed"),
-                func = function ()
-                    ease_hands_played(card.ability.extra.cureval)
-                end
-            }
         end
 
         if context.final_scoring_step and card.ability.extra.active and (G.GAME.current_round.hands_left < 1) and (G.GAME.blind.chips > G.GAME.chips) and card.ability.extra.mp >= card.ability.extra.raisecost then
