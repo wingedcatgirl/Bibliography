@@ -1,7 +1,3 @@
-local alphaplaceholder_base = {
-    x = math.random(0, 8),
-    y = 0
-}
 local alphaplaceholder_soul = {
     x = math.random(0, 21),
     y = 1
@@ -15,7 +11,9 @@ SMODS.Joker {
     --biblio_crucible_effect = function (self, card, crucible) end,
     pronouns = "she_her",
     atlas = 'jokers',
-    pos = alphaplaceholder_base,
+    pos = {
+        x=9,y=4
+    },
     soul_pos = alphaplaceholder_soul,
     rarity = "biblio_evolved",
     set_badges = function (self, card, badges)
