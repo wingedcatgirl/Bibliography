@@ -12,12 +12,10 @@ SMODS.Joker {
         x = 5,
         y = 2
     },
-    --[[
     soul_pos = {
-        x = 3,
-        y = 1
+        x = 5,
+        y = 3
     },
-    --]]
     rarity = "biblio_evolved",
     set_badges = function (self, card, badges)
         if not (self.discovered or card.bypass_discovery_ui) then return end

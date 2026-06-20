@@ -1,8 +1,3 @@
-local alphaplaceholder_soul = {
-    x = math.random(0, 21),
-    y = 1
-}
-
 SMODS.Joker {
     key = "jeri_EX",
     name = "Jeri Marsh, Fatebreaker",
@@ -14,7 +9,9 @@ SMODS.Joker {
     pos = {
         x=9,y=4
     },
-    soul_pos = alphaplaceholder_soul,
+    soul_pos = {
+        x=9,y=5
+    },
     rarity = "biblio_evolved",
     set_badges = function (self, card, badges)
         if not (self.discovered or card.bypass_discovery_ui) then return end

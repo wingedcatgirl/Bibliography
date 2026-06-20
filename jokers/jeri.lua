@@ -1,8 +1,3 @@
-local alphaplaceholder_base = {
-    x = math.random(0, 8),
-    y = 0
-}
-
 SMODS.Joker {
     key = "jeri",
     name = "Jeri Marsh, Chosen of Prophecy",
