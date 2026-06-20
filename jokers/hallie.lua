@@ -10,12 +10,10 @@ SMODS.Joker {
         x = 10,
         y = 2
     },
-    --[[
     soul_pos = {
         x = 10,
-        y = 1
+        y = 3
     },
-    --]]
     rarity = 3,
     set_badges = function (self, card, badges)
         if not (self.discovered or card.bypass_discovery_ui) then return end
