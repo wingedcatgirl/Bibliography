@@ -1,7 +1,6 @@
 SMODS.Joker {
     key = "vivi_EX",
     name = "Vivi Elakha, the Fae-Touched",
-    --biblio_evolution = "j_biblio_viviX",
     biblio_evol_effect = function (self, newcard, oldextra) 
         if oldextra.can_cure then newcard.ability.extra.handcount = newcard.ability.extra.curefreq end
     end,

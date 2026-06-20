@@ -10,10 +10,7 @@ local alphaplaceholder_soul = {
 SMODS.Joker {
     key = "daren_EX",
     name = "Daren Mathews, Sorrow's Silence",
-    --biblio_evolution = "j_biblio_KEY",
-    --biblio_evol_effect = function (self, newcard, oldextra) end,
-    --biblio_crucible_effect = function (self, card, crucible) end,
-    --pronouns = "",
+    pronouns = "he_him",
     atlas = 'jokers',
     pos = alphaplaceholder_base,
     soul_pos = alphaplaceholder_soul,
