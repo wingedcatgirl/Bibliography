@@ -2,13 +2,13 @@ local oldhex = HEX
 ---make hex work even if you accidentally leave in the #
 ---@param str string
 ---@return table
-HEX = function (str)
+HEX = function(str)
     str = str:gsub("#", "")
     return oldhex(str)
 end
 
 local oldlvl = level_up_hand
-level_up_hand = function (card, hand, instant, amount, ...)
+level_up_hand = function(card, hand, instant, amount, ...)
     if (G.GAME.immutable_level or 0) > 0 then return oldlvl(card, hand, instant, amount, ...) end
     G.GAME.immutable_level = (G.GAME.immutable_level or 0) + 1
 
@@ -21,12 +21,12 @@ level_up_hand = function (card, hand, instant, amount, ...)
 
     --local flags = SMODS.calculate_context{pre_level_up = newvals} or {}
     local calc = {}
-    SMODS.calculate_context({pre_level_up = newvals}, calc)
+    SMODS.calculate_context({ pre_level_up = newvals }, calc)
     local cancel_level
     local additionals = {}
 
-    for i,v in ipairs(calc or {}) do
-        for kk,vv in pairs(v or {}) do
+    for i, v in ipairs(calc or {}) do
+        for kk, vv in pairs(v or {}) do
             --[[
             print(tostring(kk))
             for k3,v3 in pairs(vv) do
@@ -42,11 +42,11 @@ level_up_hand = function (card, hand, instant, amount, ...)
             cancel_level = cancel_level or flags.cancel_level
 
             if flags.message and not (instant or newvals.instant) then
-                card_eval_status_text(flags.card or card, "extra", nil, nil, nil, {message = flags.message})
+                card_eval_status_text(flags.card or card, "extra", nil, nil, nil, { message = flags.message })
             end
 
             if next(flags.additional or {}) then
-                additionals[#additionals+1] = {
+                additionals[#additionals + 1] = {
                     card = flags.additional.card or newvals.card or card,
                     hand = flags.additional.hand or newvals.hand or hand,
                     instant = flags.additional.instant or newvals.instant or instant,
@@ -64,27 +64,28 @@ level_up_hand = function (card, hand, instant, amount, ...)
     end
 
     if next(additionals) then
-        for i,v in ipairs(additionals) do
+        for i, v in ipairs(additionals) do
             if not (v.no_message or v.instant or newvals.instant or instant) then
-                card_eval_status_text(v.message_card or card, "extra", nil, nil, nil, {message = v.message or localize("k_again_ex")})
+                card_eval_status_text(v.message_card or card, "extra", nil, nil, nil,
+                    { message = v.message or localize("k_again_ex") })
             end
             oldlvl(v.card, v.hand, v.instant, v.amount, ...)
         end
     end
 
-    SMODS.calculate_context{post_level_up = newvals, modified = vals.amount ~= newvals.amount}
+    SMODS.calculate_context { post_level_up = newvals, modified = vals.amount ~= newvals.amount }
     G.GAME.immutable_level = G.GAME.immutable_level - 1
 end
 
 local pseudornd = SMODS.pseudorandom_probability
-SMODS.pseudorandom_probability = function (trigger_obj, seed, base_numerator, base_denominator, identifier, no_mod,...)
-    local res = pseudornd(trigger_obj, seed, base_numerator, base_denominator, identifier, no_mod,...)
+SMODS.pseudorandom_probability = function(trigger_obj, seed, base_numerator, base_denominator, identifier, no_mod, ...)
+    local res = pseudornd(trigger_obj, seed, base_numerator, base_denominator, identifier, no_mod, ...)
     local postprob = SMODS.post_prob[#SMODS.post_prob]
 
     if G.GAME.biblio_advantage and G.GAME.biblio_advantage > 1 then
-        for i=1,(G.GAME.biblio_advantage-1) do
+        for i = 1, (G.GAME.biblio_advantage - 1) do
             SMODS.post_prob[#SMODS.post_prob] = nil
-            res = res or pseudornd(trigger_obj, seed, base_numerator, base_denominator, identifier, no_mod,...)
+            res = res or pseudornd(trigger_obj, seed, base_numerator, base_denominator, identifier, no_mod, ...)
         end
         postprob.result = res
         SMODS.post_prob[#SMODS.post_prob] = postprob
@@ -93,7 +94,7 @@ SMODS.pseudorandom_probability = function (trigger_obj, seed, base_numerator, ba
 end
 
 local showman = SMODS.showman
-SMODS.showman = function (key, ...)
+SMODS.showman = function(key, ...)
     if key == "c_wheel_of_fortune" and (next(SMODS.find_card("j_biblio_peri")) or next(SMODS.find_card("j_biblio_peri_EX"))) then
         return true
     end
@@ -116,19 +117,86 @@ function Card:click(...)
     end
 end
 
+--#region Sylvanis's 3 thing
+local issuit = Card.is_suit
+function Card:is_suit(suit, bypass_debuff, flush_calc, ...)
+    if (bypass_debuff or not self.debuff) and (suit == "biblio_3s" or suit == "minty_3s") and next(SMODS.find_card("j_biblio_minty")) then
+        if self:get_id() == 3 then
+            return true
+        elseif suit == "biblio_3s" then
+            return false --Wilds don't count as virtual 3s
+        end
+    end
+
+    return issuit(self, suit, bypass_debuff, flush_calc, ...)
+end
+
+--Functions that need to be hooked to see the virtual 3 suit
+if not next(SMODS.find_mod("Menthol")) then
+    if SMODS.get_virtual_suits then
+        local getsuits = SMODS.get_virtual_suits
+        function SMODS.get_virtual_suits()
+            local ret = getsuits()
+            ret[#ret + 1] = "biblio_3s"
+            return ret
+        end
+    else
+        local seedouble = SMODS.seeing_double_check
+        function SMODS.seeing_double_check(...)
+            local i = #SMODS.Suit.obj_buffer + 1
+            SMODS.Suit.obj_buffer[i] = "biblio_3s"
+
+            local ret = seedouble(...)
+
+            table.remove(SMODS.Suit.obj_buffer, i)
+
+            return ret
+        end
+
+        local flush = get_flush
+        function get_flush(...)
+            local i = #SMODS.Suit.obj_buffer + 1
+            SMODS.Suit.obj_buffer[i] = "biblio_3s"
+
+            local ret = flush(...)
+
+            table.remove(SMODS.Suit.obj_buffer, i)
+
+            return ret
+        end
+
+        for k, v in pairs(SMODS.PokerHandParts) do
+            if string.find(k:lower(), "spectrum") then
+                local oldfunc = v.func or function () end
+                v.func = function(...)
+                    local i = #SMODS.Suit.obj_buffer + 1
+                    SMODS.Suit.obj_buffer[i] = "biblio_3s"
+
+                    local ret = oldfunc(...)
+
+                    table.remove(SMODS.Suit.obj_buffer, i)
+
+                    return ret
+                end
+            end
+        end
+    end
+end
+--#endregion
+
 local discard = G.FUNCS.discard_cards_from_highlighted
 function G.FUNCS.discard_cards_from_highlighted(e, hook, ...)
     local ret = discard(e, hook, ...)
 
-    SMODS.calculate_context{biblio_post_discard = true}
+    SMODS.calculate_context { biblio_post_discard = true }
     return ret
 end
 
 local polled = poll_edition
 function poll_edition(_key, _mod, _no_neg, _guaranteed, _options, ...)
     _mod = _mod or 1
-    local krises = SMODS.merge_lists({SMODS.find_card("j_biblio_kris"), SMODS.find_card("j_biblio_kris_EX")})
-    for i,v in ipairs(krises) do
+    local krises = SMODS.merge_lists({ SMODS.find_card("j_biblio_kris"), SMODS.find_card("j_biblio_kris_EX") })
+    for i, v in ipairs(krises) do
         _mod = _mod * (v.ability.extra.edition_mod or 1)
     end
     --BIBLIO.say("Edition mod is now ".._mod, "TRACE")
@@ -140,19 +208,19 @@ local seted = Card.set_edition
 function Card:set_edition(edition, immediate, silent, delay, ...)
     seted(self, edition, immediate, silent, delay, ...)
 
-    check_for_unlock{type = "biblio_modify_any_card", card = self}
+    check_for_unlock { type = "biblio_modify_any_card", card = self }
 end
 
 local check = check_for_unlock
-function check_for_unlock(args)
+function check_for_unlock(args, ...)
     local ret
     if args and args.bypass_seeded then
         local seeded = G.GAME.seeded
         G.GAME.seeded = nil
-        ret = check(args)
+        ret = check(args, ...)
         G.GAME.seeded = seeded
     else
-        ret = check(args)
+        ret = check(args, ...)
     end
     return ret
 end
