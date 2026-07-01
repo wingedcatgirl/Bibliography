@@ -1,5 +1,3 @@
-local polterjens = SMODS.find_mod("jen")[1] or SMODS.find_mod("pwx")[1]
-
 SMODS.Consumable{
     set = 'Tarot',
     key = 'crucible',
@@ -188,11 +186,6 @@ SMODS.Consumable{
                     G.P_CENTERS[oldkey]:biblio_crucible_effect(v, card)
                     return true
                 end)
-            elseif polterjens and BIBLIO.marblecheck[v.config.center.key] then
-                card.ability.max_highlighted = card.ability.max_highlighted - 1
-                SMODS.add_card{
-                    key = "j_jen_godsmarble"
-                }
             end
             if card.ability.max_highlighted <= 0 and _ ~= #cards then
                 card.getting_sliced = true

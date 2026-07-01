@@ -115,8 +115,6 @@ end
 function BIBLIO.can_crucible(card, crucible)
     if card == crucible then return false end -- Can't use a Crucible on itself
 
-    BIBLIO.marblecheck = BIBLIO.marblecheck or {}
-
     local _,res = pcall(function ()
         return card.config.center.biblio_evolution or (type(card.config.center.biblio_crucible_effect) == "function")
     end)
@@ -138,23 +136,6 @@ function BIBLIO.can_crucible(card, crucible)
     local key = card.config.center.key
     if type(G.P_CENTERS[key].biblio_crucible_check) == "function" then
         res = res and G.P_CENTERS[key]:biblio_crucible_check(card)
-    end
-
-    if BIBLIO.marblecheck[key] then return true end
-
-    local polter = Jen or pwx
-    if polter and polter.fusions and string.find(key, "j_jen") and key ~= "j_jen_godsmarble" then --boldly assuming Jen doesn't do crossmod
-        for k,v in pairs(Jen.fusions) do
-            local this, marble
-            for kk,vv in pairs(v.ingredients) do
-                if vv == key then this = true end
-                if vv == "j_jen_godsmarble" then marble = true end
-                if this and marble then
-                    BIBLIO.marblecheck[key] = true
-                    return true
-                end
-            end
-        end
     end
 
     return not not (_ and res)
