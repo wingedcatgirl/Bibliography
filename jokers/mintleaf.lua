@@ -13,8 +13,12 @@ SMODS.Joker {
     --biblio_evolution = "j_biblio_minty_EX",
     pronouns = "it_she",
     atlas = 'jokers',
-    pos = alphaplaceholder_base,
-    soul_pos = alphaplaceholder_soul,
+    pos = {
+        x=10, y=4
+    },
+    soul_pos = {
+        x=10, y=5
+    },
     rarity = 2,
     set_badges = function (self, card, badges)
         if not (self.discovered or card.bypass_discovery_ui) then return end
