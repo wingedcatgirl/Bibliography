@@ -166,7 +166,7 @@ if not next(SMODS.find_mod("Menthol")) then
         end
 
         for k, v in pairs(SMODS.PokerHandParts) do
-            if string.find(k:lower(), "spectrum") then
+            if string.find(k:lower(), "spectrum") and not string.find(k:lower(), "biblio") then
                 local oldfunc = v.func or function () end
                 v.func = function(...)
                     local i = #SMODS.Suit.obj_buffer + 1
