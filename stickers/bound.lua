@@ -39,9 +39,13 @@ SMODS.Sticker{
         end
     end,
     loc_vars = function (self, info_queue, card)
+        ---@type integer|string
+        local timer = card.ability.biblio_bound_timer or 5
+        if card.ability.biblio_bound_forever then timer = "naneinf" end
+
         return {
             vars = {
-                card.ability.biblio_bound_timer or 5,
+                timer,
                 card.ability.biblio_bound_timer == 1 and "" or "s"
             }
         }
@@ -53,7 +57,7 @@ SMODS.Sticker{
             }
         end
 
-        if context.end_of_round and context.main_eval then
+        if context.end_of_round and context.main_eval and not card.ability.biblio_bound_forever then
             card.ability.biblio_bound_timer = card.ability.biblio_bound_timer - 1
             if card.ability.biblio_bound_timer <= 0 then
                 SMODS.destroy_cards(card, true, nil, true)
