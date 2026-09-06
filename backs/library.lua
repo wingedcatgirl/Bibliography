@@ -1,4 +1,5 @@
 SMODS.Back{
     key =  "library",
-    atlas = "empty_back",
+    atlas = "backs",
+    pos = {x=0,y=0}
 }
