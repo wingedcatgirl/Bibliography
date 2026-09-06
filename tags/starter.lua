@@ -8,7 +8,7 @@ SMODS.Tag{
     in_pool = function (self, args)
         return false
     end,
-    in_collection = false,
+    no_collection = true,
     loc_vars = function (self, info_queue, tag)
         info_queue[#info_queue+1] = G.P_CENTERS.p_biblio_starter
     end,
