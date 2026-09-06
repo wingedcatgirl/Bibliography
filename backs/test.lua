@@ -2,6 +2,7 @@ if not string.find(SMODS.current_mod.version, "~") then return end
 
 SMODS.Back{
     key = "test",
+    atlas = "empty_back",
     loc_txt = {
         name = "Test Deck (Bibliography)",
         text = {

@@ -12,6 +12,13 @@ for _,v in ipairs(super_basic_items) do
 end
 
 SMODS.Atlas{
+    key = "empty_back",
+    path = "empty back.png",
+    px = 71,
+    py = 95
+}
+
+SMODS.Atlas{
     key = "tags",
     path = "tags.png",
     px = 34,

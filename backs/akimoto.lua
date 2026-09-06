@@ -1,5 +1,6 @@
 SMODS.Back{
     key =  "akimoto",
+    atlas = "empty_back",
     unlocked = false,
     check_for_unlock = function (self, args)
         if args and args.type == "biblio_secret_seed" then

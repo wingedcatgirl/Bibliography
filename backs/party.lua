@@ -1,5 +1,6 @@
 SMODS.Back{
     key = "party",
+    atlas = "empty_back",
     apply = function (self, back)
         G.GAME.biblio_all_catchers = true
         G.GAME.modifiers = G.GAME.modifiers or {}

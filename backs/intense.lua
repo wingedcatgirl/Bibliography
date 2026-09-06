@@ -1,5 +1,6 @@
 SMODS.Back{
     key = "intense",
+    atlas = "empty_back",
     config = {
         extra = {
             slots = 2
