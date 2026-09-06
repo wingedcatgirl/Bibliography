@@ -1,7 +1,7 @@
 SMODS.Booster{
     key = "starter",
     discovered = false,
-    no_collection = false,
+    no_collection = true,
     group_key = "biblio_starter",
     kind = "biblio_starter",
     atlas = "boosters",
