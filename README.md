@@ -18,8 +18,7 @@
 **A**: There will be potential for computer-breaking numbers, probably. Eventually. Once I implement the Jokers involved, and also a reasonable-ish way to acquire them.
 
 **Q**: Is this trying to just be [a certain prior project] again?  
-**A**: ... Not *just*, no... ~~this one's got MY ocs in it!~~ Egotism aside, as much as Bibliography is both inspired by and modeled on [that older project], it's inherently a different mod and will be its own experience. Just for starters, we're going to have different design principles. I'll probably use less xChips than they did, for example. And less recursion.  
-... now that [that project] is publicly-ish available again, anyone who wants to play it can just play it, so I _gotta_ differentiate myself now :V
+**A**: ... Not *just*, no... ~~this one's got MY ocs in it!~~ Egotism aside, as much as Bibliography is both inspired by and modeled on [that older project], it's inherently a different mod and will be its own experience. Just for starters, we're going to have different design principles. I'll probably use less xChips than they did, for example. And less recursion. And hopefully less drama...
 
 **Q**: How many Jokers do you plan to add?  
 **A**: I plan to keep putting in Jokers until I run out of characters that I can come up with an in-game effect for. ... I'd like at least 70 before then, but I suppose that's up to my creativity. 

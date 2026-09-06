@@ -24,6 +24,7 @@ local files = {
         "bluehair",
         "vanillatweaks",
         "achievements",
+        "startpage",
     } },
     { name = "backs", content = {
         "party",

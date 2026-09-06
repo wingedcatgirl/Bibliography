@@ -25,7 +25,11 @@ return {
 			k_biblio_stronger = "Getting stronger",
 			k_biblio_fading = "Fading...",
 			k_biblio_blocked_ex = "Blocked!",
+			k_biblio_no_starter = "No starter",
 			k_biblio_dotdotdot = "...", --Used as both placeholder for messages TBA and actual message for particularly taciturn cahracters
+
+			run_select_biblio_starter_choice = "Select starter",
+			run_select_biblio_starter_choice_random = "Random starter",
 
 			--Zenos taunts
 			k_biblio_zenos_1 = "Rend!",
@@ -283,9 +287,8 @@ return {
 						--"{C:inactive}(Further Crucibles grant #12# Max MP)"
 					},
 					{
-						"{C:attention}Use{} every {C:attention}#11#{C:inactive}(#10#){} hands to cast",
-						"{C:chips}Cura{}: Restores #4# hand#5#",
-						"{C:inactive}(Costs #3# MP){}"
+						"{C:attention}Use{} to cast {C:chips}Cura{}: Restores #4# hand#5#",
+						"{C:inactive}(Costs #3# MP; #11#(#10#) hand cooldown){}"
 					},
 					{
 						"{C:attention}Once per round{C:inactive} (#7#)",
@@ -871,6 +874,15 @@ return {
 					}
 				},
 			},
+			j_biblio_none = {
+				name = "No starter",
+				text = {
+					"Start the 'start with a Joker'",
+					"deck without a Joker.",
+					" ",
+					"{C:inactive,s:0.8}... you sure about that, #1#?"
+				}
+			}
 		},
 		["Back"] = {
 			b_biblio_party = {
@@ -883,8 +895,8 @@ return {
 			b_biblio_library = {
 				name = "Library Deck",
 				text = {
-					"Start with a free",
-					"{C:attention,T:p_biblio_starter}Starter Pack{}"
+					"Select a {C:009dff}Common{}, {C:attention}evolveable{}",
+					"Joker to start the run with"
 				}
 			},
 			b_biblio_akimoto = {

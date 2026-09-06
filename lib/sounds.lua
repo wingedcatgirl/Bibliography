@@ -28,15 +28,11 @@ SMODS.Sound{ --Source: Chaotix
     pitch = 1, --You have to specify this for a music or it will slow down arbitrarily!!!!
     path = "chaotix take off.ogg",
     sync = false,
-    volume = 0.2,
+    volume = 0.4,
     select_music_track = function (self)
         if BIBLIO.config.no_unlicensed_tunes then return false end
 
-        local succ,boostmusic = pcall(function ()
-            return (G.STATE == G.STATES.SMODS_BOOSTER_OPENED) and (SMODS.OPENED_BOOSTER.ability.music == self.key)
-        end)
-
-        return succ and boostmusic and 1 or false
+        return SMODS.RunSelect.Internals.current_page >= SMODS.RunSelect.Pages.biblio_starter_choice.page and SMODS.RunSelect.Setup.choices.deck_choice == "b_biblio_library" and G.STAGE == G.STAGES.MAIN_MENU and 5 or false
     end
 }
 
