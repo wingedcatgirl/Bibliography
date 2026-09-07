@@ -40,6 +40,11 @@ local files = {
     { name = "tags", content = {
         "starter"
     } },
+    { name = "blinds", content = {
+        "calf",
+        "pointer",
+        "splinter",
+    } },
     { name = "jokers", content = {
         --my chars
         "leaf",

@@ -41,7 +41,7 @@ SMODS.Sound{ --Source: Chaotix
     pitch = 1,
     path = "chaotix nice to meet you.ogg",
     sync = false,
-    volume = 0.2,
+    volume = 0.4,
     select_music_track = function (self)
         if BIBLIO.config.no_unlicensed_tunes then return false end
 

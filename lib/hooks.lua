@@ -9,6 +9,11 @@ end
 
 local oldlvl = level_up_hand
 level_up_hand = function(card, hand, instant, amount, ...)
+    if G.GAME.blind and G.GAME.round_resets.blind_choices[G.GAME.blind_on_deck] == "bl_biblio_pointer" and G.GAME.blind.states.visible and not G.GAME.blind.disabled then
+        SMODS.calculate_context{message = localize("k_nope_ex"), message_card = G.GAME.blind}
+        return
+    end
+
     if (G.GAME.immutable_level or 0) > 0 then return oldlvl(card, hand, instant, amount, ...) end
     G.GAME.immutable_level = (G.GAME.immutable_level or 0) + 1
 

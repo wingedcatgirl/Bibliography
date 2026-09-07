@@ -920,7 +920,27 @@ return {
 			},
         },
 		["Blind"] = {
-
+			bl_biblio_splinter = {
+				name = "Splinter",
+				text = {
+					"Discard leftmost card",
+					"held when hand played"
+				}
+			},
+			bl_biblio_calf = {
+				name = "Calf",
+				text = {
+                    "Playing a #1#",
+                    "removes #2#",
+				}
+			},
+			bl_biblio_pointer = {
+				name = "Pointer",
+				text = {
+					"Poker hands",
+					"cannot level up"
+				}
+			}
 		},
 		["Tarot"] = {
             c_biblio_crucible = {
