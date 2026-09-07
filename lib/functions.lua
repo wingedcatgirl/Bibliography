@@ -513,7 +513,10 @@ function BIBLIO.catcher_mode()
             G.GAME.biblio_catcher_timeup = nil
             if (G.pack_cards and G.pack_cards.cards) then
                 if G.booster_pack then
-                    G.FUNCS.end_consumeable(nil, 0.2)
+                    BIBLIO.event(function ()
+                        G.FUNCS.end_consumeable(nil, 0.2)
+                        return true
+                    end)
                 end
             end
             return true
@@ -803,6 +806,8 @@ SMODS.current_mod.reset_game_globals = function(init)
         G.GAME.biblio_ao3_name = G.PROFILES[G.SETTINGS.profile].biblio_ao3_name or ""
         G.GAME.biblio_pseudname = (G.PROFILES[G.SETTINGS.profile].biblio_pseudname and G.PROFILES[G.SETTINGS.profile].biblio_pseudname ~= "" and G.PROFILES[G.SETTINGS.profile].biblio_pseudname ~= "No Pseud" and G.PROFILES[G.SETTINGS.profile].biblio_pseudname) or G.GAME.biblio_ao3_name
         G.GAME.biblio_ao3_found, G.GAME.biblio_last_ao3 = BIBLIO.is_ao3_connected()
+
+        G.GAME.biblio_blinds_defeated = {}
     end
 end
 
@@ -862,6 +867,10 @@ SMODS.current_mod.calculate = function (self, context)
                 saved = localize{type = "variable", key = "v_biblio_savedby", vars = {saved}}
             }
         end
+    end
+
+    if context.end_of_round and context.beat_boss and context.main_eval then
+        G.GAME.biblio_blinds_defeated[G.GAME.round_resets.blind_choices[G.GAME.blind_on_deck]] = (G.GAME.biblio_blinds_defeated[G.GAME.round_resets.blind_choices[G.GAME.blind_on_deck]] or 0) + 1
     end
 
     --[[
