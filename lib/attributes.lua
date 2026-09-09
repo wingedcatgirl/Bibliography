@@ -4,11 +4,7 @@ SMODS.Attribute{ --Cards which distinctly don't act like normal cards
     key = "nonstandard"
 }
 
-SMODS.Attribute{ --Cards which modify ante; can be deleted when smods #1371 is merged
-    key = "ante"
-}
-
-SMODS.Attribute{ --Cards which may do something when the ante changes
+SMODS.Attribute{ --Cards which (may) do something when the ante changes
     key = "ante_change"
 }
 
@@ -35,14 +31,14 @@ SMODS.Attribute{ --Cards which ban cards, preventing them from appearing again
     }
 }
 
-SMODS.Attribute{ --Cards which interact with hand levels; can be deleted when smods #1371 is merged
+SMODS.Attribute{ --Cards which interact with hand levels. Keeping this for the alias
     key = "hand_level",
     alias = {
         "level_up"
     }
 }
 
-SMODS.Attribute{ --Cards which care about consumeable slots; can be deleted when smods #1371 is merged
+SMODS.Attribute{ --Cards which care about consumeable slots. Keeping for the aliases
     key = "consumeable_slot",
     alias = {
         "consumable_slot", "consumeable_slots", "consumable_slots"
