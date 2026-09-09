@@ -47,7 +47,7 @@ SMODS.Joker {
         }
     },
     attributes = {
-        "retrigger", "rank", "chance", "nine"
+        "retrigger", "rank", "chance", "nine", "meta"
     },
     loc_vars = function(self, info_queue, card)
         local key = self.key
