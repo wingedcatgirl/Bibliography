@@ -7,6 +7,17 @@ local alphaplaceholder_soul = {
     y = 1
 }
 
+local function date_mod()
+    local mod = 1
+    local time = os.date("*t")
+    time.hour, time.min, time.sec, time.yday = nil,nil,nil,nil
+    for k,v in pairs(time) do
+        if tostring(v):find("9") then mod = mod * 3 end
+    end
+
+    return math.min(mod, 9)
+end
+
 SMODS.Joker {
     key = "cirno",
     name = "Cirno",
@@ -76,6 +87,12 @@ SMODS.Joker {
                     }
                 }
             end
+        end
+
+        if context.mod_probability and context.trigger_obj == card then
+            return {
+                numerator = context.numerator * date_mod()
+            }
         end
     end
 }
